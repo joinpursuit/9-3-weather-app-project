@@ -1,0 +1,11 @@
+header, aside, main, ul, p{
+    display: grid;
+}
+
+header {
+    background-color: aqua;
+}
+
+h1 {
+    color: black;
+}
