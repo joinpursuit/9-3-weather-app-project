@@ -1,3 +1,16 @@
 header, aside, main, ul, p {
     display: grid;
 }
+
+header {
+    background-color: blue;
+}
+
+h1 {
+    color:aliceblue;
+}
+
+main {
+    background-color: grey;
+}
+
