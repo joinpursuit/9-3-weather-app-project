@@ -1,0 +1,3 @@
+header, aside, main, ul, p {
+    display: grid;
+}
