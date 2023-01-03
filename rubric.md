@@ -1,4 +1,4 @@
-# Rubric
+touch s# Rubric
 
 The following is the rubric for this project. To get a full score, you must meet the **Proficient** standard for all of the criteria.
 
