@@ -1,40 +1,75 @@
 //Selectors
 const inputField = document.querySelector(".js-searchbar");
 const searchbtn = document.querySelector(".js-submit-button");
-const mainArticle = document.querySelector(".js-article")
+const mainArticle = document.querySelector(".js-article");
+const threeDay = document.querySelector(".js-three-day");
 
-//EventListeners
-searchbtn.addEventListener("click", test)
+//Event Listeners
+searchbtn.addEventListener("click", showInfo)
 
-//functions
-
-async function test(event){
+//Functions
+async function showInfo(event){
     event.preventDefault()
 
     const info = await fetchWeatherInfo()
-    updateMain(info)
-
+    updateMain(info);
+    updateThreeDay(info);
 }
 
 function updateMain(info){
-    mainArticle.innerHTML = ""
-
-    const relevantInfo = {
-        Area: info.nearest_area[0].areaName[0].value,
-        Region: info.nearest_area[0].region[0].value,
-        Country: info.nearest_area[0].country[0].value,
-        Currently: info.current_condition[0].FeelsLikeF
-    }
+    mainArticle.innerHTML = "";
 
     const heading =  document.createElement("h3");
     heading.textContent = info.search;
     mainArticle.append(heading)
 
-    Object.keys(relevantInfo).forEach((key) => {
-        let line =  document.createElement("p");
-        line.innerHTML = `<strong>${key}:</strong> ${key !== "Currently" ? relevantInfo[key] : `Feels like ${relevantInfo[key]}° F`}`
+    const relevantInfo = {
+        "Area": info.nearest_area[0].areaName[0].value,
+        "Region": info.nearest_area[0].region[0].value,
+        "Country": info.nearest_area[0].country[0].value,
+        "Currently": info.current_condition[0].FeelsLikeF
+    }
+    
+    createCard(relevantInfo, mainArticle)
+}
 
-        mainArticle.append(line)
+function updateThreeDay(info){
+    if(!!threeDay.textContent){
+        threeDay.innerHTML = ""
+    }
+
+    threeDay.classList.remove("hidden");
+
+    info.weather.forEach((day, i) => {
+        const div = document.createElement("div")
+        div.setAttribute("class", "three-day-item")
+
+        const heading = document.createElement("h3");
+        heading.textContent = i == 0 ? "Today" : i == 1 ? "Tomorrow" : "Day After Tomorrow";
+        div.append(heading)
+
+        const threeDayInfo = {
+            "Average Temperature": day.avgtempF,
+            "Max Temperature":day.maxtempF,
+            "Min Temperature": day.mintempF
+        }
+
+        createCard(threeDayInfo, div)
+
+        threeDay.append(div)
+
+    })
+}
+
+function createCard(relevantInfo, appenTo){
+    Object.keys(relevantInfo).forEach((key) => {
+        const createdLine =  document.createElement("p");
+        const keyInfo = key !== "Currently" ? relevantInfo[key] : `Feels like ${relevantInfo[key]}° F`;
+        const unboldedInfo = relevantInfo.hasOwnProperty("Average Temperature")  ? `${relevantInfo[key]}°` : keyInfo
+
+        createdLine.innerHTML = `<strong>${key}:</strong> ${unboldedInfo}`
+
+        appenTo.append(createdLine)
     })
 }
 
