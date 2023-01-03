@@ -3,6 +3,8 @@ const inputField = document.querySelector(".js-searchbar");
 const searchbtn = document.querySelector(".js-submit-button");
 const mainArticle = document.querySelector(".js-article");
 const threeDay = document.querySelector(".js-three-day");
+const previous = document.querySelector(".js-previous-search");
+const noPreviousSearches = document.querySelector(".js-previous-p");
 
 //Event Listeners
 searchbtn.addEventListener("click", showInfo)
@@ -11,9 +13,22 @@ searchbtn.addEventListener("click", showInfo)
 async function showInfo(event){
     event.preventDefault()
 
-    const info = await fetchWeatherInfo()
+    const info = await fetchWeatherInfo(event)
     updateMain(info);
     updateThreeDay(info);
+
+    if(event.target.matches(".js-submit-button")){
+        updatePrevious(info)
+    }
+}
+
+function updatePrevious(info){
+    noPreviousSearches.remove();
+
+    let li = document.createElement("li");
+    li.innerHTML = `<a href="#">${info.search}</a> - ${info.current_condition[0].FeelsLikeF}°`;
+    li.addEventListener("click", showInfo);
+    previous.append(li);
 }
 
 function updateMain(info){
@@ -65,7 +80,7 @@ function createCard(relevantInfo, appenTo){
     Object.keys(relevantInfo).forEach((key) => {
         const createdLine =  document.createElement("p");
         const keyInfo = key !== "Currently" ? relevantInfo[key] : `Feels like ${relevantInfo[key]}° F`;
-        const unboldedInfo = relevantInfo.hasOwnProperty("Average Temperature")  ? `${relevantInfo[key]}°` : keyInfo
+        const unboldedInfo = relevantInfo.hasOwnProperty("Average Temperature") ? `${relevantInfo[key]}°` : keyInfo
 
         createdLine.innerHTML = `<strong>${key}:</strong> ${unboldedInfo}`
 
@@ -73,9 +88,9 @@ function createCard(relevantInfo, appenTo){
     })
 }
 
-async function fetchWeatherInfo(){
+async function fetchWeatherInfo(event){
     const baseURL = "https:wttr.in/"
-    const search = inputField.value;
+    const search = event.target.matches(".js-submit-button") ? inputField.value: event.target.textContent;
     const endpoint= "?format=j1"
 
     const info = await fetch(baseURL+search+endpoint)
