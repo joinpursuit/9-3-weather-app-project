@@ -11,6 +11,17 @@ font-family: 'Assistant', sans-serif" - weight 400, 900
     font-weight: 400;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong
+{
+    font-weight: 900;
+}
+
 body{
     height: 100vh;
     display: grid;
