@@ -76,3 +76,26 @@ main {
     font-size: 14px;
     text-indent: 40px;
 }
+
+.tempAside {
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.tempCard {
+    display: grid;
+    align-items: center;
+    text-align: center;
+    border: 2px solid #268080;
+    background: #efefef;
+    max-height: 45vh;
+}
+
+strong {
+    margin-right: 5px;
+}
+
+li {
+    width: max-content;
+}
