@@ -1,0 +1,24 @@
+h1 {
+    text-align: center;
+    color: black;
+    font-family: fantasy;
+}
+form {
+    color:black;
+    font-family: fantasy;
+}
+button {
+    color: black;
+    font-family: fantasy;
+}
+.centered {
+    display: grid;
+    gap: 15px;
+    margin: 25px auto;
+    width: 75%;
+}
+ section.centered {
+    background-color: tan;
+ }
+
+ 
