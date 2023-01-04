@@ -287,7 +287,7 @@ function tempConvertion(type, temp) {
 
 function checkForValidInput(input) {
   if (input === "" || input === null || input.match(/[0-9]/g)) {
-    throw new Error("Please provide a valie input");
+    throw new Error("Please provide a valid input");
   }
 }
 
