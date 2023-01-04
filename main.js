@@ -9,15 +9,22 @@ tempConvF.addEventListener("submit", handleTempFormSubmit);
 
 function handleWeatherFormSubmit(event) {
   event.preventDefault();
-  const user_input = weatherF.weather_submit;
-  const BASE_URL = `https://wttr.in/${user_input.value}?format=j1`;
+  try {
+    const user_input = weatherF.weather_submit;
+    checkForValidInput(user_input.value);
+    const BASE_URL = `https://wttr.in/${user_input.value}?format=j1`;
 
-  fetchWeatherInformation(BASE_URL);
-  event.target.weather_submit.value = "";
+    fetchWeatherInformation(BASE_URL);
+
+    event.target.weather_submit.value = "";
+  } catch (error) {
+    document.querySelector("main p").textContent = error.message;
+  }
 }
 
 function handleTempFormSubmit(event) {
   event.preventDefault();
+
   const tempType = event.target.convert_temperature.value;
   const tempToConvert = document.querySelector("#temp-to-convert").value;
 
@@ -56,8 +63,6 @@ function createWeatherObjectFromResponse(response, url) {
   const userLocation = extractUserLocation(url);
   const todaysChances = chancesOfForToday(weather[0].hourly);
   const imgInfo = weatherIMG(todaysChances);
-
-  console.log(userLocation);
 
   const weatherObj = {
     user_input: userLocation,
@@ -156,13 +161,13 @@ function createMainArticle(weather) {
   const currentlyP = createParagraphByType("Currently", weather.feelLikeTempF);
 
   const chanceOfSunshine = weather.today.chanceOfSunshine;
-  const sunshineP = createParagraphByType("Chance of Sunshine", chanceOfSunshine);
+  const sunshineP = createParagraphByType("Chance of Sunshine", `${chanceOfSunshine}%`);
 
   const chanceOfRain = weather.today.chanceOfRain;
-  const rainP = createParagraphByType("Chance of Rain", chanceOfRain);
+  const rainP = createParagraphByType("Chance of Rain", `${chanceOfRain}%`);
 
   const chanceOfSnow = weather.today.chanceOfSnow;
-  const snowP = createParagraphByType("Chance of Snow", chanceOfSnow);
+  const snowP = createParagraphByType("Chance of Snow", `${chanceOfSnow}%`);
 
   const weatherContainer = document.createElement("div");
   weatherContainer.classList.add("remove", "weather_article");
@@ -194,6 +199,7 @@ function createThreeDayForecastArticles(weather) {
 }
 
 function createForecastArticleByDay(day) {
+  const articleName = convertToClassName(day.name);
   const h3 = document.createElement("h3");
   h3.textContent = day.name;
 
@@ -202,10 +208,17 @@ function createForecastArticleByDay(day) {
   const minP = createParagraphByType("Minimum Temperature", `${day.minTemp}°F`);
 
   const upComingWeatherArticle = document.createElement("article");
-  upComingWeatherArticle.classList.add("remove", "weather_article", "upcoming_weather_article");
+  upComingWeatherArticle.classList.add("remove", "weather_article", "upcoming_weather_article", articleName);
   upComingWeatherArticle.append(h3, avgP, maxP, minP);
 
   return upComingWeatherArticle;
+}
+function convertToClassName(dayName) {
+  if (dayName.includes(" ")) {
+    return dayName.replaceAll(" ", "-").toLowerCase();
+  } else {
+    return dayName.toLowerCase();
+  }
 }
 
 function hideElements() {
@@ -227,6 +240,7 @@ function showElements() {
 function rearrangeGridDisplay() {
   document.querySelector("#main_content_container").classList.remove("temp_widget_off");
   document.querySelector("#main_content_container").classList.add("temp_widget_on");
+  document.querySelector(".weather_app_container").classList.add("weather_app_container_on_submit");
 }
 
 function createSearchLinkElement(weather) {
@@ -239,6 +253,7 @@ function createSearchLinkElement(weather) {
   const feelsLikeTemp = `${weather.feelLikeTempF}°F`;
 
   const searchListElement = document.createElement("li");
+  searchListElement.style.listStyle = "none";
   searchListElement.append(searchLink, " - ", feelsLikeTemp);
 
   return searchListElement;
@@ -267,6 +282,12 @@ function tempConvertion(type, temp) {
     return ((temp - degreeDifference) * fahrenheit2celcius).toFixed(2);
   } else if (type === fahrenheit) {
     return temp * celcius2fahrenheit + degreeDifference;
+  }
+}
+
+function checkForValidInput(input) {
+  if (input === "" || input === null || input.match(/[0-9]/g)) {
+    throw new Error("Please provide a valie input");
   }
 }
 
