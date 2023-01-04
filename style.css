@@ -1,24 +1,41 @@
-h1 {
+html {
+    font-family: fantasy;
+    color: black;
+    background-color: beige;
+}
+
+
+header {
     text-align: center;
     color: black;
     font-family: fantasy;
-}
-form {
-    color:black;
-    font-family: fantasy;
-}
-button {
-    color: black;
-    font-family: fantasy;
-}
-.centered {
+    background-color: tan;
     display: grid;
     gap: 15px;
     margin: 25px auto;
     width: 75%;
 }
- section.centered {
-    background-color: tan;
- }
 
- 
+.main_article {
+    display: grid;
+    border: 2px solid black;
+    gap: 15px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin: 25px auto;
+    width: 75%;
+    text-align: center;
+  
+}
+
+.main_information {
+    grid-column: span 3;
+}
+
+.previous_search {
+
+    grid-column: span 2;
+  
+
+
+
+}

@@ -5,34 +5,49 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trivia Questions</title>
+    <title>Weather App</title>
     <link rel="stylesheet" href="style.css" />
     <script defer src="./main.js"></script>
 
 </head>
 
 <body>
-    <section class="centered">
-        <header>
+    <header>
+        <div>
             <h1>Weather App</h1>
-
             <form>
-
                 <label for="location">Pick a Location</label>
                 <input type="text" id="location">
-                <input type="submit" value="Get Weather" </button>
-
-
-
+                <input type="submit" value="Submit">
             </form>
-        </header>
+        </div>
+    </header>
+    <aside class="covert_info">
+        <h3>Tempature Conversion Widget</h3>
+        <form>
+            <label for="temperature">Convert the Temperature</label>
+            <input type="number" name="temperature" />
 
-    </section>
-    <main class="centered">
-        <aside></aside>
-        <article></article>
+            <label for="tempFahr">Convert to Fahrenheit</label>
+            <input type="radio" name="temp_ConvF" id="to-C" value="C" />
 
+            <label for="tempCel">Covert to Celcius</label>
+            <input type="radio" name="temp_ConvC" id="to-F" value="F" />
+        </form>
+    </aside>
+    <main class="main_article">
+        <p>Choose a location to view the weather</p>
+        <article class="current_weather" id="weather_now" </article>
+            <aside class="upcoming_weather" id="weather"></aside>
     </main>
+    <aside class="previous_search">
+        <section class="previous_weather">
+            <h4>Previous Searches</h4>
+            <ul>
+                <p>No previous searches</p>
+            </ul>
+        </section>
+    </aside>
 
 </body>
 
