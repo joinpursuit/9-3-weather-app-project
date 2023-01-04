@@ -23,10 +23,30 @@
                 Pick a location:
             </label>
             <input type="text" placeholder="Enter A City" id="city-search" class="js-searchbar" required>
-            <input type="submit" value="Get Weather" class="js-submit-button"/>
+            <input type="submit" value="Get Weather" class="js-submit-button" />
         </form>
     </header>
-    <aside></aside>
+    <aside>
+        <form>
+            <label for="temp-to-convert" class="title">Convert the temperature</label>
+            <input type="number" id="temp-to-convert" placeholder="0" class="js-convert-number" required>
+
+            <label for="to-c">
+                <input type="radio" name="conversion-convert-temp" id="to-c" value="c" required>
+                To Celcius
+            </label>
+
+            <label for="to-f">
+                <input type="radio" name="conversion-convert-temp" id="to-f" value="f">
+                To Fahrenheit
+            </label>
+
+            <input type="submit" class="js-convert-submit" value="Convert">
+        </form>
+        <h4 class="result js-convert-result">
+            
+        </h4>
+    </aside>
     <main>
         <article class="js-article">
             <p>Choose a location to view the weather</p>

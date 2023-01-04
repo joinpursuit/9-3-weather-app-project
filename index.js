@@ -1,14 +1,39 @@
-//Selectors
+/* ------------------- Selectors --------------- */
 const inputField = document.querySelector(".js-searchbar");
-const searchbtn = document.querySelector(".js-submit-button");
+const searchBTN = document.querySelector(".js-submit-button");
 const mainArticle = document.querySelector(".js-article");
 const threeDay = document.querySelector(".js-three-day");
-const previous = document.querySelector(".js-previous-search");
+const previous = document.querySelector(".js-previous-search")
+/* ------------- Widget Selectors ----------- */
+const widgetNumber = document.getElementById("temp-to-convert")
+const widgetC = document.getElementById("to-c")
+const widgetF = document.getElementById("to-f")
+const widgetSearchBTN = document.querySelector(".js-convert-submit")
+const widgetResult = document.querySelector(".js-convert-result")
 
-//Event Listeners
-searchbtn.addEventListener("click", showInfoOnPage)
+
+/* ---------------- Event Listeners ----------------------*/
+searchBTN.addEventListener("click", showInfoOnPage);
+widgetSearchBTN.addEventListener("click", convertTemp);
 
 //Functions
+function convertTemp(event,){
+    event.preventDefault()
+    if(!widgetNumber.value){
+        return 
+    }
+
+    let converted
+
+    if(widgetC.checked){
+        converted = widgetNumber.value - 32 * (5/9);
+    } else {
+        converted = widgetNumber.value * (9/5) + 32;
+    }
+
+    widgetResult.textContent = `${converted.toFixed(2)}°`
+}
+
 async function showInfoOnPage(event){
     event.preventDefault()
 
