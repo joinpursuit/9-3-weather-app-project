@@ -89,7 +89,19 @@ main {
     text-align: center;
     border: 2px solid #268080;
     background: #efefef;
-    max-height: 45vh;
+    max-height: 55vh;
+}
+
+.tempCard p {
+    display: grid;
+    padding: 2px;
+    height: auto;
+    margin: 10px 0;
+}
+
+h3 {
+    height: 50px;
+    margin-bottom: 0;
 }
 
 strong {
