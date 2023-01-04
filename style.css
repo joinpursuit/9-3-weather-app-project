@@ -108,7 +108,7 @@ header,
 }
 
 .upcoming_weather_article p {
-  background-color: #bfd6d9;
+  background-color: #7aa8dd;
 }
 
 #weather_upcoming {
@@ -120,7 +120,7 @@ header,
 }
 
 .temp_widget_on {
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: 20% 60% 20%;
 }
 
 #main_article {
@@ -138,7 +138,6 @@ header,
 
 #main_article,
 #search_aside,
-#weather_current,
 #weather_upcoming,
 .upcoming_weather_article {
   height: auto;
@@ -164,6 +163,36 @@ header,
   height: 1em;
 }
 
+/* .upcoming_weather_article {
+  border: 2px solid black;
+} */
+
+#weather_current {
+  height: 600px;
+}
+
+.today {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.tomorrow {
+  border: 1px solid black;
+}
+
+.day-after-tomorrow {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.weather_app_container_on_submit {
+  height: 86vh;
+}
+
+/* border around each article.
+separate the individual temps and color code them  */
 footer {
   position: fixed;
   bottom: 0;
