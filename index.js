@@ -4,13 +4,12 @@ const searchbtn = document.querySelector(".js-submit-button");
 const mainArticle = document.querySelector(".js-article");
 const threeDay = document.querySelector(".js-three-day");
 const previous = document.querySelector(".js-previous-search");
-const noPreviousSearches = document.querySelector(".js-previous-p");
 
 //Event Listeners
-searchbtn.addEventListener("click", showInfo)
+searchbtn.addEventListener("click", showInfoOnPage)
 
 //Functions
-async function showInfo(event){
+async function showInfoOnPage(event){
     event.preventDefault()
 
     const info = await fetchWeatherInfo(event)
@@ -23,18 +22,20 @@ async function showInfo(event){
 }
 
 function updatePrevious(info){
-    noPreviousSearches.remove();
+    if(!!document.querySelector(".js-previous-p")){
+        document.querySelector(".js-previous-p").remove();
+    }
 
     let li = document.createElement("li");
     li.innerHTML = `<a href="#">${info.search}</a> - ${info.current_condition[0].FeelsLikeF}°`;
-    li.addEventListener("click", showInfo);
+    li.addEventListener("click", showInfoOnPage);
     previous.append(li);
 }
 
 function updateMain(info){
     mainArticle.innerHTML = "";
 
-    const heading =  document.createElement("h3");
+    const heading =  document.createElement("h2");
     heading.textContent = info.search;
     mainArticle.append(heading)
 
@@ -45,7 +46,24 @@ function updateMain(info){
         "Currently": info.current_condition[0].FeelsLikeF
     }
     
-    createCard(relevantInfo, mainArticle)
+    createMainCard(relevantInfo, info.search)
+}
+
+function createMainCard(relevantInfo, search){
+    Object.keys(relevantInfo).forEach((key) => {
+        const createdLine =  document.createElement("p");
+        const keyInfo = key !== "Currently" ? relevantInfo[key] : `Feels like ${relevantInfo[key]}° F`;
+
+        let keyWithErrorHandling = key;
+
+        if(key == "Area"){
+            keyWithErrorHandling = (search == relevantInfo.Area ? "Area" : "Nearest Area")
+        }
+
+        createdLine.innerHTML = `<strong>${keyWithErrorHandling}:</strong> ${keyInfo}`
+
+        mainArticle.append(createdLine)
+    })
 }
 
 function updateThreeDay(info){
@@ -59,7 +77,7 @@ function updateThreeDay(info){
         const div = document.createElement("div")
         div.setAttribute("class", "three-day-item")
 
-        const heading = document.createElement("h3");
+        const heading = document.createElement("h2");
         heading.textContent = i == 0 ? "Today" : i == 1 ? "Tomorrow" : "Day After Tomorrow";
         div.append(heading)
 
@@ -69,22 +87,20 @@ function updateThreeDay(info){
             "Min Temperature": day.mintempF
         }
 
-        createCard(threeDayInfo, div)
+        createThreeDayCard(threeDayInfo, div)
 
         threeDay.append(div)
 
     })
 }
 
-function createCard(relevantInfo, appenTo){
+function createThreeDayCard(relevantInfo, appendTo){
+
     Object.keys(relevantInfo).forEach((key) => {
         const createdLine =  document.createElement("p");
-        const keyInfo = key !== "Currently" ? relevantInfo[key] : `Feels like ${relevantInfo[key]}° F`;
-        const unboldedInfo = relevantInfo.hasOwnProperty("Average Temperature") ? `${relevantInfo[key]}°` : keyInfo
+        createdLine.innerHTML = `<strong>${key}:</strong> ${relevantInfo[key]}°`
 
-        createdLine.innerHTML = `<strong>${key}:</strong> ${unboldedInfo}`
-
-        appenTo.append(createdLine)
+        appendTo.append(createdLine)
     })
 }
 
