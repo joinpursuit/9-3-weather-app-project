@@ -57,6 +57,8 @@ function createWeatherObjectFromResponse(response, url) {
   const todaysChances = chancesOfForToday(weather[0].hourly);
   const imgInfo = weatherIMG(todaysChances);
 
+  console.log(userLocation);
+
   const weatherObj = {
     user_input: userLocation,
     nearest_area: nearest_area[0].areaName[0].value,
@@ -93,7 +95,7 @@ function createWeatherObjectFromResponse(response, url) {
 }
 
 function extractUserLocation(url) {
-  const inputLocation = url.split(/[/?]/)[3];
+  const inputLocation = url.split(/[/?]/)[3].replace("%20", " ");
   return inputLocation;
 }
 
