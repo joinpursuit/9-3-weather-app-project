@@ -1,0 +1,51 @@
+header{
+    display: grid;
+    border: 3px solid #0b0b0b;
+    margin: 10px auto;
+    width: 80%;
+    background-color: green;
+  }
+  .form-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .principal {
+    width: 80%;
+    margin: 10px auto;
+  }
+
+
+  h1 {
+    color: white;
+    text-align: center;
+  }
+
+  form {
+    color: white;
+  }
+
+main {
+  border: 3px solid #151616;
+  width: 65%;
+  float:left;
+}
+
+.previous {
+  border: 3px solid #e50c0c;
+  width: 30%;
+  overflow: hidden;
+
+}
+  
+
+ 
+  
+
+  
+  
+ 
+
+
+  
+
