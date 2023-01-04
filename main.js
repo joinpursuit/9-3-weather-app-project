@@ -29,7 +29,23 @@ function fetchWeatherInformation(url) {
 
 function handleResponse(response, url) {
   const weatherObj = createWeatherObjectFromResponse(response, url);
+  const location = weatherObj.user_input;
 
+  hideElements();
+  showElements();
+  rearrangeGridDisplay();
+
+  const mainWeatherContainer = document.querySelector("#weather_current");
+  const mainWeather = createMainArticle(location, weatherObj);
+  mainWeatherContainer.append(mainWeather);
+
+  const upcomingWeatherContainer = document.querySelector("#weather_upcoming");
+  const weatherArticles = createThreeDayForecastArticles(weatherObj);
+  upcomingWeatherContainer.append(...weatherArticles);
+
+  // const unorderedSearches = document.querySelector("#search_section ul");
+  // const searchListElement = createSearchLink(weatherObj);
+  // unorderedSearches.append(searchListElement);
   console.log(weatherObj);
 }
 
@@ -95,12 +111,12 @@ function chanceOf(type, hourly) {
   return Math.round(avgChance);
 }
 
-function weatherIMG(chancesOfForToday) {
-  const highestChance = Math.max(...chancesOfForToday);
+function weatherIMG(chancesForToday) {
+  const highestChance = Math.max(...chancesForToday);
 
-  if (highestChance === chances[0]) {
+  if (highestChance === chancesForToday[0]) {
     return ["summer", "sun"];
-  } else if (highestChance === chances[1]) {
+  } else if (highestChance === chancesForToday[1]) {
     return ["torrential-rain", "rain"];
   } else {
     return ["light-snow", "snow"];
@@ -119,6 +135,73 @@ function handleLocationAreaMismatch(weatherObj) {
     return "Nearest Area";
   }
   return "Area";
+}
+
+function createMainArticle(weather) {
+  const areaType = handleLocationAreaMismatch(weather);
+
+  const heading2 = document.createElement("h2");
+  heading2.textContent = location;
+
+  const areaP = createParagraphByType(areaType, weather.nearest_area);
+
+  const weatherIMG = createIMG(weather.today.img_path_name, weather.today.img_alt);
+
+  const regionP = createParagraphByType("Region", weather.region);
+  const countryP = createParagraphByType("Country", weather.country);
+  const currentlyP = createParagraphByType("Currently", weather.feelLikeTempF);
+
+  const chanceOfSunshine = weather.today.chanceOfSunshine;
+  const sunshineP = createParagraphByType("Chance of Sunshine", chanceOfSunshine);
+
+  const chanceOfRain = weather.today.chanceOfRain;
+  const rainP = createParagraphByType("Chance of Rain", chanceOfRain);
+
+  const chanceOfSnow = weather.today.chanceOfSnow;
+  const snowP = createParagraphByType("Chance of Snow", chanceOfSnow);
+
+  const weatherContainer = document.createElement("div");
+  weatherContainer.classList.add("remove", "weather_article");
+  weatherContainer.append(heading2, areaP, weatherIMG, regionP, countryP, currentlyP, sunshineP, rainP, snowP);
+
+  return weatherContainer;
+}
+
+function createParagraphByType(type, content) {
+  const paragraph = document.createElement("p");
+  const strong = document.createElement("strong");
+
+  if (type === "Currently") {
+    content = `Feels Like ${content}°F`;
+  }
+
+  strong.textContent = `${type}: `;
+  paragraph.append(strong, content);
+
+  return paragraph;
+}
+
+function createThreeDayForecastArticles(weather) {
+  const today = createForecastArticleByDay(weather.today);
+  const tomorrow = createForecastArticleByDay(weather.tomorrow);
+  const dayAfterTomorrow = createForecastArticleByDay(weather.dayAfterTomorrow);
+
+  return [today, tomorrow, dayAfterTomorrow];
+}
+
+function createForecastArticleByDay(day) {
+  const h3 = document.createElement("h3");
+  h3.textContent = day.name;
+
+  const avgP = createParagraphByType("Average Temperature", `${day.avgTemp}°F`);
+  const maxP = createParagraphByType("Max Temperature", `${day.maxTemp}°F`);
+  const minP = createParagraphByType("Minimum Temperature", `${day.minTemp}°F`);
+
+  const upComingWeatherArticle = document.createElement("article");
+  upComingWeatherArticle.classList.add("remove", "weather_article", "upcoming_weather_article");
+  upComingWeatherArticle.append(h3, avgP, maxP, minP);
+
+  return upComingWeatherArticle;
 }
 
 function displayError(error) {
