@@ -36,7 +36,7 @@ function handleResponse(response, url) {
   rearrangeGridDisplay();
 
   const mainWeatherContainer = document.querySelector("#weather_current");
-  const mainWeather = createMainArticle(location, weatherObj);
+  const mainWeather = createMainArticle(weatherObj);
   mainWeatherContainer.append(mainWeather);
 
   const upcomingWeatherContainer = document.querySelector("#weather_upcoming");
@@ -202,6 +202,27 @@ function createForecastArticleByDay(day) {
   upComingWeatherArticle.append(h3, avgP, maxP, minP);
 
   return upComingWeatherArticle;
+}
+
+function hideElements() {
+  const elementsToRemove = document.querySelectorAll(".remove");
+
+  if (elementsToRemove) {
+    elementsToRemove.forEach((rmvEl) => rmvEl.remove());
+  }
+}
+
+function showElements() {
+  const elementsToShow = document.querySelectorAll(".hidden");
+
+  if (elementsToShow) {
+    elementsToShow.forEach((showEl) => showEl.classList.remove("hidden"));
+  }
+}
+
+function rearrangeGridDisplay() {
+  document.querySelector("#main_content_container").classList.remove("temp_widget_off");
+  document.querySelector("#main_content_container").classList.add("temp_widget_on");
 }
 
 function displayError(error) {
