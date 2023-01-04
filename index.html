@@ -1,43 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  
-<head>
+  <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marangely's Weather App Project</title>
     <link rel="stylesheet" href="style.css" />
     <script src="weatherApp.js" defer></script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="card">
     <header>
     <h1>Weather App</h1> 
 
-    <form>
-        <label> Pick a Location
-            <input name="text" type="text" />
-            <input type="submit" value="Get Weather" />
+    <form id="form">
+        <label> Pick a Location: </label>
+          <input name="preferredCity" id="preferredCity" type="text" />
+          <input type="submit" value="Get Weather" />
     </form>   
     </header>
-      <aside class="convert">
-        <p></p>
+      
+    <aside class="hidden"> 
+        <form>
+          <label for="temp">Convert the Temperature</label>
+            <input type="number" name="temp" />
+
+          <label for="temp_c">To Celsius</label>
+            <input type="radio" name="temp_to_convert" id="to-c" value="c" />
+
+          <label for="temp_f">To Fahrenheit</label>
+            <input type="radio" name="temp_to_convert" id="to-f" value="f" />
+
+            <input type="submit" value="Convert" />
+        </form>
+        <h4></h4>
     </aside>
+
     <main>
-      <article class="currentWeather">Choose a location to view the weather.</article>
+      <article class="replaceWithWeather">Choose a location to view the weather.</article>
+      <h2 id="NameOfCity"></h2>
       <aside class="tempAside">
         <article></article> 
         <article></article> 
         <article></article>
+    </main>
 
-      <aside class="previousSearches">
+    <aside class="previousSearches">
         <section>
             <h4>Previous Searches</h4>
             <ul class="searchUl"></ul>
-            <p class="noPreviousSearches">No Previous searches.</p>
+            <p class="replaceWithWeather">No previous searches.</p>
         </section>
       </aside>
-    </main>
-
     </div>
 </body>
 </html>
