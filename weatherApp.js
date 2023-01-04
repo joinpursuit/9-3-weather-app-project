@@ -41,6 +41,7 @@ function getWeatherInfo(url, location) {
 function generateWeatherResults(result, location) {
     currentWeatherArticle.textContent = '';
     clearTempArticles();
+    adjustContainerLayout();
     appendUserInputToMainArticle(location);
     getAreaInfo(result.nearest_area[0], location);
     getRegionInfo(result.nearest_area[0]);
@@ -54,6 +55,22 @@ function generateWeatherResults(result, location) {
     generateTomorrowCard(result.weather[1]);
     generateDayAfterTomorrowCard(result.weather[2]);
     form.reset();
+}
+
+function clearTempArticles() {
+    [todayArticle, tomorrowArticle, dayAfterTomorrowArticle].forEach(article => article.remove());
+    todayArticle = document.createElement('article');
+    tomorrowArticle = document.createElement('article');
+    dayAfterTomorrowArticle = document.createElement('article');
+    todayArticle.classList.add('today');
+    tomorrowArticle.classList.add('tomorrow');
+    dayAfterTomorrowArticle.classList.add('dayAfterTomorrow');
+    tempAside.append(todayArticle, tomorrowArticle, dayAfterTomorrowArticle);
+} 
+
+function adjustContainerLayout() {
+    main.style.cssText = 'grid-column: 2 / 3; padding: 0px;';
+    convertAside.style.cssText = 'grid-column: 1 / 2; grid-row: 2;';
 }
 
 function appendUserInputToMainArticle(userInput) {
@@ -248,17 +265,6 @@ function generateDayAfterTomorrowCard(result) {
 
     dayAfterTomorrowArticle.append(dayAfterTomorrowHeader, averageTemp, maxTemp, minTemp);
     tempAside.append(dayAfterTomorrowArticle);
-}
-
-function clearTempArticles() {
-    [todayArticle, tomorrowArticle, dayAfterTomorrowArticle].forEach(article => article.remove());
-    todayArticle = document.createElement('article');
-    tomorrowArticle = document.createElement('article');
-    dayAfterTomorrowArticle = document.createElement('article');
-    todayArticle.classList.add('today');
-    tomorrowArticle.classList.add('tomorrow');
-    dayAfterTomorrowArticle.classList.add('dayAfterTomorrow');
-    tempAside.append(todayArticle, tomorrowArticle, dayAfterTomorrowArticle);
 }
 
 function removePreviousSearch() {
