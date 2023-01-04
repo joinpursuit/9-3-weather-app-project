@@ -37,7 +37,7 @@ function createWeatherObjectFromResponse(response, url) {
   const { current_condition, nearest_area, weather } = response;
   const userLocation = extractUserLocation(url);
   const todaysChances = chancesOfForToday(weather[0].hourly);
-  // const imgInfo = weatherIMG(todaysChances);
+  const imgInfo = weatherIMG(todaysChances);
 
   const weatherObj = {
     user_input: userLocation,
@@ -50,11 +50,11 @@ function createWeatherObjectFromResponse(response, url) {
       avgTemp: weather[0].avgtempF,
       maxTemp: weather[0].maxtempF,
       minTemp: weather[0].mintempF,
-      // chanceOfSunshine: todaysChances[0],
-      // chanceOfRain: todaysChances[1],
-      // chanceOfSnow: todaysChances[2],
-      // img_path_name: imgInfo[0],
-      // img_alt: imgInfo[1],
+      chanceOfSunshine: todaysChances[0],
+      chanceOfRain: todaysChances[1],
+      chanceOfSnow: todaysChances[2],
+      img_path_name: imgInfo[0],
+      img_alt: imgInfo[1],
     },
     tomorrow: {
       name: "Tomorrow",
@@ -112,6 +112,13 @@ function createIMG(pathText, altText) {
   img.setAttribute("src", `./assets/icons8-${pathText}.gif`);
   img.setAttribute("alt", altText);
   return img;
+}
+
+function handleLocationAreaMismatch(weatherObj) {
+  if (weatherObj.user_input !== weatherObj.nearest_area) {
+    return "Nearest Area";
+  }
+  return "Area";
 }
 
 function displayError(error) {
