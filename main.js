@@ -36,7 +36,7 @@ function handleResponse(response, url) {
 function createWeatherObjectFromResponse(response, url) {
   const { current_condition, nearest_area, weather } = response;
   const userLocation = extractUserLocation(url);
-  // const todaysChances = dayChanceOf(weather[0].hourly);
+  const todaysChances = chancesOfForToday(weather[0].hourly);
   // const imgInfo = weatherIMG(todaysChances);
 
   const weatherObj = {
@@ -77,6 +77,22 @@ function createWeatherObjectFromResponse(response, url) {
 function extractUserLocation(url) {
   const inputLocation = url.split(/[/?]/)[3];
   return inputLocation;
+}
+
+function chancesOfForToday(hourlyChances) {
+  const chanceOfSunshine = chanceOf("sunshine", hourlyChances);
+  const chanceOfRain = chanceOf("rain", hourlyChances);
+  const chanceOfSnow = chanceOf("snow", hourlyChances);
+
+  return [chanceOfSunshine, chanceOfRain, chanceOfSnow];
+}
+
+function chanceOf(type, hourly) {
+  let sumOfChances = 0;
+  hourly.forEach((hour) => (sumOfChances += Number(hour[`chanceof${type}`])));
+  let avgChance = sumOfChances / hourly.length;
+
+  return Math.round(avgChance);
 }
 
 function displayError(error) {
