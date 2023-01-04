@@ -95,6 +95,25 @@ function chanceOf(type, hourly) {
   return Math.round(avgChance);
 }
 
+function weatherIMG(chancesOfForToday) {
+  const highestChance = Math.max(...chancesOfForToday);
+
+  if (highestChance === chances[0]) {
+    return ["summer", "sun"];
+  } else if (highestChance === chances[1]) {
+    return ["torrential-rain", "rain"];
+  } else {
+    return ["light-snow", "snow"];
+  }
+}
+
+function createIMG(pathText, altText) {
+  const img = document.createElement("img");
+  img.setAttribute("src", `./assets/icons8-${pathText}.gif`);
+  img.setAttribute("alt", altText);
+  return img;
+}
+
 function displayError(error) {
   console.log(error);
 }
