@@ -1,4 +1,12 @@
-h1 {
+header {
     background-color: blue;
     text-align: center;
+    box-sizing: border-box;
+    height: 800px;
+    width: 75%;
+    margin: 12px auto;
+   
+}
+h1 {
+    font-size: 60px;
 }
