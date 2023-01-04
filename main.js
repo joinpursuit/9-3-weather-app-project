@@ -18,6 +18,10 @@ function handleWeatherFormSubmit(event) {
 
 function handleTempFormSubmit(event) {
   event.preventDefault();
+  const tempType = event.target.convert_temperature.value;
+  const tempToConvert = document.querySelector("#temp-to-convert").value;
+
+  handleTemperatureConvertionResponse(tempType, tempToConvert);
 }
 
 function fetchWeatherInformation(url) {
@@ -29,8 +33,7 @@ function fetchWeatherInformation(url) {
 
 function handleResponse(response, url) {
   const weatherObj = createWeatherObjectFromResponse(response, url);
-  const location = weatherObj.user_input;
-  console.log(location);
+
   hideElements();
   showElements();
   rearrangeGridDisplay();
@@ -46,7 +49,6 @@ function handleResponse(response, url) {
   const unorderedSearches = document.querySelector("#search_section ul");
   const searchListElement = createSearchLinkElement(weatherObj);
   unorderedSearches.append(searchListElement);
-  console.log(weatherObj);
 }
 
 function createWeatherObjectFromResponse(response, url) {
@@ -244,6 +246,26 @@ function searchLinkClickEvent(event) {
   event.preventDefault();
   event.target.parentNode.remove();
   fetchWeatherInformation(event.target.href);
+}
+
+function handleTemperatureConvertionResponse(type, temp) {
+  document.querySelector("aside h4").textContent = "";
+  const temp2Num = Number(temp);
+  const tempConverted = tempConvertion(type, temp2Num);
+  const tempConvertedContainer = document.querySelector("aside h4");
+  tempConvertedContainer.append(tempConverted);
+}
+
+function tempConvertion(type, temp) {
+  const degreeDifference = 32;
+  const fahrenheit2celcius = 5 / 9;
+  const celcius2fahrenheit = 9 / 5;
+
+  if (type === celcius) {
+    return ((temp - degreeDifference) * fahrenheit2celcius).toFixed(2);
+  } else if (type === fahrenheit) {
+    return temp * celcius2fahrenheit + degreeDifference;
+  }
 }
 
 function displayError(error) {
