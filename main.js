@@ -30,7 +30,7 @@ function fetchWeatherInformation(url) {
 function handleResponse(response, url) {
   const weatherObj = createWeatherObjectFromResponse(response, url);
   const location = weatherObj.user_input;
-
+  console.log(location);
   hideElements();
   showElements();
   rearrangeGridDisplay();
@@ -141,7 +141,7 @@ function createMainArticle(weather) {
   const areaType = handleLocationAreaMismatch(weather);
 
   const heading2 = document.createElement("h2");
-  heading2.textContent = location;
+  heading2.textContent = weather.user_input;
 
   const areaP = createParagraphByType(areaType, weather.nearest_area);
 
