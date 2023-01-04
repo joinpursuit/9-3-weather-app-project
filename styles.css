@@ -75,6 +75,14 @@ aside form label{
 
 aside form input[type="number"]{
     outline: teal 1px solid;
+    width: 100%
+}
+
+aside form input[type="submit"]{
+   text-align: center;
+   width: 50%;
+   margin-left: 25%;
+   margin-top: 1em;
 }
 
 .title{
@@ -98,6 +106,7 @@ main article{
 main aside{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 2em;
 }
 
 main .three-day-item{
@@ -106,6 +115,15 @@ main .three-day-item{
 
 aside section{
     text-align: center;
+}
+
+aside section a{
+    color: teal;
+    transition: all 300ms ease;
+}
+
+aside section a:hover{
+    color: rgb(180, 207, 203)
 }
 
 aside ul{

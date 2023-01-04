@@ -4,7 +4,7 @@ const searchBTN = document.querySelector(".js-submit-button");
 const mainArticle = document.querySelector(".js-article");
 const threeDay = document.querySelector(".js-three-day");
 const previous = document.querySelector(".js-previous-search")
-/* ------------- Widget Selectors ----------- */
+/* ---------- Widget Selectors --------- */
 const widgetNumber = document.getElementById("temp-to-convert")
 const widgetC = document.getElementById("to-c")
 const widgetF = document.getElementById("to-f")
@@ -16,8 +16,8 @@ const widgetResult = document.querySelector(".js-convert-result")
 searchBTN.addEventListener("click", showInfoOnPage);
 widgetSearchBTN.addEventListener("click", convertTemp);
 
-//Functions
-function convertTemp(event,){
+/* ------------------- Functions ----------------------*/
+function convertTemp(event){
     event.preventDefault()
     if(!widgetNumber.value){
         return 
@@ -31,7 +31,7 @@ function convertTemp(event,){
         converted = widgetNumber.value * (9/5) + 32;
     }
 
-    widgetResult.textContent = `${converted.toFixed(2)}°`
+    widgetResult.textContent = `${Number.isInteger(converted) ? converted : converted.toFixed(2)}°`;
 }
 
 async function showInfoOnPage(event){
@@ -46,6 +46,108 @@ async function showInfoOnPage(event){
     }
 }
 
+function updateMain(info){
+    mainArticle.innerHTML = "";
+
+    addChanceOfIcon(info)
+    const heading =  document.createElement("h2");
+    heading.textContent = info.search;
+    mainArticle.append(heading)
+    
+    createMainCard(info)
+}
+
+function addChanceOfIcon(info){
+    const hourly = info.weather[0].hourly[0];
+
+    const data = {
+        "Chance of Sunshine": hourly.chanceofsunshine,
+        "Chance of Rain": hourly.chanceofrain,
+        "Chance of Snow": hourly.chanceofsnow
+    }
+
+    let chanceObj = Object.keys(data).find((key) =>data[key] > 50)
+
+    if(!chanceObj){
+        return
+    }
+
+    const alt = chanceObj.includes("Rain") ? "rain" : chanceObj.includes("Sunshine") ? "sun" : "snow" 
+    const src = "./assets/icons8-".concat(alt == "rain" ? "torrential-rain.gif": alt == "sun" ? "summer.gif": "light-snow.gif")
+
+    const img = document.createElement("img")
+    img.setAttribute("alt", alt)
+    img.setAttribute("src", src)
+
+    mainArticle.append(img)
+}
+
+function createMainCard(info){
+    const nearest = info.nearest_area[0];
+    const hourly = info.weather[0].hourly[0];
+
+    const relevantInfo = {
+        "Area": info.nearest_area[0].areaName[0].value,
+        "Region": nearest.region[0].value,
+        "Country": nearest.country[0].value,
+        "Currently": info.current_condition[0].FeelsLikeF,
+        "Chance of Sunshine": hourly.chanceofsunshine,
+        "Chance of Rain": hourly.chanceofrain,
+        "Chance of Snow": hourly.chanceofsnow
+    }
+
+    Object.keys(relevantInfo).forEach((key) => {
+        const createdLine =  document.createElement("p");
+        const keyInfo = key == "Currently" 
+            ? `Feels like ${relevantInfo[key]}° F` 
+            : key.includes("Chance of") 
+                ? `${relevantInfo[key]}%`
+                : relevantInfo[key];
+
+        let keyWithErrorHandling = key !== "Area"
+            ? key 
+            : info.search == relevantInfo.Area 
+                ? "Area" 
+                : "Nearest Area";
+
+        createdLine.innerHTML = `<strong>${keyWithErrorHandling}:</strong> ${keyInfo} `
+
+        mainArticle.append(createdLine)
+    })
+}
+
+function updateThreeDay(info){
+    (!!threeDay.textContent) ? threeDay.innerHTML = "" : threeDay.classList.remove("hidden");
+    
+    info.weather.forEach((day, i) => {
+        const div = document.createElement("div")
+        div.setAttribute("class", "three-day-item")
+        
+        const heading = document.createElement("h2");
+        heading.textContent = i == 0 ? "Today" : i == 1 ? "Tomorrow" : "Day After Tomorrow";
+        div.append(heading)
+        
+        createThreeDayCard(day, div)
+        
+        threeDay.append(div)
+    })
+}
+
+function createThreeDayCard(day, appendTo){
+    const threeDayInfo = {
+        "Average Temperature": day.avgtempF,
+        "Max Temperature":day.maxtempF,
+        "Min Temperature": day.mintempF
+    }
+    
+    Object.keys(threeDayInfo).forEach((key) => {
+        const createdLine =  document.createElement("p");
+        createdLine.innerHTML = `<strong>${key}:</strong> ${threeDayInfo[key]}°`
+        
+        appendTo.append(createdLine)
+    })
+}
+
 function updatePrevious(info){
     if(!!document.querySelector(".js-previous-p")){
         document.querySelector(".js-previous-p").remove();
@@ -57,83 +159,11 @@ function updatePrevious(info){
     previous.append(li);
 }
 
-function updateMain(info){
-    mainArticle.innerHTML = "";
-
-    const heading =  document.createElement("h2");
-    heading.textContent = info.search;
-    mainArticle.append(heading)
-
-    const relevantInfo = {
-        "Area": info.nearest_area[0].areaName[0].value,
-        "Region": info.nearest_area[0].region[0].value,
-        "Country": info.nearest_area[0].country[0].value,
-        "Currently": info.current_condition[0].FeelsLikeF
-    }
-    
-    createMainCard(relevantInfo, info.search)
-}
-
-function createMainCard(relevantInfo, search){
-    Object.keys(relevantInfo).forEach((key) => {
-        const createdLine =  document.createElement("p");
-        const keyInfo = key !== "Currently" ? relevantInfo[key] : `Feels like ${relevantInfo[key]}° F`;
-
-        let keyWithErrorHandling = key;
-
-        if(key == "Area"){
-            keyWithErrorHandling = (search == relevantInfo.Area ? "Area" : "Nearest Area")
-        }
-
-        createdLine.innerHTML = `<strong>${keyWithErrorHandling}:</strong> ${keyInfo}`
-
-        mainArticle.append(createdLine)
-    })
-}
-
-function updateThreeDay(info){
-    if(!!threeDay.textContent){
-        threeDay.innerHTML = ""
-    }
-
-    threeDay.classList.remove("hidden");
-
-    info.weather.forEach((day, i) => {
-        const div = document.createElement("div")
-        div.setAttribute("class", "three-day-item")
-
-        const heading = document.createElement("h2");
-        heading.textContent = i == 0 ? "Today" : i == 1 ? "Tomorrow" : "Day After Tomorrow";
-        div.append(heading)
-
-        const threeDayInfo = {
-            "Average Temperature": day.avgtempF,
-            "Max Temperature":day.maxtempF,
-            "Min Temperature": day.mintempF
-        }
-
-        createThreeDayCard(threeDayInfo, div)
-
-        threeDay.append(div)
-
-    })
-}
-
-function createThreeDayCard(relevantInfo, appendTo){
-
-    Object.keys(relevantInfo).forEach((key) => {
-        const createdLine =  document.createElement("p");
-        createdLine.innerHTML = `<strong>${key}:</strong> ${relevantInfo[key]}°`
-
-        appendTo.append(createdLine)
-    })
-}
-
 async function fetchWeatherInfo(event){
     const baseURL = "https:wttr.in/"
-    const search = event.target.matches(".js-submit-button") ? inputField.value: event.target.textContent;
+    const search = event.target.matches(".js-submit-button") ? inputField.value : event.target.textContent;
     const endpoint= "?format=j1"
-
+    
     const info = await fetch(baseURL+search+endpoint)
 
     const json = await info.json()
