@@ -43,9 +43,9 @@ function handleResponse(response, url) {
   const weatherArticles = createThreeDayForecastArticles(weatherObj);
   upcomingWeatherContainer.append(...weatherArticles);
 
-  // const unorderedSearches = document.querySelector("#search_section ul");
-  // const searchListElement = createSearchLink(weatherObj);
-  // unorderedSearches.append(searchListElement);
+  const unorderedSearches = document.querySelector("#search_section ul");
+  const searchListElement = createSearchLinkElement(weatherObj);
+  unorderedSearches.append(searchListElement);
   console.log(weatherObj);
 }
 
@@ -223,6 +223,27 @@ function showElements() {
 function rearrangeGridDisplay() {
   document.querySelector("#main_content_container").classList.remove("temp_widget_off");
   document.querySelector("#main_content_container").classList.add("temp_widget_on");
+}
+
+function createSearchLinkElement(weather) {
+  const searchLink = document.createElement("a");
+  searchLink.href = weather.search_url;
+  searchLink.textContent = weather.user_input;
+
+  searchLink.addEventListener("click", searchLinkClickEvent);
+
+  const feelsLikeTemp = `${weather.feelLikeTempF}°F`;
+
+  const searchListElement = document.createElement("li");
+  searchListElement.append(searchLink, " - ", feelsLikeTemp);
+
+  return searchListElement;
+}
+
+function searchLinkClickEvent(event) {
+  event.preventDefault();
+  event.target.parentNode.remove();
+  fetchWeatherInformation(event.target.href);
 }
 
 function displayError(error) {
