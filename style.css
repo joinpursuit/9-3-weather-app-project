@@ -80,8 +80,7 @@ header {
 
 /* The code above is for the floating effect on the 'weather_app_container' */
 
-.hidden,
-.hideThis {
+.hidden {
   display: none;
 }
 
@@ -193,6 +192,7 @@ header,
 
 /* border around each article.
 separate the individual temps and color code them  */
+
 footer {
   position: fixed;
   bottom: 0;
