@@ -12,10 +12,13 @@ const region = document.createElement("p");
 const country = document.createElement("p");
 const currently = document.createElement("p");
 
-const today = document.createElement("h3")
-const tomorrow = document.createElement("h3")
-const dayAfterTomorrow = document.createElement("h3")
+const chanceOfSun = document.createElement("p")
+const chanceOfRain = document.createElement("p");
+const chanceOfSnow = document.createElement("p")
 
+const today = document.createElement("h3");
+const tomorrow = document.createElement("h3");
+const dayAfterTomorrow = document.createElement("h3");
 
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
@@ -44,7 +47,7 @@ function createWeatherReport(result){
     article.append(h2);
 
     
-// combine code below later
+// combine code below later make a p tag inside of a p tag to make bold letters
     area.innerHTML = "Area:" 
     region.innerHTML = "Region:"
     country.innerHTML = "Country:"
@@ -60,6 +63,26 @@ function createWeatherReport(result){
     article.append(country)
     article.append(currently)
 
+    article.append(chanceOfSun)
+    article.append(chanceOfRain)
+    article.append(chanceOfSnow)
+
+    chanceOfSun.innerHTML = "Chance of Sunshine: " + result.weather[0].hourly[0].chanceofsunshine + "%"
+    chanceOfRain.innerHTML = "Chance of Rain: " + result.weather[0].hourly[0].chanceofrain + "%"
+    chanceOfSnow.innerHTML = "Chance of Snow: " + result.weather[0].hourly[0].chanceofsnow + "%"
+
+    const img = document.createElement("img");
+    if(parseInt(result.weather[0].hourly[0].chanceofsunshine) > 50){
+        img.setAttribute("alt", "sun")
+        img.setAttribute("src", "./assets/icons8-summer.gif")
+    } else if (parseInt(result.weather[0].hourly[0].chanceofrain) > 50){
+        img.setAttribute("alt", "rain")
+        img.setAttribute("src", "./assets/icons8-torrential-rain.gif")
+    } else if (parseInt(result.weather[0].hourly[0].chanceofsnow) > 50){
+        img.setAttribute("alt", "snow")
+        img.setAttribute("src", "./assets/icons8-light-snow.gif")
+    }
+    article.prepend(img)
 }
 
 function threeDayForecast(result){
