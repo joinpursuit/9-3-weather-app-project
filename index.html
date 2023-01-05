@@ -12,7 +12,7 @@
 <body>
     <header class = "header-user-input">
         <div class = "menu-user-input">
-            <h1> Weather App </h1>
+            <h1>Weather App</h1>
             <form>
                 <input type = "text" id = "search_user_input" name = "search" placeholder = "Type a Location:" autofocus required/>
                 <input id = "submit_user_input" type = "submit" name = "submit" value = "Get Weather"/>
@@ -20,22 +20,32 @@
         </div> <br/>
     </header>
 
-    <div class="primary_content">
-        <aside class = "sidebar_convert">
-            <form id = "temp_convert">
-                <label for="temperature">Convert the Temperature</label><br>
-                <input type="number" name="temperature" id = "temp-to-convert"/> <br> <br>
+    <div class = "widget_convert_temperature">
+        <aside class = "convert_temperature">
+            <form id = "convert_temp">
+                <label for = "temperature"> Convert the Temperature </label> <br/>
+                <input type = "number" name = "temperature" id = "temp-to-convert"/> <br/> <br/>
     
-                <label for="temp_c">To Celsius&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="radio" name="convert-temp" id="to-c" value="c" /> <br><br>
+                <label for = "temp_c">To Celsius&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+                <input type = "radio" name = "convert-temp" id = "to-c" value = "c" /> <br/> <br/>
     
-                <label for="temp_f">To Fahrenheit&nbsp;&nbsp;&nbsp;</label>
-                <input type="radio" name="convert-temp" id="to-f" value="f" /> <br>
+                <label for = "temp_f">To Fahrenheit&nbsp;&nbsp;&nbsp; </label>
+                <input type = "radio" name = "convert-temp" id = "to-f" value = "f" /> <br/>
 
-                <input type="submit" value="Submit" id = "submitConvert"/> <br>
+                <input type = "submit" value = "Submit" id = "submit_convert_temperature"/> <br/>
             </form>
             <h4 id = "display_temp_in_C_or_F"></h4>
+
+            <!-- Create a container element for the slider -->
+            <div class = "slider_container">
+                <!-- Add a label for the slider -->
+                <label for = "temperature_slider">Temperature:</label>
+                <!-- Create the input element for the slider -->
+                <input type = "range" min = "0" max = "100" value = "50" class = "temp_slider" id = "temp-slider">
+            </div>
+  
         </aside>
+
         <main class="main">
             <p id = "pInitial" style = "text-align: center;">Choose a location to view the weather.</p>
             <div class = "styleTop">
