@@ -10,12 +10,13 @@ const region = document.createElement("p");
 const country = document.createElement("p");
 const currently = document.createElement("p");
 
+const chanceOfSun = document.createElement("p");
+const chanceOfRain = document.createElement("p");
+const chanceOfSnow = document.createElement("p");
+
 const today = document.createElement("h3")
 const tomorrow = document.createElement("h3")
 const afterTomorrow = document.createElement("h3")
-
-
-
 
 
 form.addEventListener("submit", (event)=>{
@@ -56,18 +57,51 @@ function weatherCard(result){
     article.append(country);
     article.append(currently);
 
-    area.innerHTML = "Area:";
-    region.innerHTML = "Region:";
-    country.innerHTML = "Country:";
-    currently.innerHTML = "Currently:";
-
-    area.innerHTML += " " + result.nearest_area[0].areaName[0].value;
-    region.innerHTML += " " + result.nearest_area[0].region[0].value;
-    country.innerHTML += " " + result.nearest_area[0].country[0].value;
-    currently.innerHTML += " Feels Like " + result.current_condition[0].FeelsLikeF + "°F";
+    article.append(chanceOfSun);
+    article.append(chanceOfRain);
+    article.append(chanceOfSnow);
 
 
+    area.innerHTML = "Area: ";
+    region.innerHTML = "Region: ";
+    country.innerHTML = "Country: ";
+    currently.innerHTML = "Currently: ";
 
+    chanceOfSun.innerHTML = "Chance of Sunshine: "
+    chanceOfRain.innerHTML = "Chance of Rain: "
+    chanceOfSnow.innerHTML = "Chance of Snow: "
+
+    area.innerHTML += result.nearest_area[0].areaName[0].value;
+    region.innerHTML += result.nearest_area[0].region[0].value;
+    country.innerHTML += result.nearest_area[0].country[0].value;
+    currently.innerHTML += "Feels Like " + result.current_condition[0].FeelsLikeF + "°F";
+
+    chanceOfSun.innerHTML += result.weather[0].hourly[0].chanceofsunshine + "%";
+    chanceOfRain.innerHTML += result.weather[0].hourly[0].chanceofrain + "%";
+    chanceOfSnow.innerHTML += result.weather[0].hourly[0].chanceofsnow + "%";
+
+    if (parseInt(result.weather[0].hourly[0].chanceofsunshine)>50){
+     const img = document.createElement("img")
+     img.setAttribute("src", "./assets/icons8-summer.gif");
+     img.setAttribute("alt", "sun")
+     article.prepend(img)
+    }
+
+    if (parseInt(result.weather[0].hourly[0].chanceofrain)>50){
+        const img = document.createElement("img")
+        img.setAttribute("src", "./assets/icons8-torrential-rain.gif");
+        img.setAttribute("alt", "rain")
+        article.prepend(img)
+       }
+    
+       if (parseInt(result.weather[0].hourly[0].chanceofsnow)>50){
+        const img = document.createElement("img")
+        img.setAttribute("src", "./assets/icons8-light-snow.gif");
+        img.setAttribute("alt", "snow")
+        article.prepend(img)
+       }
+
+    
 }
 
 function threeDaysForecast(result) {
