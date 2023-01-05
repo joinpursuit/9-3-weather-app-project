@@ -89,7 +89,7 @@ main {
     text-align: center;
     border: 2px solid #268080;
     background: #efefef;
-    max-height: 55vh;
+    max-height: 280px;
 }
 
 .tempCard p {
@@ -106,6 +106,10 @@ h3 {
 
 strong {
     margin-right: 5px;
+}
+
+a {
+    color: #268080;
 }
 
 li {

@@ -26,10 +26,16 @@ function generateUrl(event) {
     getWeatherInfo(currentApi, location);
 }
 
-function getWeatherInfo(url, location) {
+function getWeatherInfo(api, location) {
 
-    fetch(url)
-        .then((response) => response.json())
+    fetch(api)
+        .then((response) => {
+            if (response.ok){
+                return response.json();
+            }
+            createErrorMessage();
+        })
+        
         .then((result) => {
             generateWeatherResults(result, location);
         })
@@ -54,6 +60,7 @@ function generateWeatherResults(result, location) {
     generateTodayCard(result.weather[0]);
     generateTomorrowCard(result.weather[1]);
     generateDayAfterTomorrowCard(result.weather[2]);
+    appendConversionForm();
     form.reset();
 }
 
@@ -113,7 +120,7 @@ function getCountryInfo(result) {
 function getCurrentlyFeelsLikeInfo(result) {
     const currentlyFeelsLike = document.createElement('p');
     const strong = document.createElement('strong');
-    strong.innerHTML = "Country:  ";
+    strong.innerHTML = "Currently:  ";
     currentlyFeelsLike.append(strong, 'Feels Like ', result.FeelsLikeF, '°F');
     currentWeatherArticle.append(currentlyFeelsLike);
 }
@@ -214,9 +221,9 @@ function generateTodayCard(result) {
     // const strongElement = document.createElement('strong');
     // todayDivElement.classList.add('tempDivs');
     todayHeader.textContent = 'Today';
-    averageTemp.innerHTML = `<strong>Average Temperature:<strong>`;
-    maxTemp.innerHTML = `<strong>Max Temperature:<strong>`;
-    minTemp.innerHTML = `<strong>Min Temperature:<strong>`;
+    averageTemp.innerHTML = `<strong>Average Temperature:</strong>`;
+    maxTemp.innerHTML = `<strong>Max Temperature:</strong>`;
+    minTemp.innerHTML = `<strong>Min Temperature:</strong>`;
     averageTemp.append(`${result.avgtempF} °F`);
     maxTemp.append(`${result.maxtempF} °F`);
     minTemp.append(`${result.mintempF} °F`);
@@ -235,9 +242,9 @@ function generateTomorrowCard(result) {
     // const strongElement = document.createElement('strong');
     // tomorrowDivElement.classList.add('tempDivs');
     tomorrowHeader.textContent = 'Tomorrow';
-    averageTemp.innerHTML = `<strong>Average Temperature:<strong>`;
-    maxTemp.innerHTML = `<strong>Max Temperature:<strong>`;
-    minTemp.innerHTML = `<strong>Min Temperature:<strong>`;
+    averageTemp.innerHTML = `<strong>Average Temperature:</strong>`;
+    maxTemp.innerHTML = `<strong>Max Temperature:</strong>`;
+    minTemp.innerHTML = `<strong>Min Temperature:</strong>`;
     averageTemp.append(`${result.avgtempF} °F`);
     maxTemp.append(`${result.maxtempF} °F`);
     minTemp.append(`${result.mintempF} °F`);
@@ -256,15 +263,19 @@ function generateDayAfterTomorrowCard(result) {
     // const strongElement = document.createElement('strong');
     // dayAfterTomorrowDivEle.classList.add('tempDivs');
     dayAfterTomorrowHeader.textContent = 'Day After Tomorrow';
-    averageTemp.innerHTML = `<strong>Average Temperature:<strong>`;
-    maxTemp.innerHTML = `<strong>Max Temperature:<strong>`;
-    minTemp.innerHTML = `<strong>Min Temperature:<strong>`;
+    averageTemp.innerHTML = `<strong>Average Temperature:</strong>`;
+    maxTemp.innerHTML = `<strong>Max Temperature:</strong>`;
+    minTemp.innerHTML = `<strong>Min Temperature:</strong>`;
     averageTemp.append(`${result.avgtempF} °F`);
     maxTemp.append(`${result.maxtempF} °F`);
     minTemp.append(`${result.mintempF} °F`);
 
     dayAfterTomorrowArticle.append(dayAfterTomorrowHeader, averageTemp, maxTemp, minTemp);
     tempAside.append(dayAfterTomorrowArticle);
+}
+
+function appendConversionForm() {
+    
 }
 
 function removePreviousSearch() {
@@ -277,5 +288,7 @@ function capitalizeFirstLetter(string) {
 }
 
 function createErrorMessage(error) {
+    currentWeatherArticle.innerHTML = '<strong style="font-size: 20px;">You have entered an invalid entry. Please try again.</strong>';
+    main.style.cssText = 'grid-column: 1 / 3;';
 
 }
