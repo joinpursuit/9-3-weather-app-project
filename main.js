@@ -171,7 +171,7 @@ function createMainArticle(weather) {
 
   const weatherContainer = document.createElement("div");
   weatherContainer.classList.add("remove", "weather_article");
-  weatherContainer.append(heading2, areaP, weatherIMG, regionP, countryP, currentlyP, sunshineP, rainP, snowP);
+  weatherContainer.append(weatherIMG, heading2, areaP, regionP, countryP, currentlyP, sunshineP, rainP, snowP);
 
   return weatherContainer;
 }
