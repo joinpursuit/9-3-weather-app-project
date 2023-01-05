@@ -24,15 +24,16 @@ locationForm.addEventListener("submit", submitLocation => {
             const regionValue = nearest_area[0].region[0].value;
             // Creating variable to store value of nearest_area[0].country[0].value
             const country = nearest_area[0].country[0].value;
-            // 
+            // Creating variable to store value for currently feels like temp in F for pickedLocation
             const currentlyFeelsF = current_condition[0].FeelsLikeF;
 
+            // Calling functions
             getThreeForecastDays(currentTempF);
             getDetailsFromTextInput();
             displayRegion(regionValue);
             displayCountry(country);
             displayCurrentlyFeelsF(currentlyFeelsF);
-            displayPreviousSearchLocation(pickedLocation, currentlyFeelsF);
+            displayPreviousSearchLocationAndTemp(pickedLocation, currentlyFeelsF);
 
 
         })
@@ -54,42 +55,36 @@ locationForm.addEventListener("submit", submitLocation => {
             })
            
         }
-        // 
+        // Creating a function to display region from pickedLocation 
         function displayRegion(location) {
             main_p_region.textContent = `Region: ${location}`;
         }
-        // 
+        // Creating a function to display country from pickedLocation
         function displayCountry(country) {
             main_p_country.textContent = `Country: ${country}`;
         }
-        // 
+        // Creating a function to display currently feels like temp in F  in pickedLocation
         function displayCurrentlyFeelsF(feelsLike) {
             main_p_currently_feels.textContent = `Feels like: ${feelsLike}`;
         }
-        // 
-        function displayPreviousSearchLocation(userLocation, temp) {
+        // Creating a function to display previous search location and temp
+        function displayPreviousSearchLocationAndTemp(userLocation, temp) {
              // Creating variable to create li element for HTML
             const searchHistoryUlLi = document.createElement("li");
-            // 
+            // Creating variable to create "a" HTML element 
             const searchHistoryLiA = document.createElement("a");
-            // 
+            // Using .setAttribute method to create href attribute for searchHistoryliA variable
             searchHistoryLiA.setAttribute("href", "#");
             // Creating variable to represent ul element with #searchHistoryUl ID
             const searchHistoryUl = document.querySelector("#search_history_ul");
             // Using .textContent method to assign text with value of pickedLocation variable
             searchHistoryLiA.textContent = `${userLocation} - ${temp}`;
-            // 
+            // Using .append to append searchHistoryLiA variable to searchHistoryUli variable
             searchHistoryUlLi.append(searchHistoryLiA);
             // Using .append method to append searchHistoryUli to searchHistoryUl
             searchHistoryUl.append(searchHistoryUlLi);
         }
-
-
-        // Calling getDetailsFromTextInput function
         
-        
-        
-
         function getThreeForecastDays(temp) {
             // Creating variable to represent article element in HTML
             const mainArticle = document.querySelector("#main_article");
