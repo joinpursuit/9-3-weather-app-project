@@ -3,7 +3,7 @@ locationForm.addEventListener("submit", submitLocation => {
     // Preventing default action on submit form 
     submitLocation.preventDefault();
     // Creating variable to store value of location input text
-    const pickedLocation = document.querySelector("#pickedLocationText").value;
+    const pickedLocation = document.querySelector("#picked_location_text").value;
     // Creating variable to represent form for location input
     const locationForm = document.querySelector("#locationForm");
     // Creating variable to store value of url link for fetch
@@ -27,25 +27,25 @@ locationForm.addEventListener("submit", submitLocation => {
             const currentlyFeelsF = current_condition[0].FeelsLikeF;
             // Creating variable to store value for today's average temp in F
             const todayAvgTempF = weather[0].avgtempF;
-            // 
+            // Creating variable to store value for today's max temp in F
             const todayMaxTempF = weather[0].maxtempF;
-            // 
+            // Creating variable to store value for today's min temp in F
             const todayMinTempF = weather[0].mintempF;
-            // 
+            // Creating variable to store value for tomorrow's average temp in F
             const tomorrowAvgTempF = weather[1].avgtempF;
-            // 
+            // Creating variable to store value for tomorrow's max temp in F
             const tomorrowMaxTempF = weather[1].maxtempF;
-            // 
+            // Creating variable to store value for tomorrow's min temp in F
             const tomorrowMinTempF = weather[1].mintempF;
-            // 
+            // Creating  variable to store value for day after tomorrow's average temp in F
             const dayAfterTomorrowAvgTempF = weather[2].avgtempF;
-            // 
+            // Creating variable to store value for day after tomorrow's max temp in F
             const dayAfterTomorrowMaxTempF = weather[2].maxtempF;
-            // 
+            // Creating variable to store value for day after tomorrow's min temp in F
             const dayAfterTomorrowMinTempF = weather[2].mintempF;
-            // 
+            // Creating variable to store value for nearest area
             const userArea = nearest_area[0].areaName[0].value;
-            // Calling functions
+            // Calling functions to pass cypress tests
             getDetailsFromTextInput();
             displayRegion(regionValue);
             displayCountry(country);
@@ -55,8 +55,8 @@ locationForm.addEventListener("submit", submitLocation => {
             getTomorrowTempF(tomorrowAvgTempF, tomorrowMaxTempF, tomorrowMinTempF);
             getDayAfterTomorrowTempF(dayAfterTomorrowAvgTempF, dayAfterTomorrowMaxTempF, dayAfterTomorrowMinTempF);
             displayArea(userArea, pickedLocation);
-            // 
-            resetInputLocationForm();
+            // Calling function to reset input text element
+            resetInputLocationText();
 
         })
         .catch((error) => {
@@ -108,34 +108,50 @@ locationForm.addEventListener("submit", submitLocation => {
         }
         // Creating a function to display today's average, max, and minimum temperatures
         function getTodayTempF(avgTempF, maxTempF, minTempF) {
+            // Using .textContent method to set text content of today_h3 ID to "Today"
             today_h3.textContent = "Today";
+            // Using .textContent method to set text content of element with today_avg_temp_F ID to a template literal that displays today's average temp
             today_avg_temp_f.textContent = `Average Temperature: ${avgTempF}°F`;
+            // Using .textContent method to set text content of element with  today_max_temp_f ID to a template literal that displays today's max temp
             today_max_temp_f.textContent = `Max. Temperature: ${maxTempF}°F;`;
+            // Using .textContent method to set text content of element with today_min_temp_f ID to a template literal that displays today's min temp
             today_min_temp_f.textContent = `Min. Temperature: ${minTempF}°F`;
         }
         // Creating a function to display tomorrow's average, max, and minimum temperatures
         function getTomorrowTempF(avgTempF, maxTempF, minTempF) {
+            // Using .textContent method to set text content of element with tomorrow_h3 ID to "Tomorrow"
             tomorrow_h3.textContent = "Tomorrow";
+            // Using .textContent method to set text content of element with tomorrow_avg_temp_f ID to a template literal that displays tomorrow's average temp            
             tomorrow_avg_temp_f.textContent = `Average Temperature: ${avgTempF}°F`;
+            // Using .textContent method to set text content of element with tomorrow_max_temp_f ID to a template literal that displays tomorrow's max temp
             tomorrow_max_temp_f.textContent = `Max. Temperature: ${maxTempF}°F`;
+            // Using .textContent method to set text content of element with tomorrow_min_temp_f ID to a template literal that displays tomorrow's min temp
             tomorrow_min_temp_f.textContent = `Min. Temperature: ${minTempF}°F`;
         }
         // Creating a function to display day after tomorrow's average, max, and minimum temperatures
         function getDayAfterTomorrowTempF(avgTempF, maxTempF, minTempF) {
+            // Using .textContent method to set text content of element with day_after_tomorrow_h3 ID to "Day After Tomorrow"
             day_after_tomorrow_h3.textContent = "Day After Tomorrow";
+            // Using .textContent method to set text content of element with day_after_tomorrow_avg_temp_f ID to a template literal that displays day after tomorrow's average temp
             day_after_tomorrow_avg_temp_f.textContent = `Average Temperature: ${avgTempF}°F`;
+            // Using .textContent method to set text content of element with day_after_tomorrow_max_temp_f ID to a template literal that displays day after tomorrow's max temp
             day_after_tomorrow_max_temp_f.textContent = `Max. Temperature: ${maxTempF}°F;`;
+            // Using .textContent method to set text content of element with day_after_tomorrow_min_temp_f ID to a template literal that displays day after tomorrow's min temp
             day_after_tomorrow_min_temp_f.textContent = `Min. Temperature: ${minTempF}°F`;
         }
-        // 
-        function resetInputLocationForm() {
-            pickedLocationText.value = "";
+        // Creating a function to reset input element in #locationForm
+        function resetInputLocationText() {
+            // Using .value method to set value attribute of element with picked_location_text ID to an empty string
+            picked_location_text.value = "";
         }
-        // 
+        // Creating a function to determine if nearest area is equal to user's picked input location
         function displayArea(area, location) {
+            // Using if statement to determine if  lowercased area parameter is equal to lowercased location parameter
             if (area.toLowerCase() == location.toLowerCase()) {
+                // Using .textContent method to set text content of element with main_p_area element to a template literal that displays area
                 main_p_area.textContent = `Area: ${area};`
             } else {
+                // Using .textContent method to set text content of element with main_p_area element to a template literal that displays nearest area
                 main_p_area.textContent = `Nearest Area: ${area};`
             }
             
