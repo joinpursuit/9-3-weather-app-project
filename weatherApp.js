@@ -46,13 +46,14 @@ function getWeatherInfo(api, location) {
 
 function generateWeatherResults(result, location) {
     currentWeatherArticle.textContent = '';
+    console.log(result);
     clearTempArticles();
     adjustContainerLayout();
     appendUserInputToMainArticle(location);
-    getAreaInfo(result.nearest_area[0], location);
-    getRegionInfo(result.nearest_area[0]);
-    getCountryInfo(result.nearest_area[0]);
-    getCurrentlyFeelsLikeInfo(result.current_condition[0]);
+    getAreaInfo(result.nearest_area[0].areaName[0].value, location);
+    getRegionInfo(result.nearest_area[0].region[0].value);
+    getCountryInfo(result.nearest_area[0].country[0].value);
+    getCurrentlyFeelsLikeInfo(result.current_condition[0].FeelsLikeF);
     getChanceOfSunshine(result.weather[0].hourly);
     getChanceOfRain(result.weather[0].hourly);
     getChanceOfSnow(result.weather[0].hourly);
@@ -60,7 +61,7 @@ function generateWeatherResults(result, location) {
     generateTodayCard(result.weather[0]);
     generateTomorrowCard(result.weather[1]);
     generateDayAfterTomorrowCard(result.weather[2]);
-    appendConversionForm();
+    // appendConversionForm();
     form.reset();
 }
 
@@ -86,10 +87,10 @@ function appendUserInputToMainArticle(userInput) {
     searchInput.textContent = userInput;
 }
 
-function getAreaInfo(result, location) {
+function getAreaInfo(areaName, location) {
     const areaElement = document.createElement('p');
     const strong = document.createElement('strong');
-    const areaName = result.areaName[0].value;
+    const area = areaName;
 
     if (location === areaName) {
         strong.innerHTML = "Area:  ";
@@ -97,31 +98,25 @@ function getAreaInfo(result, location) {
         strong.innerHTML = "Nearest Area: ";
     }
 
-    areaElement.append(strong, areaName);
+    areaElement.append(strong, area);
     currentWeatherArticle.append(areaElement);
 }
 
-function getRegionInfo(result) {
-    const region = document.createElement('p');
-    const strong = document.createElement('strong');
-    strong.innerHTML = "Region:  ";
-    region.append(strong, result.region[0].value);
-    currentWeatherArticle.append(region);
+function getRegionInfo(region) {
+    const regionPTag = document.createElement('p');
+    regionPTag.innerHTML = `<strong>Region:</strong> ${region}`;
+    currentWeatherArticle.append(regionPTag);
 }
 
-function getCountryInfo(result) {
-    const country = document.createElement('p');
-    const strong = document.createElement('strong');
-    strong.innerHTML = "Country:  ";
-    country.append(strong, result.country[0].value);
-    currentWeatherArticle.append(country);
+function getCountryInfo(country) {
+    const countryPTag = document.createElement('p');
+    countryPTag.innerHTML = `<strong>Country:</strong> ${country}`;
+    currentWeatherArticle.append(countryPTag);
 }
 
-function getCurrentlyFeelsLikeInfo(result) {
+function getCurrentlyFeelsLikeInfo(feelsLikeF) {
     const currentlyFeelsLike = document.createElement('p');
-    const strong = document.createElement('strong');
-    strong.innerHTML = "Currently:  ";
-    currentlyFeelsLike.append(strong, 'Feels Like ', result.FeelsLikeF, '°F');
+    currentlyFeelsLike.innerHTML = `<strong>Currently:</strong> Feels Like ${feelsLikeF} °F`;
     currentWeatherArticle.append(currentlyFeelsLike);
 }
 
@@ -221,12 +216,9 @@ function generateTodayCard(result) {
     // const strongElement = document.createElement('strong');
     // todayDivElement.classList.add('tempDivs');
     todayHeader.textContent = 'Today';
-    averageTemp.innerHTML = `<strong>Average Temperature:</strong>`;
-    maxTemp.innerHTML = `<strong>Max Temperature:</strong>`;
-    minTemp.innerHTML = `<strong>Min Temperature:</strong>`;
-    averageTemp.append(`${result.avgtempF} °F`);
-    maxTemp.append(`${result.maxtempF} °F`);
-    minTemp.append(`${result.mintempF} °F`);
+    averageTemp.innerHTML = `<strong>Average Temperature:</strong> ${result.avgtempF} °F`;
+    maxTemp.innerHTML = `<strong>Max Temperature:</strong> ${result.maxtempF} °F`;
+    minTemp.innerHTML = `<strong>Min Temperature:</strong> ${result.mintempF} °F`;
 
     todayArticle.append(todayHeader, averageTemp, maxTemp, minTemp);
     tempAside.append(todayArticle);
@@ -274,9 +266,42 @@ function generateDayAfterTomorrowCard(result) {
     tempAside.append(dayAfterTomorrowArticle);
 }
 
-function appendConversionForm() {
-    
-}
+// function appendConversionForm() {
+//     const form = document.createElement('form');
+//     const convertTempLabel = document.createElement('label');
+//     const convertInput = document.createElement('input');
+//     const toCelsiusLabel = document.createElement('label');
+//     const celsiusRadioButton = document.createElement('input');
+//     const toFahrenheitLabel = document.createElement('label');
+//     const fahrenheitRadioButton = document.createElement('input');
+//     const submitButton = document.createElement('input');
+//     const convertedTemp = document.createElement('h4');
+
+//     form.classList.add('convertForm');
+//     convertTempLabel.setAttribute('for', 'temp-to-convert');
+//     convertTempLabel.textContent = 'Convert the temperature';
+//     convertInput.setAttribute('type', 'number');
+//     convertInput.setAttribute('id', 'temp-to-convert');
+//     toCelsiusLabel.textContent = 'To Celsius';
+//     toFahrenheitLabel.textContent = 'To Fahrenheit';
+//     celsiusRadioButton.setAttribute('type', 'radio');
+//     celsiusRadioButton.setAttribute('id', 'to-c');
+//     celsiusRadioButton.setAttribute('name', 'convert-temp');
+//     celsiusRadioButton.setAttribute('value', 'c');
+//     fahrenheitRadioButton.setAttribute('type', 'radio');
+//     fahrenheitRadioButton.setAttribute('id', 'to-f');
+//     fahrenheitRadioButton.setAttribute('name', 'convert-temp');
+//     fahrenheitRadioButton.setAttribute('value', 'f');
+//     submitButton.setAttribute('type', 'submit');
+//     submitButton.classList.add('convertSubmit');
+
+//     submitButton.addEventListener('submit', (event) => {
+//         event.preventDefault();
+//     });
+
+//     form.append(convertTempLabel, convertInput, toCelsiusLabel, celsiusRadioButton, toFahrenheitLabel, fahrenheitRadioButton, submitButton, convertedTemp);
+//     convertAside.append(form);
+// }
 
 function removePreviousSearch() {
     searchUlElement.firstChild.remove();
@@ -290,5 +315,4 @@ function capitalizeFirstLetter(string) {
 function createErrorMessage(error) {
     currentWeatherArticle.innerHTML = '<strong style="font-size: 20px;">You have entered an invalid entry. Please try again.</strong>';
     main.style.cssText = 'grid-column: 1 / 3;';
-
 }
