@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App 2023</title>
-    <link rel="stylesheet" href="./style.css">
-    <script defer src="./main.js"></script>
+    <meta charset = "UTF-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+    <title> Weather App 2023 </title>
+    <link rel = "stylesheet" href = "./style.css">
+    <script defer src = "./main.js"></script>
 </head>
+
 <body>
-    <header class="header">
-        <div class = "menu">
-            <h1>Weather App</h1>
+    <header class = "header-user-input">
+        <div class = "menu-user-input">
+            <h1> Weather App </h1>
             <form>
-                <input type="text" id="search" name="search" placeholder="Type a Location:" autofocus required/>
-                <input id = "submit" type="submit" name = "submit" value = "Get Weather"/>
+                <input type = "text" id = "search_user_input" name = "search" placeholder = "Type a Location:" autofocus required/>
+                <input id = "submit_user_input" type = "submit" name = "submit" value = "Get Weather"/>
             </form>
         </div> <br/>
     </header>
-    <div class="primary-content">
-        <aside class = "sidebarConvert">
-            <form id = "tempConvert">
-                <label for="temp">Convert the Temperature</label><br>
-                <input type="number" name="temp" id = "temp-to-convert"/> <br> <br>
+
+    <div class="primary_content">
+        <aside class = "sidebar_convert">
+            <form id = "temp_convert">
+                <label for="temperature">Convert the Temperature</label><br>
+                <input type="number" name="temperature" id = "temp-to-convert"/> <br> <br>
     
                 <label for="temp_c">To Celsius&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 <input type="radio" name="convert-temp" id="to-c" value="c" /> <br><br>
@@ -32,7 +34,7 @@
 
                 <input type="submit" value="Submit" id = "submitConvert"/> <br>
             </form>
-            <h4 id = "displayTempinCorF"></h4>
+            <h4 id = "display_temp_in_C_or_F"></h4>
         </aside>
         <main class="main">
             <p id = "pInitial" style = "text-align: center;">Choose a location to view the weather.</p>
