@@ -10,9 +10,10 @@
             <form>
                 <label for="query">Pick a location</label>
                 <input id="cityInput" type="text" name="query">
-                <input type="submit" value="Get Weather">
+                <input type="submit" value="Get Weather" id="locationSubmission">
             </form>
         </header>
+        <aside></aside>
         <main>
             <article id="current">
                 <h2>Choose a location to view the weather</h2>
@@ -20,13 +21,13 @@
             <article id="today"></article>
             <article id="tomorrow"></article>
             <article id="afterThat"></article>
-            <aside>
-                <section id="previousSearchesList">
-                    <h4>Previous Searches</h4>
-                    <p class="prevMessage">No previous searches.</p>
-                    <ul class="previousList"></ul>
-                </section>
-            </aside>
         </main>
+        <aside>
+            <section id="previousSearchesList">
+                <h4>Previous Searches</h4>
+                <p class="prevMessage">No previous searches.</p>
+                <ul class="previousList"></ul>
+            </section>
+        </aside>
     </body>
 </html>
