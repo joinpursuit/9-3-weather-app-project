@@ -113,7 +113,69 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
     
             };
             
+            //Function to display location or nearest area to the main section
+            function displayLocation() {
+                const userLocation = document.querySelector('#search');
+                LocationName.textContent = userLocation.value;
+                if (weatherData.city.toLowerCase() == userLocation.value.toLowerCase()) {
+                    area.textContent = `Area: \n${weatherData.city}`;
+                } else {
+                    area.textContent = `Nearest Area: \n${weatherData.city}`;
+                }
+                }
+            displayLocation();
+            
+            //Display region to the main section
+            function displayRegion() {
+                region.textContent = weatherData.region;
+            }
+            displayRegion();
 
+            //Display country to the main section
+            function displayCountry() {
+                country.textContent = weatherData.country;
+            }
+            displayCountry();
+
+            //Display current weather to the main section
+
+            function displayCurrentWeather() {
+                currentTemperature.textContent = `Current: ${weatherData.today.FeelsLikeF}°F`;
+            }
+            displayCurrentWeather();
+
+            //Function to display location or nearest area to the main section
+            function displayLocation() {
+                const userLocation = document.querySelector('#search');
+                LocationName.textContent = userLocation.value;
+                if (weatherData.city.toLowerCase() == userLocation.value.toLowerCase()) {
+                    area.textContent = `Area: \n${weatherData.city}`;
+                } else {
+                    area.textContent = `Nearest Area: \n${weatherData.city}`;
+                }
+                }
+            displayLocation();
+            
+            //Display region to the main section
+            function displayRegion() {
+                region.textContent = weatherData.region;
+            }
+            displayRegion();
+
+            //Display country to the main section
+            function displayCountry() {
+                country.textContent = weatherData.country;
+            }
+            displayCountry();
+
+            //Display current weather to the main section
+
+            function displayCurrentWeather() {
+                currentTemperature.textContent = `Current: ${weatherData.today.FeelsLikeF}°F`;
+            }
+            displayCurrentWeather();
+        
+        
 
 
 
