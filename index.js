@@ -4,10 +4,14 @@ let todayOutput = document.querySelector("#today");
 let tomorrowOutput = document.querySelector("#tomorrow");
 let dayAfterOutput = document.querySelector("#afterThat");
 let lastSearches = [];
-let lastSearchSection = document.querySelector("previousSearchesList")
+let lastSearchList = document.querySelector("ul.previousList");
+let lastSearchSection = document.querySelector("#previousSearchesList");
+let prevMessage = document.querySelector(".prevMessage");
 document.addEventListener("submit",(e)=>{
     e.preventDefault();
+    
     let requestString = "https://wttr.in/" + textfield.value + "?format=j1";
+    textfield.value = ""
     fetch(requestString).then((response) => response.json()).then((data) => {
         currentOutput.innerHTML = 
         `
@@ -41,5 +45,12 @@ document.addEventListener("submit",(e)=>{
         <p><strong>Max Temperature: </strong>${data.weather[2].maxtempF}°F</p>
         <p><strong>Min Temperature: </strong>${data.weather[2].mintempF}°F</p>
         `
+        prevMessage.remove();
+        if (!lastSearchList.innerHTML.includes(data.nearest_area[0].areaName[0].value) ){
+            lastSearchList.innerHTML += 
+            `
+            <li><a>${data.nearest_area[0].areaName[0].value}</a><p> ${data.current_condition[0].FeelsLikeF}°F</p></li>
+            `
+        }
     })
 });
