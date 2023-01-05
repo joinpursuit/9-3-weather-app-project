@@ -9,16 +9,15 @@
     <script defer src="./main.js"></script>
 </head>
 <body>
-    <div class="header">
-        <div class="logo"><img src="" alt="Weather Logo" /></div>
-        <header class = "menu">
+    <header class="header">
+        <div class = "menu">
             <h1>Weather App</h1>
             <form>
-                <input type="text" id="search" name="search" placeholder="Type a Location:" autofocus autocomplete="on"/>
+                <input type="text" id="search" name="search" placeholder="Type a Location:" autofocus required/>
                 <input id = "submit" type="submit" name = "submit" value = "Get Weather"/>
             </form>
-        </header> <br/>
-    </div>
+        </div> <br/>
+    </header>
     <div class="primary-content">
         <aside id = "hidden" class = "sidebarConvert">
             <form id = "tempConvert">
