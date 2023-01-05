@@ -15,26 +15,45 @@ locationForm.addEventListener("submit", submitLocation => {
         .then(({nearest_area, current_condition, weather, request}) => {
             console.log(nearest_area);
             console.log(current_condition);
-            console.log(current_condition[0].temp_F)
             console.log(weather);
             console.log(request);
-            // Creating variable to store value of current temperature for pickedLocation
+            // Creating variable to store value of current temperature 
             const currentTempF = current_condition[0].temp_F;
             // Creating variable to store value of nearest_area[0].region[0].value
             const regionValue = nearest_area[0].region[0].value;
             // Creating variable to store value of nearest_area[0].country[0].value
             const country = nearest_area[0].country[0].value;
-            // Creating variable to store value for currently feels like temp in F for pickedLocation
+            // Creating variable to store value for currently feels like temp in F 
             const currentlyFeelsF = current_condition[0].FeelsLikeF;
-
+            // Creating variable to store value for today's average temp in F
+            const todayAvgTempF = weather[0].avgtempF;
+            // 
+            const todayMaxTempF = weather[0].maxtempF;
+            // 
+            const todayMinTempF = weather[0].mintempF;
+            // 
+            const tomorrowAvgTempF = weather[1].avgtempF;
+            // 
+            const tomorrowMaxTempF = weather[1].maxtempF;
+            // 
+            const tomorrowMinTempF = weather[1].mintempF;
+            // 
+            const dayAfterTomorrowAvgTempF = weather[2].avgtempF;
+            // 
+            const dayAfterTomorrowMaxTempF = weather[2].maxtempF;
+            // 
+            const dayAfterTomorrowMinTempF = weather[2].mintempF;
             // Calling functions
-            getThreeForecastDays(currentTempF);
             getDetailsFromTextInput();
             displayRegion(regionValue);
             displayCountry(country);
             displayCurrentlyFeelsF(currentlyFeelsF);
             displayPreviousSearchLocationAndTemp(pickedLocation, currentlyFeelsF);
-
+            getTodayTempF(todayAvgTempF, todayMaxTempF, todayMinTempF);
+            getTomorrowTempF(tomorrowAvgTempF, tomorrowMaxTempF, tomorrowMinTempF);
+            getDayAfterTomorrowTempF(dayAfterTomorrowAvgTempF, dayAfterTomorrowMaxTempF, dayAfterTomorrowMinTempF);
+            // 
+            resetInputLocationForm();
 
         })
         .catch((error) => {
@@ -84,21 +103,33 @@ locationForm.addEventListener("submit", submitLocation => {
             // Using .append method to append searchHistoryUli to searchHistoryUl
             searchHistoryUl.append(searchHistoryUlLi);
         }
-        
-        function getThreeForecastDays(temp) {
-            // Creating variable to represent article element in HTML
-            const mainArticle = document.querySelector("#main_article");
-            // Creating variable to create p element for HTML
-            const mainArticleP = document.createElement("p");
-            // Using .append method to append mainArticleP to mainArticle
-            mainArticle.append(mainArticleP);
-
-
+        // Creating a function to display today's average, max, and minimum temperatures
+        function getTodayTempF(avgTempF, maxTempF, minTempF) {
+            today_h3.textContent = "Today";
+            today_avg_temp_f.textContent = `Average Temperature: ${avgTempF}°F`;
+            today_max_temp_f.textContent = `Max. Temperature: ${maxTempF}°F;`;
+            today_min_temp_f.textContent = `Min. Temperature: ${minTempF}°F`;
+        }
+        // Creating a function to display tomorrow's average, max, and minimum temperatures
+        function getTomorrowTempF(avgTempF, maxTempF, minTempF) {
+            tomorrow_h3.textContent = "Tomorrow";
+            tomorrow_avg_temp_f.textContent = `Average Temperature: ${avgTempF}°F`;
+            tomorrow_max_temp_f.textContent = `Max. Temperature: ${maxTempF}°F`;
+            tomorrow_min_temp_f.textContent = `Min. Temperature: ${minTempF}°F`;
+        }
+        // Creating a function to display day after tomorrow's average, max, and minimum temperatures
+        function getDayAfterTomorrowTempF(avgTempF, maxTempF, minTempF) {
+            day_after_tomorrow_h3.textContent = "Day After Tomorrow";
+            day_after_tomorrow_avg_temp_f.textContent = `Average Temperature: ${avgTempF}°F`;
+            day_after_tomorrow_max_temp_f.textContent = `Max. Temperature: ${maxTempF}°F;`;
+            day_after_tomorrow_min_temp_f.textContent = `Min. Temperature: ${minTempF}°F`;
+        }
+        // 
+        function resetInputLocationForm() {
+            pickedLocationText.value = "";
         }
 
-        getThreeForecastDays()
-
-       
+     
 })
 
 function handleError(error) {
