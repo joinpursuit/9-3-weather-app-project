@@ -384,7 +384,42 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
                 }
             }
 
+             //Access Weather Data Object and console.log chance of sunshine
+            //console.log('10', weatherData.today.chanceofsunshine);
+            
+            
 
+         //Function to display weather gif over 50% chance
+         function displayWeatherGif() {
+                
+            const weatherGif = document.querySelector('#weatherImage');
+           
+                    
+                    if (Number(weatherData.today.chanceofsunshine) > 50) {
+                        console.log('10', (weatherData.today.chanceofsunshine))
+                        weatherGif.setAttribute('src', './assets/icons8-summer.gif');
+                        weatherGif.setAttribute('alt', 'sun');
+                        //weatherGifImage.setAttribute('class', 'weatherGif');
+                        
+                    } else if (Number(weatherData.today.chanceofrain) > 50) {
+                        weatherGif.setAttribute('src', './assets/icons8-torrential-rain.gif');
+                        weatherGif.setAttribute('alt', 'rain');
+                        //weatherGifImage.setAttribute('class', 'weatherGif');
+                       
+                    } else if (Number(weatherData.today.chanceofsnow) > 50) {
+                        weatherGif.setAttribute("src", "./assets/icons8-light-snow.gif");
+                        weatherGif.setAttribute("alt", "snow");
+                        //weatherGifImage.setAttribute('class', 'weatherGif');
+                       
+                    } else {
+                        weatherGif.setAttribute("src", "./assets/icons8-night.gif");
+                        weatherGif.setAttribute("alt", "clouds");
+                        //weatherGifImage.setAttribute('class', 'weatherGif');
+                        
+                    }
+          }
+    
+         displayWeatherGif();
 
           
 
