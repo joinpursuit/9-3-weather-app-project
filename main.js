@@ -43,6 +43,8 @@ locationForm.addEventListener("submit", submitLocation => {
             const dayAfterTomorrowMaxTempF = weather[2].maxtempF;
             // 
             const dayAfterTomorrowMinTempF = weather[2].mintempF;
+            // 
+            const userArea = nearest_area[0].areaName[0].value;
             // Calling functions
             getDetailsFromTextInput();
             displayRegion(regionValue);
@@ -52,6 +54,7 @@ locationForm.addEventListener("submit", submitLocation => {
             getTodayTempF(todayAvgTempF, todayMaxTempF, todayMinTempF);
             getTomorrowTempF(tomorrowAvgTempF, tomorrowMaxTempF, tomorrowMinTempF);
             getDayAfterTomorrowTempF(dayAfterTomorrowAvgTempF, dayAfterTomorrowMaxTempF, dayAfterTomorrowMinTempF);
+            displayArea(userArea, pickedLocation);
             // 
             resetInputLocationForm();
 
@@ -128,7 +131,15 @@ locationForm.addEventListener("submit", submitLocation => {
         function resetInputLocationForm() {
             pickedLocationText.value = "";
         }
-
+        // 
+        function displayArea(area, location) {
+            if (area.toLowerCase() == location.toLowerCase()) {
+                main_p_area.textContent = `Area: ${area};`
+            } else {
+                main_p_area.textContent = `Nearest Area: ${area};`
+            }
+            
+        }
      
 })
 
