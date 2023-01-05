@@ -1,0 +1,40 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 14px;    
+}
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: 3;
+}
+header {
+    display: grid;
+    grid-column: span 3;
+    background-color: rgb(0,76,84);
+    padding: 20px;
+    color: white;
+    text-align: center; 
+}
+main {
+    display: grid;
+    grid-column: span 2;
+    background-color: rgb(240, 241, 241);
+    border: 2px solid rgb(0,76,84);
+    margin-top: 10px;
+    margin-left: 20px;
+}
+#upcoming-weather {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    
+}
+#prev-search {
+    padding-left: 10px;
+}
+p {
+    text-align: center;
+    
+}
+#current-weather {
+    text-align: center;    
+}
