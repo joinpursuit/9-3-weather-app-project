@@ -335,7 +335,14 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
             }
             displayLocationAside();
 
-            
+            //Function to reset search input
+
+            function resetSearch() {
+                const resetSearch = document.querySelector('#search')
+                resetSearch.value = '';
+            }
+
+            resetSearch();
 
         
         
