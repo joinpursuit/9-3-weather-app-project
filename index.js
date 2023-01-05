@@ -9,7 +9,6 @@ document.addEventListener("submit",(e)=>{
     e.preventDefault();
     let requestString = "https://wttr.in/" + textfield.value + "?format=j1";
     fetch(requestString).then((response) => response.json()).then((data) => {
-        console.log(data)
         currentOutput.innerHTML = 
         `
         <h2>${data.nearest_area[0].areaName[0].value}</h2>
