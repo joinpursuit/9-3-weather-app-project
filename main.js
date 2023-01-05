@@ -308,6 +308,33 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
             }
             displayMinTempDayAfterTomorrow();
 
+            //Function to remove aside
+            function removeAside() {
+                if (displayLocation) {
+                    const remove = document.querySelectorAll('.remove');
+                    remove.forEach(removeElement => {
+                        removeElement.remove();
+                    })
+                }
+            }
+            removeAside();
+
+            //Function to display location in the ul
+            function displayLocationAside() {
+                const location = document.createElement('li');
+                //location.textContent = weatherData.city;
+                const previousSearchLink = document.createElement('a');
+                previousSearchLink.setAttribute('href', '#');
+                previousSearchLink.textContent = weatherData.city;
+                location.append(previousSearchLink);
+
+                const ul = document.querySelector('#previous');
+                const userCity = document.querySelector('#search').value;
+                previousSearchLink.textContent = `${userCity} - ${weatherData.today.FeelsLikeF}°F`;
+                ul.append(location);
+            }
+            displayLocationAside();
+
             
 
         
