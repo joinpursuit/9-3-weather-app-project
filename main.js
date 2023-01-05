@@ -344,6 +344,50 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
 
             resetSearch();
 
+
+            //Function to convert fahrenheit to celsius
+            function convertTemp() {
+                const convertForm = document.querySelector('#convertTemps');
+                convertForm.addEventListener('submit', checkIfFahrenheitToCelsiusIsChecked);
+
+            }
+            convertTemp();
+
+            //Function to create a widget that converts fahrenheit to celsius
+             function convertFahrenheitToCelsius(event) {
+                const celsiusResult = document.querySelector('#temperatureConvert')
+                const givenTemp = document.querySelector('#temp-to-convert').value;
+
+                 const fahrenheitToCelsius = (givenTemp - 32) * 5 / 9;
+                 celsiusResult.textContent = `${fahrenheitToCelsius.toFixed(2)}\u00B0C`;
+
+             }
+            
+
+            //Function to create a widget that converts celsius to fahrenheit
+            function convertCelsiusToFahrenheit(event) {
+                const fahrenheitResult = document.querySelector('#temperatureConvert')
+                const givenTemp = document.querySelector('#temp-to-convert').value;
+                const celsiusToFahrenheit = (givenTemp * 9 / 5) + 32;
+                fahrenheitResult.textContent = `${celsiusToFahrenheit.toFixed(2)}\u00B0F`;
+            }
+            
+
+            //Function to check if radio button is checked for fahrenheit to celsius
+            function checkIfFahrenheitToCelsiusIsChecked(event) {
+                event.preventDefault();
+                const fahrenheitToCelsius = document.querySelector('#to-c');
+                if (fahrenheitToCelsius.checked) {
+                    convertFahrenheitToCelsius();
+                } else {
+                    convertCelsiusToFahrenheit()
+                }
+            }
+
+
+
+          
+
         
         
 
