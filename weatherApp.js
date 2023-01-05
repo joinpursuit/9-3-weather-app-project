@@ -206,102 +206,87 @@ function appendPreviousSearch(result, location) {
     }
 }
 
-function generateTodayCard(result) {
-    // const todayDivElement = document.createElement('div');
+function generateTodayCard(weather) {
     todayArticle.classList.add('tempCard');
     const todayHeader = document.createElement('h3');
     const averageTemp = document.createElement('p');
     const maxTemp = document.createElement('p');
     const minTemp = document.createElement('p');
-    // const strongElement = document.createElement('strong');
-    // todayDivElement.classList.add('tempDivs');
     todayHeader.textContent = 'Today';
-    averageTemp.innerHTML = `<strong>Average Temperature:</strong> ${result.avgtempF} °F`;
-    maxTemp.innerHTML = `<strong>Max Temperature:</strong> ${result.maxtempF} °F`;
-    minTemp.innerHTML = `<strong>Min Temperature:</strong> ${result.mintempF} °F`;
+    averageTemp.innerHTML = `<strong>Average Temperature:</strong> ${weather.avgtempF} °F`;
+    maxTemp.innerHTML = `<strong>Max Temperature:</strong> ${weather.maxtempF} °F`;
+    minTemp.innerHTML = `<strong>Min Temperature:</strong> ${weather.mintempF} °F`;
 
     todayArticle.append(todayHeader, averageTemp, maxTemp, minTemp);
     tempAside.append(todayArticle);
 }
 
-function generateTomorrowCard(result) {
-    // const tomorrowDivElement = document.createElement('div');
+function generateTomorrowCard(weather) {
     tomorrowArticle.classList.add('tempCard');
     const tomorrowHeader = document.createElement('h3');
     const averageTemp = document.createElement('p');
     const maxTemp = document.createElement('p');
     const minTemp = document.createElement('p');
-    // const strongElement = document.createElement('strong');
-    // tomorrowDivElement.classList.add('tempDivs');
     tomorrowHeader.textContent = 'Tomorrow';
-    averageTemp.innerHTML = `<strong>Average Temperature:</strong>`;
-    maxTemp.innerHTML = `<strong>Max Temperature:</strong>`;
-    minTemp.innerHTML = `<strong>Min Temperature:</strong>`;
-    averageTemp.append(`${result.avgtempF} °F`);
-    maxTemp.append(`${result.maxtempF} °F`);
-    minTemp.append(`${result.mintempF} °F`);
+    averageTemp.innerHTML = `<strong>Average Temperature:</strong> ${weather.avgtempF} °F`;
+    maxTemp.innerHTML = `<strong>Max Temperature:</strong> ${weather.maxtempF} °F`;
+    minTemp.innerHTML = `<strong>Min Temperature:</strong> ${weather.mintempF} °F`;
 
     tomorrowArticle.append(tomorrowHeader, averageTemp, maxTemp, minTemp);
     tempAside.append(tomorrowArticle);
 }
 
-function generateDayAfterTomorrowCard(result) {
-    // const dayAfterTomorrowDivEle = document.createElement('div');
+function generateDayAfterTomorrowCard(weather) {
     dayAfterTomorrowArticle.classList.add('tempCard');
     const dayAfterTomorrowHeader = document.createElement('h3');
     const averageTemp = document.createElement('p');
     const maxTemp = document.createElement('p');
     const minTemp = document.createElement('p');
-    // const strongElement = document.createElement('strong');
-    // dayAfterTomorrowDivEle.classList.add('tempDivs');
     dayAfterTomorrowHeader.textContent = 'Day After Tomorrow';
-    averageTemp.innerHTML = `<strong>Average Temperature:</strong>`;
-    maxTemp.innerHTML = `<strong>Max Temperature:</strong>`;
-    minTemp.innerHTML = `<strong>Min Temperature:</strong>`;
-    averageTemp.append(`${result.avgtempF} °F`);
-    maxTemp.append(`${result.maxtempF} °F`);
-    minTemp.append(`${result.mintempF} °F`);
+    averageTemp.innerHTML = `<strong>Average Temperature:</strong> ${weather.avgtempF} °F`;
+    maxTemp.innerHTML = `<strong>Max Temperature:</strong> ${weather.maxtempF} °F`;
+    minTemp.innerHTML = `<strong>Min Temperature:</strong> ${weather.mintempF} °F`;
 
     dayAfterTomorrowArticle.append(dayAfterTomorrowHeader, averageTemp, maxTemp, minTemp);
     tempAside.append(dayAfterTomorrowArticle);
 }
 
-// function appendConversionForm() {
-//     const form = document.createElement('form');
-//     const convertTempLabel = document.createElement('label');
-//     const convertInput = document.createElement('input');
-//     const toCelsiusLabel = document.createElement('label');
-//     const celsiusRadioButton = document.createElement('input');
-//     const toFahrenheitLabel = document.createElement('label');
-//     const fahrenheitRadioButton = document.createElement('input');
-//     const submitButton = document.createElement('input');
-//     const convertedTemp = document.createElement('h4');
+function appendConversionForm() {
+    const form = document.createElement('form');
+    const convertTempLabel = document.createElement('label');
+    const convertInput = document.createElement('input');
+    const toCelsiusLabel = document.createElement('label');
+    const celsiusRadioButton = document.createElement('input');
+    const toFahrenheitLabel = document.createElement('label');
+    const fahrenheitRadioButton = document.createElement('input');
+    const submitButton = document.createElement('input');
+    const convertedTemp = document.createElement('h4');
 
-//     form.classList.add('convertForm');
-//     convertTempLabel.setAttribute('for', 'temp-to-convert');
-//     convertTempLabel.textContent = 'Convert the temperature';
-//     convertInput.setAttribute('type', 'number');
-//     convertInput.setAttribute('id', 'temp-to-convert');
-//     toCelsiusLabel.textContent = 'To Celsius';
-//     toFahrenheitLabel.textContent = 'To Fahrenheit';
-//     celsiusRadioButton.setAttribute('type', 'radio');
-//     celsiusRadioButton.setAttribute('id', 'to-c');
-//     celsiusRadioButton.setAttribute('name', 'convert-temp');
-//     celsiusRadioButton.setAttribute('value', 'c');
-//     fahrenheitRadioButton.setAttribute('type', 'radio');
-//     fahrenheitRadioButton.setAttribute('id', 'to-f');
-//     fahrenheitRadioButton.setAttribute('name', 'convert-temp');
-//     fahrenheitRadioButton.setAttribute('value', 'f');
-//     submitButton.setAttribute('type', 'submit');
-//     submitButton.classList.add('convertSubmit');
+    form.classList.add('convertForm');
+    convertTempLabel.setAttribute('for', 'temp-to-convert');
+    convertTempLabel.textContent = 'Convert the temperature';
+    convertInput.setAttribute('type', 'number');
+    convertInput.setAttribute('id', 'temp-to-convert');
+    toCelsiusLabel.textContent = 'To Celsius';
+    toFahrenheitLabel.textContent = 'To Fahrenheit';
+    celsiusRadioButton.setAttribute('type', 'radio');
+    celsiusRadioButton.setAttribute('id', 'to-c');
+    celsiusRadioButton.setAttribute('name', 'convert-temp');
+    celsiusRadioButton.setAttribute('value', 'c');
+    fahrenheitRadioButton.setAttribute('type', 'radio');
+    fahrenheitRadioButton.setAttribute('id', 'to-f');
+    fahrenheitRadioButton.setAttribute('name', 'convert-temp');
+    fahrenheitRadioButton.setAttribute('value', 'f');
+    submitButton.setAttribute('type', 'submit');
+    submitButton.classList.add('convertSubmit');
 
-//     submitButton.addEventListener('submit', (event) => {
-//         event.preventDefault();
-//     });
+    submitButton.addEventListener('submit', (event) => {
+        event.preventDefault();
+    });
 
-//     form.append(convertTempLabel, convertInput, toCelsiusLabel, celsiusRadioButton, toFahrenheitLabel, fahrenheitRadioButton, submitButton, convertedTemp);
-//     convertAside.append(form);
-// }
+    form.append(convertTempLabel, convertInput, toCelsiusLabel, celsiusRadioButton, toFahrenheitLabel, fahrenheitRadioButton, submitButton, convertedTemp);
+    convertAside.append(form);
+}
 
 function removePreviousSearch() {
     searchUlElement.firstChild.remove();
