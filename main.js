@@ -174,6 +174,142 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
                 currentTemperature.textContent = `Current: ${weatherData.today.FeelsLikeF}°F`;
             }
             displayCurrentWeather();
+
+            //Function to display chance of sunshine to the main section
+            function displayChanceOfSunshine() {
+                sunshine.textContent = `Chance of Sunshine: ${weatherData.today.chanceofsunshine}%`;
+            }
+            displayChanceOfSunshine();
+
+            //Function to display chance of rain to the main section
+            function displayChanceOfRain() {
+                rain.textContent = `Chance of Rain: ${weatherData.today.chanceofrain}%`;
+            }
+            displayChanceOfRain();
+
+            //Function to display chance of snow to the main section
+            function displayChanceOfSnow() {
+                snow.textContent = `Chance of Snow:${weatherData.today.chanceofsnow}%`;
+            }
+            displayChanceOfSnow();
+
+            //Function to display chance of thunder to the main section
+            // function displayChanceOfThunder() {
+            //     thunder.textContent = `Chance of Thunder:${weatherData.today.chanceofthunder}`;
+            // }
+            //displayChanceOfThunder();
+
+            //Function to display chance of fog to the main section
+            // function displayChanceOfFog() {
+            //     fog.textContent = `Chance of Fog:${weatherData.today.chanceoffog}`;
+            // }
+            // displayChanceOfFog();
+
+
+            //Function to display cloud cover to the main section
+            // function displayCloudCover() {
+            //     cloudcover.textContent = `Cloud Cover:${weatherData.today.cloudcover}`;
+            // }
+            // displayCloudCover();
+
+            //Function to display humidity to the main section  
+            // function displayHumidity() {
+            //     humidity.textContent = `Humidity:${weatherData.today.humidity}`;
+            // }
+            // displayHumidity();
+
+            //Function to display wind speed to the main section
+            // function displayWindSpeed() {
+            //     windspeed.textContent = `Wind Speed:${weatherData.today.windspeed}`;
+            // }
+            // displayWindSpeed();
+
+            //function displayWindDirection() {
+            //     winddir.textContent = `Wind Direction:${weatherData.today.winddir}`;
+            // }
+            // displayWindDirection();
+
+            //Function to display wind direction to the main section
+            // function displayWindDirectionDegree() {
+            //     winddirdegree.textContent = `Wind Direction Degree:${weatherData.today.winddirdegree}`;
+            // }
+            // displayWindDirectionDegree();
+
+            //Function to display visibility to the main section
+            // function displayVisibility() {
+            //     visibility.textContent = `Visibility:${weatherData.today.visibility}`;
+            // }
+            // displayVisibility();
+
+            //Function to display wind chill fahrenheit to the main section
+            // function displayWindChillF() {
+            //     windchillF.textContent = `Wind Chill:${weatherData.today.windchillF}`;
+            // }
+            // displayWindChillF();
+
+            //Function to display wind chill celsius to the main section
+            // function displayWindChillC() {
+            //     windchillC.textContent = `Wind Chill:${weatherData.today.windchillC}`;
+            // }
+            // displayWindChillC();
+
+            //Display average temp to the main section for today
+            function displayAverageTemp() {
+                todayAvg.textContent = `Today average temp: ${weatherData.today.averageTemp}°F`;
+            }
+            displayAverageTemp();
+
+
+            //Display max temp temp to the main section for today
+            function displayMaxTemp() {
+                todayMax.textContent = `Today Max Temp: ${weatherData.today.maxTemp}°F`;
+            }
+            displayMaxTemp();
+
+            //Display min temp temp to the main section for today
+            function displayMinTemp() {
+                todayMin.textContent = `Today min temp: ${weatherData.today.minTemp}°F`;
+            }
+            displayMinTemp();
+
+            //Display average temp to the main section for tomorrow
+            function displayAverageTempTomorrow() {
+                tomorrowAvg.textContent = `Tomorrow average temp: ${weatherData.tomorrow.averageTemp}°F`;
+            }
+            displayAverageTempTomorrow();
+
+            //Display max temp temp to the main section for tomorrow
+            function displayMaxTempTomorrow() {
+                tomorrowMax.textContent = `Tomorrow max temp: ${weatherData.tomorrow.maxTemp}°F`;
+            }
+            displayMaxTempTomorrow();
+
+            //Display min temp temp to the main section for tomorrow
+            function displayMinTempTomorrow() {
+                tomorrowMin.textContent = `Tomorrow min temp: ${weatherData.tomorrow.minTemp}°F`;
+            }
+            displayMinTempTomorrow();
+
+            //Display average temp to the main section for day after tomorrow
+            function displayAverageTempDayAfterTomorrow() {
+                TwoDaysLaterAvg.textContent = `2 days later temp average: ${weatherData.dayAfterTomorrow.averageTemp}°F`;
+            }
+            displayAverageTempDayAfterTomorrow();
+
+            //Display max temp temp to the main section for day after tomorrow
+            function displayMaxTempDayAfterTomorrow() {
+                TwoDaysLaterMax.textContent = `2 days later temp max: ${weatherData.dayAfterTomorrow.maxTemp}°F`;
+            }
+            displayMaxTempDayAfterTomorrow();
+
+            //Display min temp temp to the main section for day after tomorrow
+            function displayMinTempDayAfterTomorrow() {
+                TwoDaysLaterMin.textContent = `2 days later min temp:${weatherData.dayAfterTomorrow.minTemp}°F`;
+            }
+            displayMinTempDayAfterTomorrow();
+
+            
+
         
         
 
