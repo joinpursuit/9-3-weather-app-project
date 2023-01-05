@@ -10,7 +10,11 @@
 </head>
 
 <body>
-    <div class="card">
+    <div class="container">
+      <!--  <div class="search">
+        <input type="text" class="searh-bar">
+      <button></button>
+      </div> -->
     <header>
     <h1>Weather App</h1> 
 
@@ -21,7 +25,7 @@
     </form>   
     </header>
       
-    <aside class="hidden"> 
+    <!-- <aside class="hidden"> 
         <form>
           <label for="temp">Convert the Temperature</label>
             <input type="number" name="temp" />
@@ -35,11 +39,13 @@
             <input type="submit" value="Convert" />
         </form>
         <h4></h4>
-    </aside>
+    </aside> -->
 
     <main>
-      <article class="replaceWithWeather">Choose a location to view the weather.</article>
-      <h2 id="NameOfCity"></h2>
+      <article class="currentWeatherArticle">
+        <p class="chooseLocation">Choose a location to view the weather.</p>
+        <h2 id="nameOfCity"></h2>
+      </article>
       <aside class="tempAside">
         <article></article> 
         <article></article> 
