@@ -92,9 +92,22 @@ function threeDayForecast(result){
 
 
 function previousSearches(result){
-    document.querySelector("section p").remove();
-
-    // for(let i=0; i<; i++){
-        
-    // }
+    if (document.querySelector(".remove")){
+        document.querySelector(".remove").remove();
+    }
+    const li = document.createElement("li");
+    const p = document.createElement("p")
+    ul.append(li)
+    li.append(p)
+    const a = document.createElement("a")
+    const listA = document.querySelectorAll("li p a")
+    a.setAttribute("href", "#")
+    a.innerHTML = result.nearest_area[0].areaName[0].value;
+    p.innerHTML = " - " + result.current_condition[0].FeelsLikeF + "°F"
+    p.prepend(a)
+    for(let i=0; i<listA.length; i++){
+        if(listA[i].innerHTML === result.nearest_area[0].areaName[0].value){
+            li.remove()
+}
+}
 }
