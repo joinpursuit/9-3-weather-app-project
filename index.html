@@ -27,15 +27,17 @@
     <div class="convert-div">
         <aside class="convert_info">
             <h3>Tempature Conversion Widget</h3>
-            <form>
+            <form class="convert_button">
                 <label for="temperature">Convert the Temperature</label>
                 <input type="number" name="temperature" />
 
                 <label for="tempFahr">Convert to Fahrenheit</label>
-                <input type="radio" name="temp_ConvF" id="to-C" value="C" />
+                <input type="radio" name="temp-to-convert" id="temp-to-convert" value="F" class="F" />
 
                 <label for="tempCel">Covert to Celcius</label>
-                <input type="radio" name="temp_ConvC" id="to-F" value="F" />
+                <input type="radio" name="temp-to-convert" id="temp-to-convert" value="C" class="C"/>
+
+                <input type="submit" value="Submit" />
             </form>
 
         </aside>
