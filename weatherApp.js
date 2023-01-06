@@ -30,13 +30,10 @@ function generateUrl(event) {
 function getWeatherInfo(api, location) {
 
     fetch(api)
-        .then((response) => {
-            if (response.ok){
-                return response.json();
-            }
-            createErrorMessage();
-        })
-        
+        .then((response) => response.json())
+            // if (response.ok){
+            // }
+            // createErrorMessage();
         .then((result) => {
             generateWeatherResults(result, location);
         })
@@ -61,10 +58,10 @@ function generateWeatherResults(resultObj, location) {
     getRegionInfo(resultObj.nearest_area[0].region[0].value);
     getCountryInfo(resultObj.nearest_area[0].country[0].value);
     getCurrentlyFeelsLikeInfo(resultObj.current_condition[0].FeelsLikeF);
-    getChanceOfSunshine(resultObj.weather[0].hourly);
-    getChanceOfRain(resultObj.weather[0].hourly);
-    getChanceOfSnow(resultObj.weather[0].hourly);
-    appendPreviousSearch(resultObj, location);
+    getChanceOfSunshine(resultObj.weather[0].hourly[0]);
+    getChanceOfRain(resultObj.weather[0].hourly[0]);
+    getChanceOfSnow(resultObj.weather[0].hourly[0]);
+    appendPreviousSearch(resultObj.current_condition[0].FeelsLikeF, location);
     generateTodayCard(resultObj.weather[0]);
     generateTomorrowCard(resultObj.weather[1]);
     generateDayAfterTomorrowCard(resultObj.weather[2]);
@@ -123,16 +120,17 @@ function getCountryInfo(country) {
     currentWeatherArticle.append(countryPTag);
 }
 
-function getCurrentlyFeelsLikeInfo(feelsLikeF) {
+function getCurrentlyFeelsLikeInfo(temperatureFeelsLike) {
     const currentlyFeelsLike = document.createElement('p');
-    currentlyFeelsLike.innerHTML = `<strong>Currently:</strong> Feels Like ${feelsLikeF} °F`;
+    currentlyFeelsLike.innerHTML = `<strong>Currently:</strong> Feels Like ${temperatureFeelsLike} °F`;
     currentWeatherArticle.append(currentlyFeelsLike);
 }
 
 function getChanceOfSunshine(chanceArray) {
-    const avgChanceOfSun = chanceArray.reduce((totalChance, chanceObj) => {
-        return totalChance + Number(chanceObj.chanceofsunshine);
-    }, 0) / chanceArray.length;
+    // const avgChanceOfSun = chanceArray.reduce((totalChance, chanceObj) => {
+    //     return totalChance + Number(chanceObj.chanceofsunshine);
+    // }, 0) / chanceArray.length;
+    const avgChanceOfSun = chanceArray.chanceofsunshine;
 
     if (avgChanceOfSun > 50) {
         const sunnyIcon = document.createElement('img');
@@ -144,18 +142,18 @@ function getChanceOfSunshine(chanceArray) {
     chanceOfSunshine = document.createElement('p');
     const strong = document.createElement('strong');
     strong.innerHTML = 'Chance of Sunshine: ';
-    chanceOfSunshine.append(strong, avgChanceOfSun.toFixed(), '%');
+    chanceOfSunshine.append(strong, avgChanceOfSun, '%');
     currentWeatherArticle.append(chanceOfSunshine);
 }
 
 function getChanceOfRain(chanceArray) {
-    const avgChanceOfRain = chanceArray.reduce((totalChance, chanceObj) => {
-        return totalChance + Number(chanceObj.chanceofrain);
-    }, 0) / chanceArray.length;
-
+    // const avgChanceOfRain = chanceArray.reduce((totalChance, chanceObj) => {
+    //     return totalChance + Number(chanceObj.chanceofrain);
+    // }, 0) / chanceArray.length;
+    const avgChanceOfRain = chanceArray.chanceofrain;
     if (avgChanceOfRain > 50) {
         const rainIcon = document.createElement('img');
-        rainIcon.setAttribute('src', './assets/icons8-rain-cloud.gif');
+        rainIcon.setAttribute('src', './assets/icons8-torrential-rain.gif');
         rainIcon.setAttribute('alt', 'rain');
         currentWeatherArticle.prepend(rainIcon);
     }
@@ -163,14 +161,15 @@ function getChanceOfRain(chanceArray) {
     chanceOfRain = document.createElement('p');
     const strong = document.createElement('strong');
     strong.innerHTML = 'Chance of Rain: ';
-    chanceOfRain.append(strong, avgChanceOfRain.toFixed(), '%');
+    chanceOfRain.append(strong, avgChanceOfRain, '%');
     currentWeatherArticle.append(chanceOfRain);
 }
 
 function getChanceOfSnow(chanceArray) {
-    const avgChanceOfSnow = chanceArray.reduce((totalChance, chanceObj) => {
-        return totalChance + Number(chanceObj.chanceofsnow);
-    }, 0) / chanceArray.length;
+    // const avgChanceOfSnow = chanceArray.reduce((totalChance, chanceObj) => {
+    //     return totalChance + Number(chanceObj.chanceofsnow);
+    // }, 0) / chanceArray.length;
+    const avgChanceOfSnow = chanceArray.chanceofrain;
 
     if (avgChanceOfSnow > 50) {
         const snowIcon = document.createElement('img');
@@ -182,31 +181,31 @@ function getChanceOfSnow(chanceArray) {
     chanceOfSnow = document.createElement('p');
     const strong = document.createElement('strong');
     strong.innerHTML = 'Chance of Snow: ';
-    chanceOfSnow.append(strong, avgChanceOfSnow.toFixed(), '%');
+    chanceOfSnow.append(strong, avgChanceOfSnow, '%');
     currentWeatherArticle.append(chanceOfSnow);
 }
 
-function appendPreviousSearch(result, location) {
+function appendPreviousSearch(temperatureFeelsLike, location) {
     const searchLiElement = document.createElement('li');
 
     if (!searchArray.includes(location)) {
+        searchArray.push(location);
         const anchorTagForSearchLink = document.createElement('a');
         anchorTagForSearchLink.setAttribute('href', '#');
         anchorTagForSearchLink.setAttribute('name', currentApi);
         anchorTagForSearchLink.classList.add('previousSearchLink');
         searchLiElement.append(anchorTagForSearchLink);
         anchorTagForSearchLink.textContent = location;
-        anchorTagForSearchLink.after(` - ${result.current_condition[0].FeelsLikeF}°F`);
+        anchorTagForSearchLink.after(` - ${temperatureFeelsLike}°F`);
         noPreviousSearches.remove();
         searchUlElement.append(searchLiElement);
-        searchArray.push(location);
         anchorTagForSearchLink.addEventListener('click', (event) => {
             event.preventDefault();
             const locationH2Element = document.querySelector('h2');
             if (locationH2Element.textContent !== location) {
                 getWeatherInfo(`${event.target.name}`, location);
+                searchUlElement.append(searchLiElement);
             }
-            searchUlElement.append(searchLiElement);
         });
     }
 
@@ -307,8 +306,8 @@ function capitalizeFirstLetter(string) {
 }
 
 function createErrorMessage(error) {
-    currentWeatherArticle.innerHTML = '<strong style="font-size: 20px;">You have entered an invalid entry. Please try again.</strong>';
-    if (searchArray.length < 1) {
-        main.style.cssText = 'grid-column: 1 / 3;';
-    } 
+    // currentWeatherArticle.innerHTML = '<strong style="font-size: 20px;">You have entered an invalid entry. Please try again.</strong>';
+    // if (searchArray.length < 1) {
+    //     main.style.cssText = 'grid-column: 1 / 3;';
+    // } 
 }
