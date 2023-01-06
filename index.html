@@ -17,6 +17,68 @@
             <input type="submit" value="Get Weather"/>
         </form>
     </header>
+    <section class="main">
+        <div class="converter">
+            <aside>
+
+    <form class="converter">
+        <label>
+             convert C to F
+             <input type="number" id="temp-to-convert" />
+        </label>
+        <label>
+            <input type="radio" name="temp-to-convert" id="to-c" value="C"/>C
+       checked="yes to celcius"
+       
+        </label>
+        <label>
+            <input type="radio" name="temp-to-convert" id="to-f" value="F"/>F
+            checked="yes to fahrenheit"
+        </label>
+        <label>
+            <input type="submit" class="button" value="convert"/>
+
+        </label>
+        <h4 class="converted-temp"></h4>
+    </form>
+            </aside>
+        </div>
+        <div>
+            <main>
+
+
+                <p class="defaults">Choose a location to view the weather.</p>
+                <article class="current-weather weather"></article>
+                <aside class="upcoming-weather"
+            <div>
+                    <article class="today-weather"></article>
+                </div>
+                <div>
+                    <article class="tommorrow-weather"></article>
+                </div>
+                <div>
+                    <article class="day-after-tommorrow-weather"></article>
+                
+                </div>
+            </aside>
+            </main>
+        </div>
+        <div>
+            <aside class="weather-history">
+<section>
+           
+      
     
+    
+    <h4> Previous Searches </h4>
+    <ul>
+        <li>userInput</li>
+        <li>+= currentTemp</li>
+        <li>prepend</li>
+    </ul>
+    <p class="default"> No Previous searches.</p>
+
+</section>
+</aside>
 </body>
 </html>
