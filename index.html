@@ -10,22 +10,23 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container"> 
       <!--  <div class="search">
         <input type="text" class="searh-bar">
       <button></button>
       </div> -->
     <header>
-    <h1>Weather App</h1> 
-
-    <form id="form">
+      <h1>Weather App</h1> 
+      <div class="form-center">
+      <form id="form">
         <label> Pick a Location: </label>
           <input name="preferredCity" id="preferredCity" type="text" />
           <input type="submit" value="Get Weather" />
-    </form>   
+      </form> 
+      </div>  
     </header>
-      
-    <!-- <aside class="hidden"> 
+      <div class="mainThree">
+    <aside class="hidden">  
         <form>
           <label for="temp">Convert the Temperature</label>
             <input type="number" name="temp" />
@@ -39,26 +40,28 @@
             <input type="submit" value="Convert" />
         </form>
         <h4></h4>
-    </aside> -->
+    </aside>   
 
     <main>
       <article class="currentWeatherArticle">
         <p class="chooseLocation">Choose a location to view the weather.</p>
-        <h2 id="nameOfCity"></h2>
+        <!-- <h2 id="nameOfCity"></h2> -->
       </article>
-      <aside class="tempAside">
-        <article></article> 
-        <article></article> 
-        <article></article>
+      <!-- <aside class="tempAside"> -->
+        <article class="mainInfo"></article> 
+        <!-- <article></article>  -->
+        <!-- <article></article> -->
+      <!-- </aside> -->
     </main>
 
     <aside class="previousSearches">
-        <section>
+        <section> 
             <h4>Previous Searches</h4>
             <ul class="searchUl"></ul>
             <p class="replaceWithWeather">No previous searches.</p>
-        </section>
+        </section> 
       </aside>
+     </div> 
     </div>
 </body>
 </html>
