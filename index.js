@@ -3,59 +3,61 @@ const inputField = document.querySelector(".js-searchbar");
 const searchBTN = document.querySelector(".js-submit-button");
 const mainArticle = document.querySelector(".js-article");
 const threeDay = document.querySelector(".js-three-day");
-const previous = document.querySelector(".js-previous-search")
-/* ---------- Widget Selectors --------- */
-const widgetNumber = document.getElementById("temp-to-convert")
-const widgetC = document.getElementById("to-c")
-const widgetF = document.getElementById("to-f")
-const widgetSearchBTN = document.querySelector(".js-convert-submit")
-const widgetResult = document.querySelector(".js-convert-result")
-
+const previous = document.querySelector(".js-previous-search");
+// --- Widget Selectors --- //
+const widgetForm = document.querySelector(".js-convert-form");
+const widgetNumber = document.getElementById("temp-to-convert");
+const widgetC = document.getElementById("to-c");
+const widgetF = document.getElementById("to-f");
+const widgetSearchBTN = document.querySelector(".js-convert-submit");
+const widgetResult = document.querySelector(".js-convert-result");
 
 /* ---------------- Event Listeners ----------------------*/
 searchBTN.addEventListener("click", showInfoOnPage);
+
 widgetSearchBTN.addEventListener("click", convertTemp);
+widgetForm.addEventListener("submit", convertTemp);
 
 /* ------------------- Functions ----------------------*/
 function convertTemp(event){
-    event.preventDefault()
+    event.preventDefault();
     if(!widgetNumber.value){
         return 
     }
 
-    let converted
-
+    let converted;
     if(widgetC.checked){
-        converted = widgetNumber.value - 32 * (5/9);
-    } else {
+        converted = (widgetNumber.value - 32) * (5/9);
+    };
+    if(widgetF.checked){
         converted = widgetNumber.value * (9/5) + 32;
-    }
+    };
 
     widgetResult.textContent = `${Number.isInteger(converted) ? converted : converted.toFixed(2)}°`;
-}
+};
 
 async function showInfoOnPage(event){
-    event.preventDefault()
+    event.preventDefault();
 
-    const info = await fetchWeatherInfo(event)
+    const info = await fetchWeatherInfo(event);
     updateMain(info);
     updateThreeDay(info);
 
     if(event.target.matches(".js-submit-button")){
         updatePrevious(info)
     }
-}
+};
 
 function updateMain(info){
     mainArticle.innerHTML = "";
 
-    addChanceOfIcon(info)
+    addChanceOfIcon(info);
     const heading =  document.createElement("h2");
     heading.textContent = info.search;
-    mainArticle.append(heading)
+    mainArticle.append(heading);
     
-    createMainCard(info)
-}
+    createMainCard(info);
+};
 
 function addChanceOfIcon(info){
     const hourly = info.weather[0].hourly[0];
@@ -66,21 +68,21 @@ function addChanceOfIcon(info){
         "Chance of Snow": hourly.chanceofsnow
     }
 
-    let chanceObj = Object.keys(data).find((key) =>data[key] > 50)
+    const chanceObj = Object.keys(data).find((key) =>data[key] > 50);
 
     if(!chanceObj){
         return
     }
 
-    const alt = chanceObj.includes("Rain") ? "rain" : chanceObj.includes("Sunshine") ? "sun" : "snow" 
-    const src = "./assets/icons8-".concat(alt == "rain" ? "torrential-rain.gif": alt == "sun" ? "summer.gif": "light-snow.gif")
+    const alt = chanceObj.includes("Rain") ? "rain" : chanceObj.includes("Sunshine") ? "sun" : "snow" ;
+    const src = "./assets/icons8-".concat(alt == "rain" ? "torrential-rain.gif": alt == "sun" ? "summer.gif": "light-snow.gif");
 
-    const img = document.createElement("img")
-    img.setAttribute("alt", alt)
-    img.setAttribute("src", src)
+    const img = document.createElement("img");
+    img.setAttribute("alt", alt);
+    img.setAttribute("src", src);
 
-    mainArticle.append(img)
-}
+    mainArticle.append(img);
+};
 
 function createMainCard(info){
     const nearest = info.nearest_area[0];
@@ -98,40 +100,40 @@ function createMainCard(info){
 
     Object.keys(relevantInfo).forEach((key) => {
         const createdLine =  document.createElement("p");
-        const keyInfo = key == "Currently" 
+        const keyInfo = key == "Currently"
             ? `Feels like ${relevantInfo[key]}° F` 
             : key.includes("Chance of") 
                 ? `${relevantInfo[key]}%`
                 : relevantInfo[key];
 
-        let keyWithErrorHandling = key !== "Area"
+        const keyWithErrorHandling = key !== "Area"
             ? key 
             : info.search == relevantInfo.Area 
                 ? "Area" 
                 : "Nearest Area";
 
-        createdLine.innerHTML = `<strong>${keyWithErrorHandling}:</strong> ${keyInfo} `
+        createdLine.innerHTML = `<strong>${keyWithErrorHandling}:</strong> ${keyInfo} `;
 
-        mainArticle.append(createdLine)
+        mainArticle.append(createdLine);
     })
-}
+};
 
 function updateThreeDay(info){
     (!!threeDay.textContent) ? threeDay.innerHTML = "" : threeDay.classList.remove("hidden");
     
     info.weather.forEach((day, i) => {
-        const div = document.createElement("div")
-        div.setAttribute("class", "three-day-item")
+        const article = document.createElement("article");
+        article.setAttribute("class", "three-day-item");
         
         const heading = document.createElement("h2");
         heading.textContent = i == 0 ? "Today" : i == 1 ? "Tomorrow" : "Day After Tomorrow";
-        div.append(heading)
+        article.append(heading);
         
-        createThreeDayCard(day, div)
+        createThreeDayCard(day, article);
         
-        threeDay.append(div)
+        threeDay.append(article);
     })
-}
+};
 
 function createThreeDayCard(day, appendTo){
     const threeDayInfo = {
@@ -142,33 +144,33 @@ function createThreeDayCard(day, appendTo){
     
     Object.keys(threeDayInfo).forEach((key) => {
         const createdLine =  document.createElement("p");
-        createdLine.innerHTML = `<strong>${key}:</strong> ${threeDayInfo[key]}°`
+        createdLine.innerHTML = `<strong>${key}:</strong> ${threeDayInfo[key]}°`;
         
-        appendTo.append(createdLine)
+        appendTo.append(createdLine);
     })
-}
+};
 
 function updatePrevious(info){
     if(!!document.querySelector(".js-previous-p")){
         document.querySelector(".js-previous-p").remove();
     }
 
-    let li = document.createElement("li");
+    const li = document.createElement("li");
     li.innerHTML = `<a href="#">${info.search}</a> - ${info.current_condition[0].FeelsLikeF}°`;
     li.addEventListener("click", showInfoOnPage);
     previous.append(li);
-}
+};
 
 async function fetchWeatherInfo(event){
-    const baseURL = "https:wttr.in/"
+    const baseURL = "https:wttr.in/";
     const search = event.target.matches(".js-submit-button") ? inputField.value : event.target.textContent;
-    const endpoint= "?format=j1"
+    const endpoint= "?format=j1";
     
-    const info = await fetch(baseURL+search+endpoint)
+    const info = await fetch(baseURL+search+endpoint);
 
-    const json = await info.json()
+    const json = await info.json();
 
-    inputField.value = ""
+    inputField.value = "";
 
-    return {search, ...json}
-}
+    return {search, ...json};
+};

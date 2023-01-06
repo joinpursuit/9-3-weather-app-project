@@ -2,15 +2,12 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Weather App</title>
     <!-- Styling -->
     <link href="styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Script -->
     <script defer src="index.js"></script>
 </head>
@@ -19,28 +16,23 @@
     <header>
         <h1>Weather App</h1>
         <form>
-            <label for="city-search">
-                Pick a location:
-            </label>
-            <input type="text" placeholder="Enter A City" id="city-search" class="js-searchbar" required>
+            <label for="city-search">Pick a location: </label>
+            <input type="text" placeholder="Enter A City" id="city-search" class="js-searchbar" required/>
             <input type="submit" value="Get Weather" class="js-submit-button" />
         </form>
     </header>
     <aside>
-        <form>
+        <form action="#" class="js-convert-form">
             <label for="temp-to-convert" class="title">Convert the temperature</label>
-            <input type="number" id="temp-to-convert" placeholder="0" class="js-convert-number" required>
-
+            <input type="number" id="temp-to-convert" placeholder="0" required/>
             <label for="to-c">
                 <input type="radio" name="conversion-convert-temp" id="to-c" value="c" required/>
                 To Celcius
             </label>
-
             <label for="to-f">
                 <input type="radio" name="conversion-convert-temp" id="to-f" value="f"/>
                 To Fahrenheit
             </label>
-
             <input type="submit" class="js-convert-submit" value="Convert"/>
         </form>
         <h4 class="result js-convert-result"> 0°</h4>

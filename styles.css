@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap');
-/* 
-font-family: 'Assistant', sans-serif" - weight 400, 900
-*/
+/* font-family: 'Assistant', sans-serif" - weight 400, 900 */
 
 *{
     border: 0;
@@ -21,8 +19,7 @@ h3,
 h4,
 h5,
 h6,
-strong
-{
+strong{
     font-weight: 900;
 }
 
@@ -31,8 +28,8 @@ body{
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: repeat(3, minmax(auto, 1fr));
-    gap: 1.5em .5em;
-    padding: 2em;
+    gap: 1.5rem .5rem;
+    padding: 2rem;
 }
 
 header{
@@ -41,7 +38,7 @@ header{
 
     background-color:teal;
     color: aliceblue;
-    border: black solid 0.25em;
+    border: black solid 0.25rem;
 }
 
 header h1{
@@ -49,11 +46,14 @@ header h1{
 }
 
 header form{
-    padding-bottom: 2em;
+    padding-bottom: 2rem;
+}
+header label{
+    padding-right: .5rem;
 }
 
 input{
-    padding: .5em;
+    padding: .5rem;
 }
 
 input[type="submit"]{
@@ -65,12 +65,16 @@ input[type="text"]{
 }
 
 aside form, aside section{
-  padding: 0em 2.5em;
+  padding: 0rem 2.5rem;
 }
 
 aside form label{
     display: flex;
-    padding: 0.45em 0;
+    padding: 0.4rem 0;
+}
+
+aside form label:first-child{
+    font-weight: 900;
 }
 
 aside form input[type="number"]{
@@ -82,14 +86,10 @@ aside form input[type="submit"]{
    text-align: center;
    width: 50%;
    margin-left: 25%;
-   margin-top: 1em;
+   margin-top: 1rem;
 }
 
-.title{
-    font-weight: 900;
-}
-
-.result{
+aside h4{
     text-align: center;
 }
 
@@ -100,16 +100,17 @@ main article, main aside{
 }
 
 main article{
-    margin-bottom: 2em;
+    margin-bottom: 2rem;
 }
 
 main aside{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin-bottom: 2em;
+    margin-bottom: 2rem;
 }
 
-main .three-day-item{
+main aside article{
+    margin: 0;
     border: solid teal 0.1px;
 }
 
