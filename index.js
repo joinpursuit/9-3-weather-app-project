@@ -12,22 +12,24 @@ document.addEventListener("submit",(e)=>{
     e.preventDefault();
 
     prevMessage.remove();
+
+    const queryString = textfield.value;
+    textfield.value = ""
     
-    let requestString = "https://wttr.in/" + textfield.value + "?format=j1";
+    let requestString = "https://wttr.in/" + queryString + "?format=j1";
     fetch(requestString).then((response) => response.json()).then((data) => {
         if (!lastSearchList.innerHTML.includes(data.nearest_area[0].areaName[0].value) ){
             lastSearchList.innerHTML += 
             `
-            <li><a value ="${textfield.value}">${data.nearest_area[0].areaName[0].value}</a><p> ${data.current_condition[0].FeelsLikeF}°F</p></li>
+            <li><a value ="${queryString}">${data.nearest_area[0].areaName[0].value}</a><p> ${data.current_condition[0].FeelsLikeF}°F</p></li>
             `
         }
 
-        textfield.value = ""
-
         currentOutput.innerHTML = 
         `
-        <h2>${data.nearest_area[0].areaName[0].value}</h2>
-        <p><strong>Area: </strong>${data.nearest_area[0].areaName[0].value}<p>
+        <h2>${queryString}</h2>
+
+        <p><strong>${queryString ==  data.nearest_area[0].areaName[0].value? "": 'Nearest'} Area: </strong>${data.nearest_area[0].areaName[0].value}<p>
         <p><strong>Region: </strong>${data.nearest_area[0].region[0].value}<p>
         <p><strong>Country: </strong>${data.nearest_area[0].country[0].value}<p>
         <p><strong>Currently: </strong> Feels Like ${data.current_condition[0].FeelsLikeF}°F<p>
@@ -56,6 +58,7 @@ document.addEventListener("submit",(e)=>{
         <p><strong>Max Temperature: </strong>${data.weather[2].maxtempF}°F</p>
         <p><strong>Min Temperature: </strong>${data.weather[2].mintempF}°F</p>
         `
+
     })
 });
 
