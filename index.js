@@ -30,6 +30,7 @@ form.addEventListener("submit", (event) => {
 })
 
 const tempConvertForm = document.createElement("form");
+tempConvertForm.setAttribute("class", "tempForm")
 document.querySelector("aside").append(tempConvertForm);
 const input = document.createElement("input");
 input.setAttribute("type", "number");
@@ -42,6 +43,7 @@ const celsius = document.createElement("input");
 celsius.setAttribute("type", "radio");
 celsius.setAttribute("id", "to-c");
 celsius.setAttribute("name", "temp")
+celsius.setAttribute("checked", "")
 tempConvertForm.append(celsius);
 
 const labelC = document.createElement("label");
@@ -62,6 +64,7 @@ tempConvertForm.append(labelF);
 
 const button = document.createElement("input");
 button.setAttribute("type", "submit");
+button.setAttribute("class", "tempSubmit")
 tempConvertForm.append(button);
 
 const h4 = document.createElement("h4")
@@ -84,7 +87,6 @@ tempConvertForm.addEventListener("submit", (event) =>{
 
 
 function GetWeatherReport(userInput){
-//const fixedInput = userInput.charAt(0).toUpperCase() + userInput.slice(1);
 fetch(`${BASE_URL}/${userInput}${format}`)
 .then((response) => response.json())
 .then((result) => {
@@ -117,7 +119,7 @@ function createWeatherReport(result, userInput){
     article.append(region)
     article.append(country)
     article.append(currently)
-
+// img of weather if over 50%
     article.append(chanceOfSun)
     article.append(chanceOfRain)
     article.append(chanceOfSnow)
