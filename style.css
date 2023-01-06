@@ -1,9 +1,11 @@
 html {
     font-family: fantasy;
-    color: black;
+    color:white;
     background-color: beige;
 }
-
+ .card{
+    text-align: center;
+ }
 
 header {
     text-align: center;
@@ -18,9 +20,9 @@ header {
 
 .main_article {
     display: grid;
-    border: 2px solid whitesmoke;
+   
     gap: 15px;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    
 
     width: 54%;
     padding: 10;
@@ -33,7 +35,7 @@ header {
 .previous_search {
     width: 22%;
     grid-column: span 2;
-    border: 2px solid whitesmoke;
+   
     overflow: hidden;
 }
 
@@ -46,7 +48,7 @@ header {
 }
 
 .convert_info {
-    border: 2px solid white;
+    
     width: 22%;
     float: left;
 }
