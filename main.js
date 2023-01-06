@@ -1,11 +1,70 @@
-const celcius = "c";
-const fahrenheit = "f";
+import symbolic_consts from "./symbC.js";
+const {
+  ZERO,
+  CELCIUS,
+  FAHRENHEIT,
+  SUBMIT,
+  TODAY,
+  TOMORROW,
+  DAY_AFTER_TOMORROW,
+  SUN_IMG_PATH,
+  SUN_IMG_ALT_TEXT,
+  RAIN_IMG_PATH,
+  RAIN_IMG_ALT_TEXT,
+  SNOW_IMG_PATH,
+  SNOW_IMG_ALT_TEXT,
+  CHANCE_OF_SUNSHINE,
+  CHANCE_OF_RAIN,
+  CHANCE_OF_SNOW,
+  CLEAR,
+  DEGREE_DIFFERENCE,
+  FAHRENHEIT_TO_CELCIUS_RATIO,
+  CELCIUS_TO_FAHRENHEIT_RATIO,
+  REMOVE_CLASS_NAME,
+  WEATHER_FORM_ID,
+  WEATHER_CURRENT_ID,
+  WEATHER_UPCOMING_ID,
+  TEMP_CONVERT_FORM_ID,
+  TEMP_TO_CONVERT_ID,
+  MAIN_CONTENT_CONTAINER_ID,
+  WEATHER_APP_CONTAINER_CLASS,
+  WEATHER_APP_CONTAINER_ON_SUBMIT_CLASS_NAME,
+  REGION_STRONG,
+  COUNTRY_STRONG,
+  CURRENTLY_STRONG,
+  SUNSHINE_STRONG,
+  RAIN_STRONG,
+  SNOW_STRONG,
+  WEATHER_ARTICLE_CLASS_NAME,
+  UPCOMING_WEATHER_ARTICLE_CLASS_NAME,
+  AVG_STRONG,
+  MAX_STRONG,
+  MIN_STRONG,
+  NEAREST_AREA_STRONG,
+  AREA_STRONG,
+  TEMP_WIDGET_ON_CLASS_NAME,
+  TEMP_WIDGET_OFF_CLASS_NAME,
+  HIDDEN_CLASS_NAME,
+  HIDDEN_CLASS,
+  CHANCE_OF_SUNSHINE_INDEX,
+  CHANCE_OF_RAIN_INDEX,
+  CHANCE_OF_SNOW_INDEX,
+  _SPACE_,
+  _ENDCODED_SPACE_,
+  _DASH_,
+  _DASH_SPACE_,
+  SRC_ATTRIBUTE,
+  ALT_ATTRIBUTE,
+  USER_INPUT_INDEX_INSIDE_URL,
+  ERROR_MSG_USER_INPUT_EMPTY,
+  NONE,
+} = symbolic_consts;
 
-const weatherF = document.querySelector("#weather_form");
-weatherF.addEventListener("submit", handleWeatherFormSubmit);
+const weatherF = document.querySelector(WEATHER_FORM_ID);
+weatherF.addEventListener(SUBMIT, handleWeatherFormSubmit);
 
-const tempConvF = document.querySelector("#temp_form");
-tempConvF.addEventListener("submit", handleTempFormSubmit);
+const tempConvF = document.querySelector(TEMP_CONVERT_FORM_ID);
+tempConvF.addEventListener(SUBMIT, handleTempFormSubmit);
 
 function handleWeatherFormSubmit(event) {
   event.preventDefault();
@@ -16,7 +75,7 @@ function handleWeatherFormSubmit(event) {
 
     fetchWeatherInformation(BASE_URL);
 
-    event.target.weather_submit.value = "";
+    event.target.weather_submit.value = CLEAR;
   } catch (error) {
     document.querySelector("main p").textContent = error.message;
   }
@@ -26,7 +85,7 @@ function handleTempFormSubmit(event) {
   event.preventDefault();
 
   const tempType = event.target.convert_temperature.value;
-  const tempToConvert = document.querySelector("#temp-to-convert").value;
+  const tempToConvert = document.querySelector(TEMP_TO_CONVERT_ID).value;
 
   handleTemperatureConvertionResponse(tempType, tempToConvert);
 }
@@ -45,11 +104,11 @@ function handleResponse(response, url) {
   showElements();
   rearrangeGridDisplay();
 
-  const mainWeatherContainer = document.querySelector("#weather_current");
+  const mainWeatherContainer = document.querySelector(WEATHER_CURRENT_ID);
   const mainWeather = createMainArticle(weatherObj);
   mainWeatherContainer.append(mainWeather);
 
-  const upcomingWeatherContainer = document.querySelector("#weather_upcoming");
+  const upcomingWeatherContainer = document.querySelector(WEATHER_UPCOMING_ID);
   const weatherArticles = createThreeDayForecastArticles(weatherObj);
   upcomingWeatherContainer.append(...weatherArticles);
 
@@ -64,6 +123,7 @@ function createWeatherObjectFromResponse(response, url) {
   const todaysChances = chancesOfForToday(weather[0].hourly);
   const imgInfo = weatherIMG(todaysChances);
 
+  // destructurefrom arrays
   const weatherObj = {
     user_input: userLocation,
     nearest_area: nearest_area[0].areaName[0].value,
@@ -71,7 +131,7 @@ function createWeatherObjectFromResponse(response, url) {
     country: nearest_area[0].country[0].value,
     feelLikeTempF: current_condition[0].FeelsLikeF,
     today: {
-      name: "Today",
+      name: TODAY,
       avgTemp: weather[0].avgtempF,
       maxTemp: weather[0].maxtempF,
       minTemp: weather[0].mintempF,
@@ -82,13 +142,13 @@ function createWeatherObjectFromResponse(response, url) {
       img_alt: imgInfo[1],
     },
     tomorrow: {
-      name: "Tomorrow",
+      name: TOMORROW,
       avgTemp: weather[1].avgtempF,
       maxTemp: weather[1].maxtempF,
       minTemp: weather[1].mintempF,
     },
     dayAfterTomorrow: {
-      name: "Day After Tomorrow",
+      name: DAY_AFTER_TOMORROW,
       avgTemp: weather[2].avgtempF,
       maxTemp: weather[2].maxtempF,
       minTemp: weather[2].mintempF,
@@ -100,21 +160,21 @@ function createWeatherObjectFromResponse(response, url) {
 }
 
 function extractUserLocation(url) {
-  const inputLocation = url.split(/[/?]/)[3].replace("%20", " ");
+  const inputLocation = url.split(/[/?]/)[USER_INPUT_INDEX_INSIDE_URL].replace(_ENDCODED_SPACE_, _SPACE_);
   return inputLocation;
 }
 
 function chancesOfForToday(hourlyChances) {
-  const chanceOfSunshine = chanceOf("sunshine", hourlyChances);
-  const chanceOfRain = chanceOf("rain", hourlyChances);
-  const chanceOfSnow = chanceOf("snow", hourlyChances);
+  const chanceOfSunshine = chanceOf(CHANCE_OF_SUNSHINE, hourlyChances);
+  const chanceOfRain = chanceOf(CHANCE_OF_RAIN, hourlyChances);
+  const chanceOfSnow = chanceOf(CHANCE_OF_SNOW, hourlyChances);
 
   return [chanceOfSunshine, chanceOfRain, chanceOfSnow];
 }
 
 function chanceOf(type, hourly) {
-  let sumOfChances = 0;
-  hourly.forEach((hour) => (sumOfChances += Number(hour[`chanceof${type}`])));
+  let sumOfChances = ZERO;
+  hourly.forEach((hour) => (sumOfChances += Number(hour[`${type}`])));
   let avgChance = sumOfChances / hourly.length;
 
   return Math.round(avgChance);
@@ -123,27 +183,27 @@ function chanceOf(type, hourly) {
 function weatherIMG(chancesForToday) {
   const highestChance = Math.max(...chancesForToday);
 
-  if (highestChance === chancesForToday[0]) {
-    return ["summer", "sun"];
-  } else if (highestChance === chancesForToday[1]) {
-    return ["torrential-rain", "rain"];
-  } else {
-    return ["light-snow", "snow"];
+  if (highestChance === chancesForToday[CHANCE_OF_SUNSHINE_INDEX]) {
+    return [SUN_IMG_PATH, SUN_IMG_ALT_TEXT];
+  } else if (highestChance === chancesForToday[CHANCE_OF_RAIN_INDEX]) {
+    return [RAIN_IMG_PATH, RAIN_IMG_ALT_TEXT];
+  } else if (highestChance === chancesForToday[CHANCE_OF_SNOW_INDEX]) {
+    return [SNOW_IMG_PATH, SNOW_IMG_ALT_TEXT];
   }
 }
 
 function createIMG(pathText, altText) {
   const img = document.createElement("img");
-  img.setAttribute("src", `./assets/icons8-${pathText}.gif`);
-  img.setAttribute("alt", altText);
+  img.setAttribute(SRC_ATTRIBUTE, `./assets/icons8-${pathText}.gif`);
+  img.setAttribute(ALT_ATTRIBUTE, altText);
   return img;
 }
 
 function handleLocationAreaMismatch(weatherObj) {
   if (weatherObj.user_input !== weatherObj.nearest_area) {
-    return "Nearest Area";
+    return NEAREST_AREA_STRONG;
   }
-  return "Area";
+  return AREA_STRONG;
 }
 
 function createMainArticle(weather) {
@@ -156,21 +216,21 @@ function createMainArticle(weather) {
 
   const weatherIMG = createIMG(weather.today.img_path_name, weather.today.img_alt);
 
-  const regionP = createParagraphByType("Region", weather.region);
-  const countryP = createParagraphByType("Country", weather.country);
-  const currentlyP = createParagraphByType("Currently", weather.feelLikeTempF);
+  const regionP = createParagraphByType(REGION_STRONG, weather.region);
+  const countryP = createParagraphByType(COUNTRY_STRONG, weather.country);
+  const currentlyP = createParagraphByType(CURRENTLY_STRONG, weather.feelLikeTempF);
 
   const chanceOfSunshine = weather.today.chanceOfSunshine;
-  const sunshineP = createParagraphByType("Chance of Sunshine", `${chanceOfSunshine}%`);
+  const sunshineP = createParagraphByType(SUNSHINE_STRONG, `${chanceOfSunshine}%`);
 
   const chanceOfRain = weather.today.chanceOfRain;
-  const rainP = createParagraphByType("Chance of Rain", `${chanceOfRain}%`);
+  const rainP = createParagraphByType(RAIN_STRONG, `${chanceOfRain}%`);
 
   const chanceOfSnow = weather.today.chanceOfSnow;
-  const snowP = createParagraphByType("Chance of Snow", `${chanceOfSnow}%`);
+  const snowP = createParagraphByType(SNOW_STRONG, `${chanceOfSnow}%`);
 
   const weatherContainer = document.createElement("div");
-  weatherContainer.classList.add("remove", "weather_article");
+  weatherContainer.classList.add(REMOVE_CLASS_NAME, WEATHER_ARTICLE_CLASS_NAME);
   weatherContainer.append(weatherIMG, heading2, areaP, regionP, countryP, currentlyP, sunshineP, rainP, snowP);
 
   return weatherContainer;
@@ -180,7 +240,7 @@ function createParagraphByType(type, content) {
   const paragraph = document.createElement("p");
   const strong = document.createElement("strong");
 
-  if (type === "Currently") {
+  if (type === CURRENTLY_STRONG) {
     content = `Feels Like ${content}°F`;
   }
 
@@ -203,26 +263,26 @@ function createForecastArticleByDay(day) {
   const h3 = document.createElement("h3");
   h3.textContent = day.name;
 
-  const avgP = createParagraphByType("Average Temperature", `${day.avgTemp}°F`);
-  const maxP = createParagraphByType("Max Temperature", `${day.maxTemp}°F`);
-  const minP = createParagraphByType("Minimum Temperature", `${day.minTemp}°F`);
+  const avgP = createParagraphByType(AVG_STRONG, `${day.avgTemp}°F`);
+  const maxP = createParagraphByType(MAX_STRONG, `${day.maxTemp}°F`);
+  const minP = createParagraphByType(MIN_STRONG, `${day.minTemp}°F`);
 
   const upComingWeatherArticle = document.createElement("article");
-  upComingWeatherArticle.classList.add("remove", "weather_article", "upcoming_weather_article", articleName);
+  upComingWeatherArticle.classList.add(REMOVE_CLASS, WEATHER_ARTICLE_CLASS_NAME, UPCOMING_WEATHER_ARTICLE_CLASS_NAME, articleName);
   upComingWeatherArticle.append(h3, avgP, maxP, minP);
 
   return upComingWeatherArticle;
 }
 function convertToClassName(dayName) {
-  if (dayName.includes(" ")) {
-    return dayName.replaceAll(" ", "-").toLowerCase();
+  if (dayName.includes(`${_SPACE_}`)) {
+    return dayName.replaceAll(`${_SPACE_}`, `${_DASH_}`).toLowerCase();
   } else {
     return dayName.toLowerCase();
   }
 }
 
 function hideElements() {
-  const elementsToRemove = document.querySelectorAll(".remove");
+  const elementsToRemove = document.querySelectorAll(`.${REMOVE_CLASS}`);
 
   if (elementsToRemove) {
     elementsToRemove.forEach((rmvEl) => rmvEl.remove());
@@ -230,17 +290,17 @@ function hideElements() {
 }
 
 function showElements() {
-  const elementsToShow = document.querySelectorAll(".hidden");
+  const elementsToShow = document.querySelectorAll(HIDDEN_CLASS);
 
   if (elementsToShow) {
-    elementsToShow.forEach((showEl) => showEl.classList.remove("hidden"));
+    elementsToShow.forEach((showEl) => showEl.classList.remove(HIDDEN_CLASS_NAME));
   }
 }
 
 function rearrangeGridDisplay() {
-  document.querySelector("#main_content_container").classList.remove("temp_widget_off");
-  document.querySelector("#main_content_container").classList.add("temp_widget_on");
-  document.querySelector(".weather_app_container").classList.add("weather_app_container_on_submit");
+  document.querySelector(MAIN_CONTENT_CONTAINER_ID).classList.remove(TEMP_WIDGET_OFF_CLASS_NAME);
+  document.querySelector(MAIN_CONTENT_CONTAINER_ID).classList.add(TEMP_WIDGET_ON_CLASS_NAME);
+  document.querySelector(WEATHER_APP_CONTAINER_CLASS).classList.add(WEATHER_APP_CONTAINER_ON_SUBMIT_CLASS_NAME);
 }
 
 function createSearchLinkElement(weather) {
@@ -253,8 +313,8 @@ function createSearchLinkElement(weather) {
   const feelsLikeTemp = `${weather.feelLikeTempF}°F`;
 
   const searchListElement = document.createElement("li");
-  searchListElement.style.listStyle = "none";
-  searchListElement.append(searchLink, " - ", feelsLikeTemp);
+  searchListElement.style.listStyle = NONE;
+  searchListElement.append(searchLink, _DASH_SPACE_, feelsLikeTemp);
 
   return searchListElement;
 }
@@ -266,7 +326,7 @@ function searchLinkClickEvent(event) {
 }
 
 function handleTemperatureConvertionResponse(type, temp) {
-  document.querySelector("aside h4").textContent = "";
+  document.querySelector("aside h4").textContent = CLEAR;
   const temp2Num = Number(temp);
   const tempConverted = tempConvertion(type, temp2Num);
   const tempConvertedContainer = document.querySelector("aside h4");
@@ -274,20 +334,16 @@ function handleTemperatureConvertionResponse(type, temp) {
 }
 
 function tempConvertion(type, temp) {
-  const degreeDifference = 32;
-  const fahrenheit2celcius = 5 / 9;
-  const celcius2fahrenheit = 9 / 5;
-
-  if (type === celcius) {
-    return ((temp - degreeDifference) * fahrenheit2celcius).toFixed(2);
-  } else if (type === fahrenheit) {
-    return temp * celcius2fahrenheit + degreeDifference;
+  if (type === CELCIUS) {
+    return ((temp - DEGREE_DIFFERENCE) * FAHRENHEIT_TO_CELCIUS_RATIO).toFixed(2);
+  } else if (type === FAHRENHEIT) {
+    return temp * CELCIUS_TO_FAHRENHEIT_RATIO + DEGREE_DIFFERENCE;
   }
 }
 
 function checkForValidInput(input) {
-  if (input === "" || input === null || input.match(/[0-9]/g)) {
-    throw new Error("Please provide a valid input");
+  if (input === CLEAR || input === null || input.match(/[0-9]/g)) {
+    throw new Error(ERROR_MSG_USER_INPUT_EMPTY);
   }
 }
 
