@@ -8,7 +8,17 @@ const compData = []
 const ul = document.querySelector(".at_li")
 
 
+function CelsiustoFarenheit() {
+    let f = (parseFloat(celsius.value) * 9) / 5 + 32;
+    fahrenheit.value = parseFloat(f.toFixed(2));
+}
 
+function FahrenheittoCelsius() {
+    let c = ((parseFloat(
+        fahrenheit.value) - 32) * 5) / 9;
+    celsius.value = parseFloat(c.toFixed(2));
+
+    }
 
 function addToPrevious(cityName,temp) {
     const li = document.createElement("li")
