@@ -66,3 +66,14 @@ article {
     overflow: hidden;
     padding-left: 35px;
 }
+
+
+.mainInfo {
+    grid-column: span 3;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}

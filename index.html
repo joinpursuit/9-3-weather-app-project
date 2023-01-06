@@ -44,12 +44,37 @@
 
     <main>
       <article class="currentWeatherArticle">
-        <p class="chooseLocation">Choose a location to view the weather.</p>
-        <!-- <h2 id="nameOfCity"></h2> -->
+         <p class="chooseLocation">Choose a location to view the weather.</p>
       </article>
-      <!-- <aside class="tempAside"> -->
-        <article class="mainInfo"></article> 
-        <!-- <article></article>  -->
+      <div class="main-grid">
+      <article class="mainInfo"></article> 
+      <aside>
+        <article>
+          <div id="today">
+            <h3 id="today_h3"></h3>
+            <p id="today_avg_temp_f"></p>
+            <p id="today_max_temp_f"></p>
+            <p id="today_min_temp_f"></p>
+         </div>
+        </article>
+        <article>
+          <div id="tomorrow">
+            <h3 id="tomorrow_h3"></h3>
+            <p id="tomorrow_avg_temp_f"></p>
+            <p id="tomorrow_max_temp_f"></p>
+            <p id="tomorrow_min_temp_f"></p>
+          </div>
+        </article>
+        <article>
+          <div id="dayAfterTomorrow">
+            <h3 id="day_after_tomorrow_h3"></h3>
+            <p id="day_after_tomorrow_avg_temp_f"></p>
+            <p id="day_after_tomorrow_max_temp_f"></p>
+            <p id="day_after_tomorrow_min_temp_f"></p>
+          </div>
+        <article>
+        </div>
+    </aside>
         <!-- <article></article> -->
       <!-- </aside> -->
     </main>
@@ -58,9 +83,9 @@
         <section> 
             <h4>Previous Searches</h4>
             <ul class="searchUl"></ul>
-            <p class="replaceWithWeather">No previous searches.</p>
+            <p class="chooseLocation">No previous searches.</p>
         </section> 
-      </aside>
+    </aside>
      </div> 
     </div>
 </body>
