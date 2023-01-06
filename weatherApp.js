@@ -24,6 +24,7 @@ function generateUrl(event) {
     const location = searchField.value;
     currentApi = `${BASE_URL}${location}?format=j1`;
     getWeatherInfo(currentApi, location);
+
 }
 
 function getWeatherInfo(api, location) {
@@ -196,7 +197,7 @@ function appendPreviousSearch(result, location) {
         searchLiElement.append(anchorTagForSearchLink);
         anchorTagForSearchLink.textContent = location;
         anchorTagForSearchLink.after(` - ${result.current_condition[0].FeelsLikeF}°F`);
-        noPreviousSearches.textContent = '';
+        noPreviousSearches.remove();
         searchUlElement.append(searchLiElement);
         searchArray.push(location);
         anchorTagForSearchLink.addEventListener('click', (event) => {
