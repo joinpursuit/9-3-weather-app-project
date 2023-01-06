@@ -160,6 +160,12 @@ describe("Add message handling for imperfect location matching", () => {
       fixture: "mamaroneck.json",
     }).as("fetchMamaroneck");
 
+    /*I added a .5 second wait here. Without it a command (either a cypress 
+    one or my own js, i can't tell) is still running during this test and interrupts
+    the .type command. Only the last few letters of the word (e.g "roneck" or "eck")
+    will be typed in. The added wait creates enough buffer that the whole word is typed 
+    wihtout interruption and without interfearing with the test content.*/
+    cy.wait(500)
     cy.get("header form input[type='text']")
       .type("mamaroneck")
       .get("header form input[type='submit']")

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Weather App</title>
+    <!-- Styling -->
+    <link href="styles.css" rel="stylesheet" />
+    <!-- Script -->
+    <script defer src="index.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Weather App</h1>
+        <form>
+            <label for="city-search">Pick a location: </label>
+            <input type="text" placeholder="Enter A City" id="city-search" class="js-searchbar" required/>
+            <input type="submit" value="Get Weather" class="js-submit-button" />
+        </form>
+    </header>
+    <aside>
+        <form action="#" class="js-convert-form">
+            <label for="temp-to-convert" class="title">Convert the temperature</label>
+            <input type="number" id="temp-to-convert" placeholder="0" required/>
+            <label for="to-c">
+                <input type="radio" name="conversion-convert-temp" id="to-c" value="c" required/>
+                To Celcius
+            </label>
+            <label for="to-f">
+                <input type="radio" name="conversion-convert-temp" id="to-f" value="f"/>
+                To Fahrenheit
+            </label>
+            <input type="submit" class="js-convert-submit" value="Convert"/>
+        </form>
+        <h4 class="result js-convert-result"> 0°</h4>
+    </aside>
+    <main>
+        <article class="js-article">
+            <p>Choose a location to view the weather</p>
+        </article>
+        <aside class="hidden js-three-day"></aside>
+    </main>
+    <aside>
+        <section>
+            <h2>Previous Searches </h2>
+            <p class="js-previous-p">No previous searches</p>
+            <ul class="js-previous-search"></ul>
+        </section>
+    </aside>
+</body>
+
+</html>
