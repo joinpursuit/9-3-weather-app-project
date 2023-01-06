@@ -8,6 +8,7 @@
     <title>Weather App</title>
     <link rel="stylesheet" href="style.css" />
     <script defer src="./main.js"></script>
+    <script defer src="./weatherfunction.js"></script>
 
 </head>
 
@@ -15,40 +16,62 @@
     <header>
         <div>
             <h1>Weather App</h1>
-            <form>
+            <form >
                 <label for="location">Pick a Location</label>
-                <input type="text" id="location">
-                <input type="submit" value="Submit">
+                <input type="text" id="location" name="location" required>
+                <input type="submit" value="Get Weather">
             </form>
         </div>
     </header>
-    <aside class="covert_info">
-        <h3>Tempature Conversion Widget</h3>
-        <form>
-            <label for="temperature">Convert the Temperature</label>
-            <input type="number" name="temperature" />
 
-            <label for="tempFahr">Convert to Fahrenheit</label>
-            <input type="radio" name="temp_ConvF" id="to-C" value="C" />
+    <div class="convert-div">
+        <aside class="convert_info">
+            <h3>Tempature Conversion Widget</h3>
+            <form>
+                <label for="temperature">Convert the Temperature</label>
+                <input type="number" name="temperature" />
 
-            <label for="tempCel">Covert to Celcius</label>
-            <input type="radio" name="temp_ConvC" id="to-F" value="F" />
-        </form>
-    </aside>
-    <main class="main_article">
-        <p>Choose a location to view the weather</p>
-        <article class="current_weather" id="weather_now" </article>
-            <aside class="upcoming_weather" id="weather"></aside>
-    </main>
-    <aside class="previous_search">
-        <section class="previous_weather">
-            <h4>Previous Searches</h4>
-            <ul>
-                <p>No previous searches</p>
-            </ul>
-        </section>
-    </aside>
+                <label for="tempFahr">Convert to Fahrenheit</label>
+                <input type="radio" name="temp_ConvF" id="to-C" value="C" />
 
+                <label for="tempCel">Covert to Celcius</label>
+                <input type="radio" name="temp_ConvC" id="to-F" value="F" />
+            </form>
+
+        </aside>
+
+
+
+        <main class="main_article">
+            <p>Choose a location to view the weather</p>
+            <article class="main_info"></article>
+            
+            <aside>day of wk</aside>
+
+            <article>
+                <h5>Today</h5>
+            </article>
+            <article>
+                <h5>Tomorrow</h5>
+            </article>
+            <article>
+                <h5>Following Day</h5>
+            </article>
+        </main>
+        <aside class="previous_search">
+            <section class="previous_weather">
+                <h4>Previous Searches</h4>
+                <ul>
+                    <p>No previous searches</p>
+                    <p>No previous searches</p>
+                    <p>No previous searches</p>
+                    <p>No previous searches</p>
+                    <p>No previous searches</p>
+
+                </ul>
+            </section>
+        </aside>
+    </div>
 </body>
 
 </html>

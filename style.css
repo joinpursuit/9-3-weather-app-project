@@ -13,29 +13,40 @@ header {
     display: grid;
     gap: 15px;
     margin: 25px auto;
-    width: 75%;
+    width: 90%;
 }
 
 .main_article {
     display: grid;
-    border: 2px solid black;
+    border: 2px solid whitesmoke;
     gap: 15px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    margin: 25px auto;
-    width: 75%;
-    text-align: center;
-  
+
+    width: 54%;
+    padding: 10;
+    float: left;
+    overflow: hidden;
 }
 
-.main_information {
-    grid-column: span 3;
-}
+
 
 .previous_search {
-
+    width: 22%;
     grid-column: span 2;
-  
+    border: 2px solid whitesmoke;
+    overflow: hidden;
+}
+
+.convert-div {
+    width: 90%;
+    gap: 15px;
+    margin: 25px auto;
 
 
+}
 
+.convert_info {
+    border: 2px solid white;
+    width: 22%;
+    float: left;
 }
