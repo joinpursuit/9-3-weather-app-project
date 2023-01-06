@@ -6,27 +6,35 @@
     <script src="index.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-    <h1>Weather App</h1>
-    <form>
-        <label> Pick a Location
-            <input name="text" type="text" />
-            <input type="submit" value="Get Weather" />
-    </form>
-</header>
-    <aside>
-    </aside>
-    <main>
-        <article>
-        </article>
 
-        <aside>
-            <article></article>
-            <article></article>
-            <article></article>
-        </aside>
+<body>
+    <div class="container">
+    <header>
+        <h1>Weather App</h1>
+        <form>
+            <label> Pick a Location
+                <input class="searchResults" name="text" type="text" />
+                <input type="submit" value="Get Weather" />
+        </form>
+    </header>
+    <aside id="temp-widget" hidden></aside>
+    <main>
+        <p>Choose a location to view the weather</p>
+        <article id="current-weather"></article>
+        <aside id="upcoming-weather">
+            <article id="today"></article>
+            <article id="tomorrow"></article>
+            <article id="day-after"></article>
+        </aside >
     </main>
-    <p></p>
-    <ul></ul>
+    <aside id="previous-search">
+        <section> 
+            <h4>Previous Searches</h4>
+            <ul>
+                <p> No previous searches.</p>
+            </ul>
+       </section>
+    </aside>
+</div>
 </body>
+</html>
