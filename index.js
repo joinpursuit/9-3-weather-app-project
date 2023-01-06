@@ -27,6 +27,79 @@ form.addEventListener("submit", (event)=>{
 
 })
 
+const asideForm = document.createElement("form");
+document.querySelector("aside").append(asideForm);
+const input = document.createElement("input");
+input.setAttribute("type", "number");
+input.setAttribute("min", "-200");
+input.setAttribute("max", "200");
+input.setAttribute("id", "temp-to-convert")
+asideForm.append(input);
+
+const celsius = document.createElement("input")
+celsius.setAttribute("type", "radio")
+celsius.setAttribute("id", "to-c")
+asideForm.append(celsius)
+celsius.setAttribute("name", "temp")
+
+const celsiusLabel = document.createElement("label")
+celsiusLabel.setAttribute("for", "celsius")
+celsiusLabel.innerHTML="To Celsius";
+asideForm.append(celsiusLabel)
+
+const fahrenheit = document.createElement("input")
+fahrenheit.setAttribute("type", "radio")
+fahrenheit.setAttribute("id", "to-f")
+asideForm.append(fahrenheit)
+fahrenheit.setAttribute("name", "temp")
+
+
+const fahrenheitLabel = document.createElement("label")
+fahrenheitLabel.setAttribute("for", "to-f")
+fahrenheitLabel.innerHTML="To Fahrenheit";
+asideForm.append(fahrenheitLabel)
+
+const button = document.createElement("input");
+button.setAttribute("type", "submit")
+asideForm.append(button);
+
+asideForm.addEventListener("submit", (event) =>{
+    event.preventDefault();
+
+const checked = document.getElementsByName("temp")
+const result = document.createElement("h4");
+result.innerHTML = "0.00"
+
+asideForm.append(result)
+
+ if (checked[0].checked){
+   let numberInput = document.getElementById("temp-to-convert").value;
+   console.log(numberInput)
+   numberInput = (numberInput - 32) * (5/9);
+   result.innerHTML = numberInput.toFixed(2);
+ }
+
+ if (checked[1].checked){
+    let numberInput = document.getElementById("temp-to-convert").value;
+    console.log(numberInput)
+    numberInput = (numberInput * 9/5) + 32;
+    result.innerHTML = numberInput.toFixed(2);
+  }
+ 
+ 
+
+})
+
+
+
+
+
+
+// input type="number" id="tentacles" name="tentacles"
+//        min="10" max="100"
+
+
+
 
 
 function getWeather(location){
@@ -34,7 +107,7 @@ function getWeather(location){
     .then((response) => response.json())
     .then((result) => {
         
-        weatherCard(result);
+        weatherCard(result, location);
         threeDaysForecast(result);
         previousSearches(result, location);
 
@@ -45,9 +118,9 @@ function getWeather(location){
 
 
 
-function weatherCard(result){
-    h2.innerHTML = result.nearest_area[0].areaName[0].value
-    article.append(h2)
+function weatherCard(result, location){
+    h2.innerHTML = location;
+    article.append(h2);
 
     const p = document.querySelector("p")
     p.remove();
@@ -62,7 +135,7 @@ function weatherCard(result){
     article.append(chanceOfSnow);
 
 
-    area.innerHTML = "Area: ";
+    area.innerHTML = "Nearest Area: ";
     region.innerHTML = "Region: ";
     country.innerHTML = "Country: ";
     currently.innerHTML = "Currently: ";
@@ -173,6 +246,8 @@ function previousSearches(result, location) {
     }
 
 }
+
+
 
 // }
 //     // card.classList.add("car");
