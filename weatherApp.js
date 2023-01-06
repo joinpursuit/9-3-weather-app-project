@@ -21,7 +21,7 @@ form.addEventListener('submit', generateUrl);
 
 function generateUrl(event) {
     event.preventDefault();
-    const location = capitalizeFirstLetter(`${searchField.value}`);
+    const location = searchField.value;
     currentApi = `${BASE_URL}${location}?format=j1`;
     getWeatherInfo(currentApi, location);
 }
@@ -44,24 +44,32 @@ function getWeatherInfo(api, location) {
         });
 }
 
-function generateWeatherResults(result, location) {
+// Write a createVariablesFromResultObj() function that creates variables using deconstruction
+// function createVariablesFromResultObj(resultObj){
+
+
+//     generateWeatherResults();
+// }
+
+function generateWeatherResults(resultObj, location) {
     currentWeatherArticle.textContent = '';
-    console.log(result);
     clearTempArticles();
     adjustContainerLayout();
     appendUserInputToMainArticle(location);
-    getAreaInfo(result.nearest_area[0].areaName[0].value, location);
-    getRegionInfo(result.nearest_area[0].region[0].value);
-    getCountryInfo(result.nearest_area[0].country[0].value);
-    getCurrentlyFeelsLikeInfo(result.current_condition[0].FeelsLikeF);
-    getChanceOfSunshine(result.weather[0].hourly);
-    getChanceOfRain(result.weather[0].hourly);
-    getChanceOfSnow(result.weather[0].hourly);
-    appendPreviousSearch(result, location);
-    generateTodayCard(result.weather[0]);
-    generateTomorrowCard(result.weather[1]);
-    generateDayAfterTomorrowCard(result.weather[2]);
-    // appendConversionForm();
+    getAreaInfo(resultObj.nearest_area[0].areaName[0].value, location);
+    getRegionInfo(resultObj.nearest_area[0].region[0].value);
+    getCountryInfo(resultObj.nearest_area[0].country[0].value);
+    getCurrentlyFeelsLikeInfo(resultObj.current_condition[0].FeelsLikeF);
+    getChanceOfSunshine(resultObj.weather[0].hourly);
+    getChanceOfRain(resultObj.weather[0].hourly);
+    getChanceOfSnow(resultObj.weather[0].hourly);
+    appendPreviousSearch(resultObj, location);
+    generateTodayCard(resultObj.weather[0]);
+    generateTomorrowCard(resultObj.weather[1]);
+    generateDayAfterTomorrowCard(resultObj.weather[2]);
+    if (searchArray.length <= 1) {
+        appendConversionForm();
+    }
     form.reset();
 }
 
@@ -299,5 +307,7 @@ function capitalizeFirstLetter(string) {
 
 function createErrorMessage(error) {
     currentWeatherArticle.innerHTML = '<strong style="font-size: 20px;">You have entered an invalid entry. Please try again.</strong>';
-    main.style.cssText = 'grid-column: 1 / 3;';
+    if (searchArray.length < 1) {
+        main.style.cssText = 'grid-column: 1 / 3;';
+    } 
 }
