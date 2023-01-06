@@ -20,6 +20,7 @@ const today = document.createElement("h3");
 const tomorrow = document.createElement("h3");
 const dayAfterTomorrow = document.createElement("h3");
 
+
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -28,27 +29,81 @@ form.addEventListener("submit", (event) => {
     form.reset()
 })
 
+const tempConvertForm = document.createElement("form");
+document.querySelector("aside").append(tempConvertForm);
+const input = document.createElement("input");
+input.setAttribute("type", "number");
+input.setAttribute("min", "-200");
+input.setAttribute("max", "200");
+input.setAttribute("id", "temp-to-convert");
+tempConvertForm.append(input);
+
+const celsius = document.createElement("input");
+celsius.setAttribute("type", "radio");
+celsius.setAttribute("id", "to-c");
+celsius.setAttribute("name", "temp")
+tempConvertForm.append(celsius);
+
+const labelC = document.createElement("label");
+labelC.setAttribute("for", "to-c");
+labelC.innerHTML = "Celsius";
+tempConvertForm.append(labelC);
+
+const fahrenheit = document.createElement("input");
+fahrenheit.setAttribute("type", "radio");
+fahrenheit.setAttribute("id", "to-f");
+fahrenheit.setAttribute("name", "temp")
+
+tempConvertForm.append(fahrenheit);
+const labelF = document.createElement("label");
+labelF.setAttribute("for", "to-f");
+labelF.innerHTML = "Fahrenheit";
+tempConvertForm.append(labelF);
+
+const button = document.createElement("input");
+button.setAttribute("type", "submit");
+tempConvertForm.append(button);
+
+const h4 = document.createElement("h4")
+tempConvertForm.append(h4)
+h4.innerHTML = "0.00"
+
+tempConvertForm.addEventListener("submit", (event) =>{
+    event.preventDefault();
+    const check = document.getElementsByName("temp")
+    let numberInput = parseInt(document.getElementById("temp-to-convert").value)
+    if(check[0].checked){
+        numberInput = (numberInput - 32) * (5/9)
+        h4.innerHTML = numberInput.toFixed(2)
+    } else {
+        numberInput = (numberInput * 9/5) + 32
+        h4.innerHTML = numberInput.toFixed(2)
+    }
+})
+
+
 
 function GetWeatherReport(userInput){
+//const fixedInput = userInput.charAt(0).toUpperCase() + userInput.slice(1);
 fetch(`${BASE_URL}/${userInput}${format}`)
 .then((response) => response.json())
 .then((result) => {
-    createWeatherReport(result);
+    createWeatherReport(result,userInput); //changed
     threeDayForecast(result);
     previousSearches(result);
 })
 .catch((error) => console.log(error));
 }
  
-function createWeatherReport(result){
+function createWeatherReport(result, userInput){
     const p = document.querySelector("p");
     p.remove();
-    h2.innerHTML = result.nearest_area[0].areaName[0].value;
+    h2.innerHTML = userInput; //chaged
     article.append(h2);
 
     
 // combine code below later make a p tag inside of a p tag to make bold letters
-    area.innerHTML = "Area:" 
+    area.innerHTML = "Nearest Area:" // changed
     region.innerHTML = "Region:"
     country.innerHTML = "Country:"
     currently.innerHTML = "Currently:"
