@@ -43,7 +43,12 @@ function fetchCity(city) {
 
     const borrar = document.querySelectorAll(".card")
     if (borrar.length > 0) {
-      borrar[0].remove()
+        for (let i = 0; i< borrar.length; i++) {
+            borrar[i].remove()
+        }
+      
+    
+
       
     }
 

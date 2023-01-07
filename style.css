@@ -50,7 +50,7 @@ background-color: rgb(143, 207, 231);
 }
 
 .forecast {
-  border: 1px solid red;
+  background-color: pink;
   margin: 5px;
   border-radius: 7px 7px 7px 7px ;
 } 
@@ -60,4 +60,17 @@ background-color: rgb(143, 207, 231);
 }
 .main_temp {
     grid-column: span 3;
+}
+.Today {
+    float: left;
+    width: 32%;
+}
+.Tomorrow {
+    float: left;
+    overflow: hidden;
+    width: 32%;
+}
+.DayAfter {
+    overflow: hidden;
+    width: 32%;
 }
