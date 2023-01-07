@@ -41,6 +41,41 @@ function weatherDisplay(userInput) {
         currently.innerHTML = `<strong>Currently</strong> Feels Like ${file.current_condition[0].FeelsLikeF}F`;
         currentWeather.append(currently);
 
+        let today = document.querySelector("article.today-weather");
+        let todayText = document.createElement("h4");
+        todayText.textContent = "Today";
+        today.append(todayText);
+
+        let avgToday = document.createElement("p");
+        avgToday.innerHTML = ` <strong>Average Temperature:</strong> ${file.weather[0].avgtempF}F`;
+        today.append(avgToday);
+
+        let maxToday = document.createElement("p");
+        maxToday.innerHTML = `<strong> Max Temperature:</strong> ${file.weather[0].maxtempF}F`;
+        today.append(maxToday);
+
+        let minToday = document.createElement("p");
+        minToday.innerHTML = `<strong> Min Temperature:</strong> ${file.weather[0].mintempF}F`;
+        today.append(minToday);
+
+        let tommorrow = document.querySelector(".tommorrow-weather");
+        let tommorrowText = document.createElement("h4");
+        tommorrowText.textContent = "Tommorrow";
+        tommorrow.append(tommorrowText);
+
+        let avgTommorrow = document.createElement("p");
+        avgTommorrow.innerHTML = ` <strong>Average Temperature</strong> ${file.weather[1].avgtempF}F`;
+        tommorrow.append(avgTommorrow);
+
+        let maxTommorrow = document.createElement("p");
+        maxTommorrow.innerHTML = ` <strong> Max Temperature </strong> ${file.weather[1].maxtempF}F`;
+        tommorrow.append(maxTommorrow);
+
+        let minTommorrow = document.createElement("p");
+        minTommorrow.innerHTML = ` <strong> Min Temperature </strong> ${file.weather[1].mintempF}F`;
+        tommorrow.append(minTommorrow);
+        
+
     
 
     })

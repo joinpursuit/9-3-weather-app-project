@@ -1,7 +1,7 @@
 body {
     padding: 9px;
     text-align: center;
-    background-color: rgb(32, 48, 75);
+    background-color: rgb(32, 48, 77);
     color: rgb(188, 188, 188);
 
 }
@@ -11,10 +11,8 @@ section {
     justify-content: center;
 }
 header {
-
     font-family:sans-serif;
-
-    background-color: rgb(25 59 78);
+    background-color: rgb(25, 59, 78);
     border: 2px solid black;
     margin-left:auto;
     margin-right:auto;
