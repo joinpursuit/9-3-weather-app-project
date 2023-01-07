@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,34 +8,36 @@
     <script defer src="index.js"></script>
     <title>Weather App</title>
 </head>
-
 <body>
-    <header>
-        <h1>Weather App</h1>
-        <form>
+        <header class="header">
+          <h1>Weather App</h1>
+          <form>
+            <label for="submit" class="label">Pick a Location</label>  
             <input type="text">
             <input type="submit" value="Get weather">
+          </form>
+        </header>
+        <aside class="column first">
+        </aside>
+    <main class="column second">
+       <article class="main">
+          <p class="none">Choose a location to view the weather</p>
+       </article>
 
-        </form>
-    </header>
-    <aside></aside>
-    <main>
-        <article>
-            <p class="none">Choose a location to view the weather</p>
-        </article>
-        <aside>
-            <article></article>
-            <article></article>
-            <article></article>
+        <aside id="bottom">
+            <article class="days" id="one"></article>
+            <article class="days" id="two"></article>
+            <article class="days" id="three"></article>
         </aside>
     </main>
-    <aside>
+    <aside class="column third">
         <section>
             <h4>Previous Searches</h4>
             <p class="remove">No previous searches</p>
             <ul></ul>
         </section>
     </aside>
+
    
 </body>
 </html>

@@ -19,6 +19,7 @@ const tomorrow = document.createElement("h3")
 const afterTomorrow = document.createElement("h3")
 
 
+
 form.addEventListener("submit", (event)=>{
     event.preventDefault();
     const location = document.querySelector('input').value;
@@ -27,8 +28,10 @@ form.addEventListener("submit", (event)=>{
 
 })
 
+// converter
 const asideForm = document.createElement("form");
 document.querySelector("aside").append(asideForm);
+asideForm.setAttribute("id", "converter-form")
 const input = document.createElement("input");
 input.setAttribute("type", "number");
 input.setAttribute("min", "-200");
@@ -39,6 +42,7 @@ asideForm.append(input);
 const celsius = document.createElement("input")
 celsius.setAttribute("type", "radio")
 celsius.setAttribute("id", "to-c")
+celsius.setAttribute("checked", "")
 asideForm.append(celsius)
 celsius.setAttribute("name", "temp")
 
@@ -63,14 +67,14 @@ const button = document.createElement("input");
 button.setAttribute("type", "submit")
 asideForm.append(button);
 
+const result = document.createElement("h4");
+result.innerHTML = "0.00";
+asideForm.append(result);
+
 asideForm.addEventListener("submit", (event) =>{
     event.preventDefault();
 
 const checked = document.getElementsByName("temp")
-const result = document.createElement("h4");
-result.innerHTML = "0.00"
-
-asideForm.append(result)
 
  if (checked[0].checked){
    let numberInput = document.getElementById("temp-to-convert").value;
@@ -84,22 +88,8 @@ asideForm.append(result)
     console.log(numberInput)
     numberInput = (numberInput * 9/5) + 32;
     result.innerHTML = numberInput.toFixed(2);
-  }
- 
- 
-
+ }
 })
-
-
-
-
-
-
-// input type="number" id="tentacles" name="tentacles"
-//        min="10" max="100"
-
-
-
 
 
 function getWeather(location){
@@ -173,14 +163,13 @@ function weatherCard(result, location){
         img.setAttribute("alt", "snow")
         article.prepend(img)
        }
-
-    
 }
 
+
 function threeDaysForecast(result) {
-    const forecast = document.querySelectorAll("aside article")
 
-
+    const forecast = document.querySelectorAll("aside article");
+    
     today.innerHTML = "Today";
     forecast[0].append(today)
 
@@ -194,11 +183,11 @@ function threeDaysForecast(result) {
 
 
 
-    // if (forecast[0].innerHTML === '') {
     for (let i = 0; i < forecast.length; i++) {
         const averageTemp = document.createElement("p");
         const maxTemp = document.createElement("p");
         const minTemp = document.createElement("p");
+
 
         averageTemp.innerHTML = "Average Temperature: " + result.weather[i].avgtempF + "°F";
         maxTemp.innerHTML = "Max Temperature: " + result.weather[i].maxtempF + "°F";
@@ -208,15 +197,15 @@ function threeDaysForecast(result) {
         forecast[i].append(maxTemp)
         forecast[i].append(minTemp)
     }
-    // }
-
-
-
-
-
-
+    
+    document.getElementById("one").style.border = "3px solid white";
+    document.getElementById("two").style.border = "3px solid white";
+    document.getElementById("three").style.border = "3px solid white";
 }
+
+
 function previousSearches(result, location) {
+
     if (document.querySelector(".remove")) {
         document.querySelector(".remove").remove();
     }
@@ -249,61 +238,7 @@ function previousSearches(result, location) {
 
 
 
-// }
-//     // card.classList.add("car");
-
-//     const locationName = document.createElement("h2");
-//    // locationName.innerHTML = result.nearest_area[0].areaName[0].value;
-//     locationName.innerHTML = ;
-//     document.querySelector("article").append(locationName)
-//     // console.log(locationName)
 
 
 
 
-//wttr.in/Detroit?format=j1
-
-
-
-
-// const form = document.querySelector("form");
-// form.addEventListener("submit", (event) => {
-//   event.preventDefault(); // doesn't refresh
-//   const { id } = event.target; //deconstruct event.target
-//   // const id = event.target.id
-//   getPokemonByID(id.value); //pass id value to our getPokemonByID func
-//   form.reset();
-// });
-
-// function getPokemonByID(id) {
-//   fetch(`${BASE_URL}/${id}`)
-//     .then((response) => response.json()) // promise we're expecting from the api - parsing json into JS
-//     .then((result) => {
-//       const pokemon = createPokemonArticle(result);
-//       document.querySelector(".pokemon").append(pokemon);
-//     }) // the result
-//     .catch((error) => {
-//       const message = createErrorMessage(error);
-//       document.querySelector("main").append(message);
-//     }); // the error
-// }
-
-// function createPokemonArticle(pokemon) {
-//   // creating pokemon article for pokemon section
-//   const article = document.createElement("article");
-//   article.innerHTML = `<img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" />
-//     <h2>${pokemon.name} (#${pokemon.order})</h2>
-//   `;
-//   return article;
-// }
-
-// function createErrorMessage(message) {
-//   // creating error section
-//   const section = document.createElement("section");
-//   section.classList.add("error");
-//   section.innerHTML = `
-//       <p>There was an error!</p>
-//       <p class="message">${error}</p>
-//     `;
-//   return section;
-// }
