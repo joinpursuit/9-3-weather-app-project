@@ -22,7 +22,17 @@ headingforform.addEventListener("submit", (event) => {
    convertTheForm.addEventListener("submit", (event) => {
     event.preventDefault();
     // class CelsiustoFarenheit
-    
+    const c = document.querySelector(".c").checked
   
+  const f = document.querySelector(".f").checked
+  if (c === true) {
+    alert("result convert to Celcius " + FarenheitToCelcius(event.target.temp.value))
+   
+  }
+if (f === true){
+    alert( "result convert to Farenheit " + CelciustoFarenheit(event.target.temp.value))
+}
     
+    
+   
 })

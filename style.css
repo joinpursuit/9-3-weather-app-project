@@ -27,7 +27,7 @@ form {
     display: flex;
     justify-content: center;
   } 
-.convert {
+.convert_weather_widget {
     
     width: 22%; 
     float: left;

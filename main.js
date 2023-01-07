@@ -8,15 +8,18 @@ const compData = []
 const ul = document.querySelector(".at_li")
 
 
-function CelsiustoFarenheit() {
-    let f = (parseFloat(celsius.value) * 9) / 5 + 32;
-    fahrenheit.value = parseFloat(f.toFixed(2));
+function CelciustoFarenheit(degree) {
+    let f = (degree * 9) / 5 + 32;
+   // fahrenheit.value = parseFloat(f.toFixed(2));
+    return f
 }
 
-function FahrenheittoCelsius() {
-    let c = ((parseFloat(
-        fahrenheit.value) - 32) * 5) / 9;
-    celsius.value = parseFloat(c.toFixed(2));
+function FarenheitToCelcius(degree) {
+    let c = ((degree - 32) * 5) / 9;
+   // celsius.value = parseFloat(c.toFixed(2));
+return c 
+   // const Celcius = document.getElementById('Celcius');
+  //  const fahrenheit = document.getElementById('fahrenheit');
 
     }
 

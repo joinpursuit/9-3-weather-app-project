@@ -25,16 +25,16 @@
     </div> 
     </header>
     <div class="main-div">
-    <aside class="convert">
+    <aside class="convert_weather_widget">
         <form class="Converter-form">
-            <label for="temp">Convert the Temperature</label>
-            <input type="number" name="temp" />
-    
+            <label for="temp"><strong>Convert the Temperature</strong></label> 
+            <input type="number" name="temp" id="temp-to-convert" required/>
+                <br />
             <label for="temp_c">To Celcius</label>
-            <input type="radio" name="temp_to_convert" id="to-c" value="c" />
-    
+            <input type="radio" name="temp-to-convert" id="to-c" value="c" class="c"/>
+    <br />
             <label for="temp_f">To Fahrenheit</label>
-            <input type="radio" name="temp_to_convert" id="to-f" value="f" />
+            <input type="radio" name="temp-to-convert" id="to-f" value="f"  class="f"/>
     
             <input type="submit" value="Submit" />
         </form>
