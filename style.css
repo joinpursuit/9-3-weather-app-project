@@ -13,8 +13,8 @@ h1 {
     color: rgb(243, 243, 243);
     text-align: center;
 }
-form {
-    color: solid black
+.form {
+    color: black;
    
 }
 .main-div {
@@ -47,4 +47,17 @@ background-color: lightgray;
 }
 body {
 background-color: rgb(143, 207, 231);
+}
+
+.forecast {
+  border: 1px solid red;
+  margin: 5px;
+  border-radius: 7px 7px 7px 7px ;
+} 
+.main_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.main_temp {
+    grid-column: span 3;
 }

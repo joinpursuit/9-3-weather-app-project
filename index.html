@@ -29,21 +29,29 @@
         <form class="Converter-form">
             <label for="temp"><strong>Convert the Temperature</strong></label> 
             <input type="number" name="temp" id="temp-to-convert" required/>
-                <br />
+        <br />
             <label for="temp_c">To Celcius</label>
-            <input type="radio" name="temp-to-convert" id="to-c" value="c" class="c"/>
-    <br />
+            <input type="radio" name="temp-to-convert" id="to-c" value="c" class="c" checked/>
+          
+        <br />
             <label for="temp_f">To Fahrenheit</label>
             <input type="radio" name="temp-to-convert" id="to-f" value="f"  class="f"/>
     
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" /> 
+            <h4 class="h4_result"></h4>
         </form>
         <h4></h4>
     </aside>     
      
     <main>
         <p class="location">Choose a location to view the weather</p>
+        <div class= "main_grid">
+
         <article class="main_temp"></article>
+        <article class="Today forecast"> </article>
+        <article class="Tomorrow forecast"> </article>
+        <article class="DayAfter forecast"> </article>
+    </div>
         <aside></aside>
       </main>
              <aside class="previous-Se">

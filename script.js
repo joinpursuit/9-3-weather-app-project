@@ -4,6 +4,7 @@ const headingforform= document.querySelector("form")
 const para = document.querySelector(".location")
 const sear = document.querySelector(".searches")
 const convertTheForm = document.querySelector(".converter-form")
+const h4_result = document.querySelector(".h4_result")
 //
 
 headingforform.addEventListener("submit", (event) => {
@@ -26,11 +27,11 @@ headingforform.addEventListener("submit", (event) => {
   
   const f = document.querySelector(".f").checked
   if (c === true) {
-    alert("result convert to Celcius " + FarenheitToCelcius(event.target.temp.value))
+   h4_result.textContent = parseFloat(FarenheitToCelcius(event.target.temp.value)).toFixed(2) + " degrees "
    
   }
 if (f === true){
-    alert( "result convert to Farenheit " + CelciustoFarenheit(event.target.temp.value))
+    h4_result.textContent = parseFloat(CelciustoFarenheit(event.target.temp.value)).toFixed(2) + " degrees "
 }
     
     
