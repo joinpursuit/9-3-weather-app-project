@@ -7,6 +7,33 @@ const article = document.querySelector("article")
 const forecast = document.querySelectorAll(".days")
 const ul = document.querySelector("ul")
 
+const img = document.createElement("img");
+
+const averageTemperture = [];
+const p1 = document.createElement("P");
+averageTemperture.push(p1);
+const p2 = document.createElement("P");
+averageTemperture.push(p2);
+const p3 = document.createElement("P");
+averageTemperture.push(p3);
+console.log(averageTemperture)
+
+const maxTemperture = [];
+const p4 = document.createElement("P");
+maxTemperture.push(p4);
+const p5 = document.createElement("P");
+maxTemperture.push(p5);
+const p6 = document.createElement("P");
+maxTemperture.push(p6);
+
+const minTemperture = [];
+const p7 = document.createElement("P");
+minTemperture.push(p7);
+const p8 = document.createElement("P");
+minTemperture.push(p8);
+const p9 = document.createElement("P");
+minTemperture.push(p9);
+
 const area = document.createElement("p");
 const region = document.createElement("p");
 const country = document.createElement("p");
@@ -128,7 +155,6 @@ function createWeatherReport(result, userInput){
     chanceOfRain.innerHTML = "Chance of Rain: " + result.weather[0].hourly[0].chanceofrain + "%"
     chanceOfSnow.innerHTML = "Chance of Snow: " + result.weather[0].hourly[0].chanceofsnow + "%"
 
-    const img = document.createElement("img");
     if(parseInt(result.weather[0].hourly[0].chanceofsunshine) > 50){
         img.setAttribute("alt", "sun")
         img.setAttribute("src", "./assets/icons8-summer.gif")
@@ -154,19 +180,19 @@ function threeDayForecast(result){
 
     for(let i=0; i<forecast.length; i++){ // loop doesnt work with more then one submitt press
 
-        const averageTemperture = document.createElement("P");
-        const maxTemperture = document.createElement("P");
-        const minTemperture = document.createElement("P");
+        // const averageTemperture = [document.createElement("P"),document.createElement("P"),document.createElement("P")];
+        // const maxTemperture = [document.createElement("P"),document.createElement("P"),document.createElement("P")];
+        // const minTemperture = [document.createElement("P"),document.createElement("P"),document.createElement("P")];
 
-        averageTemperture.setAttribute("id", "here")
+        // averageTemperture.setAttribute("id", "here")
 
-        averageTemperture.innerHTML = "Average Temperture:" + result.weather[i].avgtempF + "°F"
-        maxTemperture.innerHTML = "Max Temperture:" + result.weather[i].maxtempF + "°F"
-        minTemperture.innerHTML = "Min Temperture:" + result.weather[i].mintempF + "°F"
+        averageTemperture[i].innerHTML = "Average Temperture:" + result.weather[i].avgtempF + "°F"
+        maxTemperture[i].innerHTML = "Max Temperture:" + result.weather[i].maxtempF + "°F"
+        minTemperture[i].innerHTML = "Min Temperture:" + result.weather[i].mintempF + "°F"
 
-        forecast[i].append(averageTemperture)
-        forecast[i].append(maxTemperture)
-        forecast[i].append(minTemperture)
+        forecast[i].append(averageTemperture[i])
+        forecast[i].append(maxTemperture[i])
+        forecast[i].append(minTemperture[i])
     }
 }
 
