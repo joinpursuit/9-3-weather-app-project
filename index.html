@@ -5,60 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App project</title>
+
+    <link rel="stylesheet" href="style.css"/>
+    <script defer src="main.js"></script>
     
 
 </head>
 <body>
-   <section class="weather-app-container">
+   
     <header>
-        <div>
-            <h1>
-            Weather App
-            </h1>
-
-        </div> 
-        <div>
-            <form id="weather-form">
+       
+            <h1>Weather App</h1>
+            
+            
+            <form>
                 <label for="weather_submit">Pick a location</label>
-                <input type="text" id="weather_submit" name="weather_submit" autocomplete="off"/>
-                <input type="Get Weather" form="weather_form" value="Get Weather" onclick=""/>
-
+                <input type="text" id="weather_submit" name="weather_submit" />
+                <input type="submit" value="Get Weather"/>
             </form>
-        </div>
+        
     </header>
-    <div id="main-content-container" class="temp-widget-off">
-        <aside id="weather-temp-widget" class="hidden">
-            <!-- <form id="temp-form">
-                <label for="temperature-convertion">Convert the Temperature</label>
-                <input type="number" name="temperature" id="temp-to-convert"/>
-
-                <label for="convert-to-celsius">To-Celsius</label>
-                <input type="radio" name="convert-temperature" id="to-c" value="c">
-
-                <label for="convert-to-fahrenheit">To-Fahrenheit</label>
-                <input type="radio" name="convert-temperature id=to-f" value="F">
-
-                <input type="submit" form="temp-form" value="Submit"/>
-            </form> -->
-            <h4></h4>
+    
+        <main>
+       
+        <article>Choose a location to view the weather</article>
+        <aside>
+            <article id="today"></article>
+            <article id="tomorrow"></article>
+            <article id="after-tomorrow"></article>
         </aside>
+    </main>
+       <aside id="history">
+        <section>
+            <h4>Previous Searches</h4>
+            <p id="no-searches">No previous searches</p>
+            <ul id="search-list" ></ul>
+        </section>
+       </aside>
+    
 
-        <main id="main-article">
-            <p class="remove">Choose a location to view the weather</p>
-            <article id="weather=current" class="weather weather-article hidden"></article>
-            <aside id="weather-current" class="weather"></aside>
-        </main>
-        <aside id="search-aside">
-            <section id="search section">
-                <h4>Previous Searches</h4>
-                <ul>
-                    <p class="remove">No Previous searches.</p>
-                </ul>
-            </section>
-        </aside>
-    </div>
 
-   </section>
     
 </body>
 </html>
