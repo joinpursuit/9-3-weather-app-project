@@ -1,17 +1,26 @@
 const BASE_URL = 'http://wttr.in/';
 const form = document.querySelector('form');
+const convertForm = document.querySelector('.convertForm');
 const searchField = document.querySelector('.searchField');
+const tempeConversionAside = document.querySelector('.hidden');
 const main = document.querySelector('main');
 const convertAside = document.querySelector('.convert');
 const currentWeatherArticle = document.querySelector('.currentWeather');
 const previousSearches = document.querySelector('.previousSearches');
 const noPreviousSearches = document.querySelector('.noPreviousSearches');
+const numInputDiv = document.querySelector('.numInput');
+const convertToCelsiusDiv = document.querySelector('.convertToCelsius');
+const convertToFahrenheitDiv = document.querySelector('.convertToFahrenheit');
+const celsiusRadioButton = document.querySelector('.celsiusRadioButton');
+const fahrenheitRadioButton = document.querySelector('.fahrenheitRadioButton');
 const searchUlElement = document.querySelector('.searchUl');
+const convertInput = document.querySelector('.convertInput');
+const convertedNum = document.querySelector('.convertedNum');
+const searchArray = [];
 let tempAside = document.querySelector('.tempAside');
 let todayArticle = document.querySelector('.today');
 let tomorrowArticle = document.querySelector('.tomorrow');
 let dayAfterTomorrowArticle = document.querySelector('.dayAfterTomorrow');
-const searchArray = [];
 let chanceOfSunshine;
 let chanceOfRain;
 let chanceOfSnow;
@@ -169,7 +178,7 @@ function getChanceOfSnow(chanceArray) {
     // const avgChanceOfSnow = chanceArray.reduce((totalChance, chanceObj) => {
     //     return totalChance + Number(chanceObj.chanceofsnow);
     // }, 0) / chanceArray.length;
-    const avgChanceOfSnow = chanceArray.chanceofrain;
+    const avgChanceOfSnow = chanceArray.chanceofsnow;
 
     if (avgChanceOfSnow > 50) {
         const snowIcon = document.createElement('img');
@@ -260,40 +269,28 @@ function generateDayAfterTomorrowCard(weather) {
 }
 
 function appendConversionForm() {
-    const form = document.createElement('form');
-    const convertTempLabel = document.createElement('label');
-    const convertInput = document.createElement('input');
-    const toCelsiusLabel = document.createElement('label');
-    const celsiusRadioButton = document.createElement('input');
-    const toFahrenheitLabel = document.createElement('label');
-    const fahrenheitRadioButton = document.createElement('input');
-    const submitButton = document.createElement('input');
-    const convertedTemp = document.createElement('h4');
+    tempeConversionAside.classList.remove('hidden');
+   
+        console.log(convertInput);
+        convertForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (Number(convertInput.value) <= 120 && Number(convertInput.value) >= -40) {
+                appendTempConversion();
+            }
+        });
 
-    form.classList.add('convertForm');
-    convertTempLabel.setAttribute('for', 'temp-to-convert');
-    convertTempLabel.textContent = 'Convert the temperature';
-    convertInput.setAttribute('type', 'number');
-    convertInput.setAttribute('id', 'temp-to-convert');
-    toCelsiusLabel.textContent = 'To Celsius';
-    toFahrenheitLabel.textContent = 'To Fahrenheit';
-    celsiusRadioButton.setAttribute('type', 'radio');
-    celsiusRadioButton.setAttribute('id', 'to-c');
-    celsiusRadioButton.setAttribute('name', 'convert-temp');
-    celsiusRadioButton.setAttribute('value', 'c');
-    fahrenheitRadioButton.setAttribute('type', 'radio');
-    fahrenheitRadioButton.setAttribute('id', 'to-f');
-    fahrenheitRadioButton.setAttribute('name', 'convert-temp');
-    fahrenheitRadioButton.setAttribute('value', 'f');
-    submitButton.setAttribute('type', 'submit');
-    submitButton.classList.add('convertSubmit');
+    
+}
+function appendTempConversion() {
+    let convertedTemp;
 
-    submitButton.addEventListener('submit', (event) => {
-        event.preventDefault();
-    });
-
-    form.append(convertTempLabel, convertInput, toCelsiusLabel, celsiusRadioButton, toFahrenheitLabel, fahrenheitRadioButton, submitButton, convertedTemp);
-    convertAside.append(form);
+    if (celsiusRadioButton.checked) {
+        convertedTemp = ((Number(convertInput.value) - 32) * (5 / 9)).toFixed(2);
+        convertedNum.textContent = `${convertInput.value}°F is ${convertedTemp}°C`;
+    } else {
+        convertedTemp = (Number(convertInput.value) * 1.8) + 32;
+        convertedNum.textContent = `${convertInput.value}°C is ${convertedTemp}°F`;
+    }
 }
 
 function removePreviousSearch() {

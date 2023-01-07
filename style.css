@@ -120,4 +120,17 @@ li {
     display: grid;
     grid-column: 1 / 2;
     grid-row: 2;
+    border: 2px solid #268080; 
+    padding: 10px;
+}
+
+.numInput {
+    display: grid;
+}
+
+.hidden {
+    display: none;
+}
+.convertedNum {
+    text-align: center;
 }
