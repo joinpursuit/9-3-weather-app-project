@@ -4,6 +4,7 @@ const formHeader = document.querySelector("form") //accesses form section of hea
 const mainP = document.querySelector(".weather_location") //accesses main p tag from main section of HTML
 const pDelete = document.querySelector(".p-delete") // accesses p tag in aside section of HTML
 const convertButton = document.querySelector(".convert_button") // accesses covert button for convert widget of HTML
+const h4Section = document.querySelector(".cal-temp")// accesses h4 aka result section for convert widget of HTML
 
 // v-- eventlistener for the form section
 formHeader.addEventListener("submit", (event) => {
@@ -21,10 +22,10 @@ convertButton.addEventListener("submit", (event) => {
     const C = document.querySelector(".C").checked
     const F = document.querySelector(".F").checked
     if (C === true) {
-        alert("Results convert to Celcius " + C(event.target.temp.value))
+        h4Section.textContent = parseFloat(farToCel(event.target.temp_conv.value)).toFixed(2) + " degrees"
     }
     if (F === true) {
-        alert("Results convert to Farenheit " + F(event.target.temp.value))
+        h4Section.textContent = parseFloat(celToFar(event.target.temp_conv.value)).toFixed(2) + " degrees"
     }
 
 

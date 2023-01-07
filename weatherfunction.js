@@ -2,14 +2,18 @@
 const mainInfo = document.querySelector(".main_info") //pulls from main in HTML
 const previousInfo = [] //array to place previous search in
 const newUL = document.querySelector(".new_li") //pulls the ul in HTML
+const todayW = document.querySelector(".Today")
+const tomorrowW = document.querySelector(".Tomorrow")
+const followingDayW = document.querySelector(".FollowingDay")
 
+// v-- covert widget function
 function celToFar(degree) {
-    let F = (degree * 9) / 5 + 32
-return F
+    const F = (degree * 9) / 5 + 32
+    return F
 }
 function farToCel(degree) {
-    let C = ((degree - 32) * 5) / 9
-   return C
+    const C = ((degree - 32) * 5) / 9
+    return C
 }
 
 
@@ -25,11 +29,15 @@ function addToPrevious(cityName, temp) {
 // v--function to find desired location searched
 function fetchFoundCity(foundCity) {
 
-    // v-- deletes previous card  as you search new locations
-    const del = document.querySelectorAll(".card")
-    if (del.length > 0) {
-        del[0].remove()
+    // v-- deletes previous info  as you search new locations aka bascially a refresh 
+    const deleteInfo = document.querySelectorAll(".card")
+    if (deleteInfo.length > 0) {
+        for(let i = 0; i < deleteInfo.length; i++)
+        deleteInfo[i].remove()
+       
+
     }
+
     // v-- pulls info from th API in relation to the header form search 
     const baseURL = `https://wttr.in/${foundCity}?format=j1`
     fetch(`${baseURL}`) //grabs the API info
@@ -79,6 +87,78 @@ function fetchFoundCity(foundCity) {
             const citySnow = document.createElement("p")
             citySnow.textContent = `Chance of snow: ${responseJSON.weather[0].hourly[0].chanceofsnow} %`
             card.append(citySnow)
+            mainInfo.append(card)
+
+            // Forecast Input Info --v
+
+            // v--Inserting Today Forecast info in
+            const todayLabel = document.createElement('p')
+            todayLabel.setAttribute("class", "card")
+            todayLabel.textContent = "Today"
+            todayW.append(todayLabel)
+
+            // v---Insert Average Temp info for Today Forecast
+            const avgLabel = document.createElement('p')
+            avgLabel.setAttribute("class", "card")
+            avgLabel.textContent = "Avg. Temp " + responseJSON.weather[0].avgtempF + " F"
+            todayW.append(avgLabel)
+            // Max Today--v
+            const avgMaxLabel = document.createElement('p')
+            avgMaxLabel.setAttribute("class", "card")
+            avgMaxLabel.textContent = "Avg. Max Temp " + responseJSON.weather[0].maxtempF + " F"
+            todayW.append(avgMaxLabel)
+            // Min Today--v
+            const avgMinLabel = document.createElement('p')
+            avgMinLabel.setAttribute("class", "card")
+            avgMinLabel.textContent = "Avg. Min Temp " + responseJSON.weather[0].mintempF + " F"
+            todayW.append(avgMinLabel)
+
+            // v-- Inserting Tomorrow Forcast info in
+            const tomorrowLabel = document.createElement('p')
+            tomorrowLabel.setAttribute("class", "card")
+            tomorrowLabel.textContent = "Tomorrow"
+            tomorrowW.append(tomorrowLabel)
+
+            // v---Insert Average Temp info for Tomorrow Forecast
+            const avgLabel2 = document.createElement('p')
+            avgLabel2.setAttribute("class", "card")
+            avgLabel2.textContent = "Avg. Temp " + responseJSON.weather[1].avgtempF + " F"
+            tomorrowW.append(avgLabel2)
+            // Max Tomorrow--v
+            const avgMaxLabel2 = document.createElement('p')
+            avgMaxLabel2.setAttribute("class", "card")
+            avgMaxLabel2.textContent = "Avg. Max Temp " + responseJSON.weather[1].maxtempF + " F"
+            tomorrowW.append(avgMaxLabel2)
+            // Min Tomorrow--v
+            const avgMinLabel2 = document.createElement('p')
+            avgMinLabel2.setAttribute("class", "card")
+            avgMinLabel2.textContent = "Avg. Min Temp " + responseJSON.weather[1].mintempF + " F"
+            tomorrowW.append(avgMinLabel2)
+
+
+            // v-- Inserting Following Forecast info in
+            const followingDayLabel = document.createElement('p')
+            followingDayLabel.setAttribute("class", "card")
+            followingDayLabel.textContent = "Following Day"
+            followingDayW.append(followingDayLabel)
+
+            // v---Insert Average Temp info for Following Day Forecast
+            const avgLabel3 = document.createElement('p')
+            avgLabel3.setAttribute("class", "card")
+            avgLabel3.textContent = "Avg. Temp " + responseJSON.weather[2].avgtempF + " F"
+            followingDayW.append(avgLabel3)
+            // Max Folowing Day--v
+            const avgMaxLabel3 = document.createElement('p')
+            avgMaxLabel3.setAttribute("class", "card")
+            avgMaxLabel3.textContent = "Avg. Max Temp " + responseJSON.weather[2].maxtempF + " F"
+            followingDayW.append(avgMaxLabel3)
+            // Min Following Day--v
+            const avgMinLabel3 = document.createElement('p')
+            avgMinLabel3.setAttribute("class", "card")
+            avgMinLabel3.textContent = "Avg. Min Temp " + responseJSON.weather[2].mintempF + " F"
+            followingDayW.append(avgMinLabel3)
+
+            card.append(todayW, tomorrowW, followingDayW)
             mainInfo.append(card)
 
             // v-- calls city name & temperture
