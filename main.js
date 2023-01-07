@@ -29,7 +29,19 @@ function weatherDisplay(userInput) {
 
         currentWeather.append(area);
 
-        
+        let region = document.createElement("p");
+        region.innerHTML = `<strong>Region:</strong> ${file.nearest_area[0].region[0].value}`;
+        currentWeather.append(region);
+
+        let country = document.createElement("p");
+        country.innerHTML = `<strong>Country</strong> ${file.nearest_area[0].country[0].value}`;
+        currentWeather.append(country);
+
+        let currently = document.createElement("p");
+        currently.innerHTML = `<strong>Currently</strong> Feels Like ${file.current_condition[0].FeelsLikeF}F`;
+        currentWeather.append(currently);
+
+    
 
     })
 }
