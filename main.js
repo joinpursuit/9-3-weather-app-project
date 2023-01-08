@@ -38,7 +38,7 @@ function addToPrevious(cityName,temp) {
        }
   }
 
-
+//then and fetch//
 function fetchCity(city) {
 
     const borrar = document.querySelectorAll(".card")
@@ -56,10 +56,37 @@ function fetchCity(city) {
 
   const base_url = `https://wttr.in/${city}?format=j1`
   fetch(base_url).then((response) => response.json()).then((theCity) =>{
+
     
 
     const card = document.createElement("section")
     card.setAttribute("class", "card")
+
+
+    //imgs of the weather//
+    if((theCity.current_condition[0].weatherDesc[0].value === "Sunny") || (Number(theCity.weather[0].hourly[0].chanceofsunshine) > 50)) {
+        const iconSunny = document.createElement("img")
+        iconSunny.setAttribute("src","./assets/icons8-summer.gif")
+        iconSunny.setAttribute("alt","sun")
+        card.append(iconSunny)
+     }
+    if((theCity.current_condition[0].weatherDesc[0].value === "Torrential-rain") || (Number(theCity.weather[0].hourly[0].chanceofrain) > 50)) {
+        const iconTRain = document.createElement("img")
+        iconTRain.setAttribute("src","./assets/icons8-torrential-rain.gif")
+        iconTRain.setAttribute("alt","rain")
+        card.append(iconTRain)
+    }
+    if((theCity.current_condition[0].weatherDesc[0].value === "Light snow") || (Number(theCity.weather[0].hourly[0].chanceofsnow) > 50)) {
+        const iconLightSnow = document.createElement("img")
+        iconLightSnow.setAttribute("src","./assets/icons8-light-snow.gif")
+        iconLightSnow.setAttribute("alt","snow")
+        card.append(iconLightSnow)
+    }
+
+
+
+    
+    
     const cityName= document.createElement("p")
     cityName.innerHTML = `<b>${theCity.nearest_area[0].areaName[0].value.toUpperCase()}<b>`
     card.append(cityName)
@@ -85,11 +112,11 @@ function fetchCity(city) {
     card.append(citySunshine)
 
     const cityRain= document.createElement("p")
-    cityRain.textContent = `Chance of rain: ${theCity.weather[0].hourly[0].chanceofrain} %`
+    cityRain.textContent = `Chance of Rain: ${theCity.weather[0].hourly[0].chanceofrain} %`
     card.append(cityRain)
 
     const citySnow= document.createElement("p")
-    citySnow.textContent = `Chance of snow: ${theCity.weather[0].hourly[0].chanceofsnow} %`
+    citySnow.textContent = `Chance of Snow: ${theCity.weather[0].hourly[0].chanceofsnow} %`
     card.append(citySnow)
 
 //The Forecasts starting with Today
