@@ -75,7 +75,35 @@ function weatherDisplay(userInput) {
         minTommorrow.innerHTML = ` <strong> Min Temperature </strong> ${file.weather[1].mintempF}F`;
         tommorrow.append(minTommorrow);
         
+        let dayAfterTommorrow = document.querySelector(".day-after-tommorrow-weather");
+        let dayAfterTommorrowText = document.createElement("h4");
+        dayAfterTommorrowText.textContent="Day After Tommorrow";
+        dayAfterTommorrow.append(dayAfterTommorrowText);
 
+        let avgDayAfterTommorrow = document.createElement("p");
+        avgDayAfterTommorrow.innerHTML = ` <strong> Average Temperature: </strong> ${file.weather[2].avgtempF}F`;
+        dayAfterTommorrow.append(avgDayAfterTommorrow);
+
+        let maxDayAfterTommorrow = document.createElement("p");
+        maxDayAfterTommorrow.innerHTML = ` <strong> Max Temperature: </strong> ${file.weather[2].maxtempF}F`;
+        dayAfterTommorrow.append(maxDayAfterTommorrow);
+
+        let minDayAfterTommorrow = document.createElement("p");
+        minDayAfterTommorrow.innerHTML = ` <strong>Min Temperature: </strong> ${file.weather[2].mintempF}F`;
+        dayAfterTommorrow.append(minDayAfterTommorrow);
+
+
+        let chanceofsunshine = document.createElement("p");
+        chanceofsunshine.innerHTML = ` <strong>Chance of Sunshine</strong> ${file.weather[0].hourly[0].chanceofsunshine}`;
+        currentWeather.append(chanceofsunshine);
+
+        let chanceofrain = document.createElement("p");
+        chanceofrain.innerHTML = ` <strong>Chance of Rain</strong> ${file.weather[0].hourly[0].chanceofrain}`;
+        currentWeather.append(chanceofrain);
+
+        let chanceofsnow = document.createElement("p");
+        chanceofsnow.innerHTML = ` <strong>Chance of Snow</strong> ${file.weather[0].hourly[0].chanceofsnow}`;
+        currentWeather.append(chanceofsnow);
     
 
     })
