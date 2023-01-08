@@ -48,6 +48,30 @@ function fetchFoundCity(foundCity) {
             const card = document.createElement("section")
             card.setAttribute("class", "card")
 
+            // v-- Diff Icons for Chance %
+            if((responseJSON.current_condition[0].weatherDesc[0].value === "Sunny") || (Number(responseJSON.weather[0].hourly[0].chanceofsunshine) > 50)) {
+                const iconSunny = document.createElement("img")
+                iconSunny.setAttribute("src","./assets/icons8-summer.gif")
+                iconSunny.setAttribute("alt","sun")
+                card.append(iconSunny)
+               
+             }
+            if((responseJSON.current_condition[0].weatherDesc[0].value === "Torrential-rain") || (Number(responseJSON.weather[0].hourly[0].chanceofrain) > 50)) {
+                const iconTRain = document.createElement("img")
+                iconTRain.setAttribute("src","./assets/icons8-torrential-rain.gif")
+                iconTRain.setAttribute("alt","rain")
+                card.append(iconTRain)
+            }
+            if((responseJSON.current_condition[0].weatherDesc[0].value === "Light snow") || (Number(responseJSON.weather[0].hourly[0].chanceofsnow) > 50)) {
+                const iconLightSnow = document.createElement("img")
+                iconLightSnow.setAttribute("src","./assets/icons8-light-snow.gif")
+                iconLightSnow.setAttribute("alt","snow")
+                card.append(iconLightSnow)
+            }
+
+
+
+
             // v--- creates element to display current city name with city when searched
             const cityName = document.createElement("p")
             cityName.innerHTML = `<b>${responseJSON.nearest_area[0].areaName[0].value.toUpperCase()}<b>`
@@ -74,18 +98,19 @@ function fetchFoundCity(foundCity) {
             card.append(cityCurrently)
 
             // v-- creates elements to display chance of sunshine
+            // only one to pass on cypress
             const citySunshine = document.createElement("p")
             citySunshine.textContent = `Chance of Sunshine: ${responseJSON.weather[0].hourly[0].chanceofsunshine} %`
             card.append(citySunshine)
 
             // v-- creates elements to display chance of rain
             const cityRain = document.createElement("p")
-            cityRain.textContent = `Chance of rain: ${responseJSON.weather[0].hourly[0].chanceofrain} %`
+            cityRain.textContent = `Chance of Rain: ${responseJSON.weather[0].hourly[0].chanceofrain} %`
             card.append(cityRain)
 
             // v-- creates elements to display chance of snow info
             const citySnow = document.createElement("p")
-            citySnow.textContent = `Chance of snow: ${responseJSON.weather[0].hourly[0].chanceofsnow} %`
+            citySnow.textContent = `Chance of Snow: ${responseJSON.weather[0].hourly[0].chanceofsnow} %`
             card.append(citySnow)
             mainInfo.append(card)
 
