@@ -27,11 +27,11 @@ headingforform.addEventListener("submit", (event) => {
   
   const f = document.querySelector(".f").checked
   if (c === true) {
-   h4_result.textContent = parseFloat(FarenheitToCelcius(event.target.temp.value)).toFixed(2) + " degrees "
+   h4_result.textContent = parseFloat(FarenheitToCelcius(event.target.temp.value)).toFixed(2) + "° Celsius "
    
   }
 if (f === true){
-    h4_result.textContent = parseFloat(CelciustoFarenheit(event.target.temp.value)).toFixed(2) + " degrees "
+    h4_result.textContent = parseFloat(CelciustoFarenheit(event.target.temp.value)).toFixed(2) + "° Farenheit "
 }
     
     
