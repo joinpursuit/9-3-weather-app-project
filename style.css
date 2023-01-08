@@ -1,0 +1,98 @@
+html {
+    font-family: fantasy;
+    color: black;
+    background-color: beige;
+}
+
+.card {
+    text-align: center;
+
+}
+
+header {
+    text-align: center;
+    color: black;
+    font-family: fantasy;
+    background-color: tan;
+    display: grid;
+    gap: 15px;
+    margin: 10px auto;
+    width: 90%;
+}
+
+main {
+    text-align: center;
+    width: 54%;
+    float: left;
+    overflow: hidden;
+    
+
+}
+
+.main_article {
+    display: grid;
+
+    gap: 15px;
+
+
+    width: 54%;
+    padding: 5;
+    float: left;
+    overflow: hidden;
+}
+
+
+
+.previous_search {
+    width: 23%;
+    grid-column: span 2;
+    background-color: honeydew;
+    overflow: hidden;
+}
+
+.convert-div {
+    width: 90%;
+    gap: 15px;
+    margin: 10px auto;
+
+
+
+}
+
+.convert_info {
+
+    width: 23%;
+    float: left;
+    background-color: honeydew;
+}
+
+.forecast {
+    background-color: whitesmoke;
+    margin: 5px;
+    border-radius: 7px 7px 7px 7px;
+}
+
+.mainweather_grid {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.main_info {
+    grid-column: span 3;
+}
+.Today{
+    float: left;
+    overflow: hidden;
+    width: 32%;
+}
+.Tomorrow{
+    float: left;
+    overflow: hidden;
+    width: 32%;
+}
+.FollowingDay {
+  
+    overflow: hidden;
+    width: 32%;
+}
