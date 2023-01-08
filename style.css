@@ -1,0 +1,76 @@
+.centered {
+    display: grid;
+    border: 3px solid rgb(0, 0, 0);
+    gap: 15px;
+    margin: 25px auto;
+    width: 90%; 
+   
+}
+section.centered {
+    background-color: rgb(155, 125, 194);
+}
+h1 {
+    color: rgb(243, 243, 243);
+    text-align: center;
+}
+.form {
+    color: black;
+   
+}
+.main-div {
+    gap: 15px;
+    margin: 25px auto;
+    width: 90%;
+}
+
+  .form-align {
+    display: flex;
+    justify-content: center;
+  } 
+.convert_weather_widget {
+    
+    width: 22%; 
+    float: left;
+}
+main {
+
+width: 54%;
+float: left;
+overflow: hidden;
+text-align: center;
+background-color: lightgray;
+}
+.previous-se {
+    width: 22%;
+    overflow: hidden;
+    text-align: center;
+}
+body {
+background-color: rgb(143, 207, 231);
+}
+
+.forecast {
+  background-color: pink;
+  margin: 5px;
+  border-radius: 7px 7px 7px 7px ;
+} 
+.main_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.main_temp {
+    grid-column: span 3;
+}
+.Today {
+    float: left;
+    width: 32%;
+}
+.Tomorrow {
+    float: left;
+    overflow: hidden;
+    width: 32%;
+}
+.DayAfter {
+    overflow: hidden;
+    width: 32%;
+}

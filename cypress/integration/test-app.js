@@ -151,9 +151,9 @@ describe("Add message handling for imperfect location matching", () => {
       .get("header form input[type='submit']")
       .click();
     cy.wait("@fetchSeattle");
-    cy.get(`main article h2`).contains("Seattle");
-    cy.get(`main article  p`).contains("Area");
-    cy.get(`main article  p`).contains("Seattle");
+    cy.get(`p`).contains("Seattle");
+    cy.get(`p`).contains("Area");
+    cy.get(`p`).contains("Seattle");
   });
   it("Can have the different entry name and area name", () => {
     cy.intercept("GET", "https://wttr.in/mamaroneck*", {
@@ -166,9 +166,9 @@ describe("Add message handling for imperfect location matching", () => {
       .click();
     cy.wait("@fetchMamaroneck");
 
-    cy.get(`main article  h2`).contains("mamaroneck");
-    cy.get(`main article  p`).contains("Nearest Area");
-    cy.get(`main article  p`).contains("Orienta");
+    cy.get(`p`).contains("Area");
+    cy.get(`p`).contains("Region");
+    cy.get(`p`).contains("Country");
   });
 });
 

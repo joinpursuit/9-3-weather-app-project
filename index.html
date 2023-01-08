@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js" defer></script>
+    <script src="./main.js" defer></script>
+</head>
+<body>
+    <header>
+      <section class="centered">
+        
+            <h1>Weather App</h1>
+         <div class="form-align">
+        <form>
+
+          <label for="location">get location</label>
+          <input type="text" id="location" name= "location" required> 
+          <input type="submit" value="get weather">
+          
+        </form>
+     
+    </div> 
+    </header>
+    <div class="main-div">
+    <aside class="convert_weather_widget">
+        <form class="Converter-form">
+            <label for="temp"><strong>Convert the Temperature</strong></label> 
+            <input type="number" name="temp" id="temp-to-convert" required/>
+        <br />
+            <label for="temp_c">To Celcius</label>
+            <input type="radio" name="temp-to-convert" id="to-c" value="c" class="c" checked/>
+          
+        <br />
+            <label for="temp_f">To Fahrenheit</label>
+            <input type="radio" name="temp-to-convert" id="to-f" value="f"  class="f"/>
+    
+            <input type="submit" value="Submit" /> 
+            <h4 class="h4_result"></h4>
+        </form>
+        <h4></h4>
+    </aside>     
+     
+    <main>
+        <p class="location">Choose a location to view the weather</p>
+        <div class= "main_grid">
+
+        <article class="main_temp"></article>
+        <article class="Today forecast"> </article>
+        <article class="Tomorrow forecast"> </article>
+        <article class="DayAfter forecast"> </article> 
+    </div>
+        <aside></aside>
+      </main>
+             <aside class="previous-Se">
+                <section class="Previous_Searches">  
+                <h4>Previous Searches</h4>
+                <ul class="at_li">
+                    <p class="searches">No previous searches</p>
+                  
+                </ul>
+                </section>
+               </aside> 
+    </div>
+           
+</body>
+</html>
