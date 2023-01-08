@@ -26,21 +26,20 @@
       </div>  
     </header>
       <div class="mainThree">
-    <aside class="hidden">  
-        <form>
-          <label for="temp">Convert the Temperature</label>
-            <input type="number" name="temp" />
-
-          <label for="temp_c">To Celsius</label>
-            <input type="radio" name="temp_to_convert" id="to-c" value="c" />
-
-          <label for="temp_f">To Fahrenheit</label>
-            <input type="radio" name="temp_to_convert" id="to-f" value="f" />
-
+        <aside class="convertor">
+          <form class="convertor-form">
+            <label for="temp">Convert the Temperature</label>
+            <input type="number" name="temp" maxlength="5" /> <br>
+            <label for="temp_c">To Celsius</label>
+            <input type="radio" name="temp_to_convert" id="to-c" value="c" class="c" checked />
+            <label for="temp_f">To Fahrenheit</label>
+            <input type="radio" name="temp_to_convert" id="to-f" value="f" class="f" />
             <input type="submit" value="Convert" />
-        </form>
-        <h4></h4>
-    </aside>   
+            <h4 class="h4_result"></h4>
+          </form>
+          <h4></h4>
+        </aside>
+
 
     <main>
       <article class="currentWeatherArticle">
@@ -48,8 +47,8 @@
       </article>
       <div class="main-grid">
       <article class="mainInfo"></article> 
-      <aside>
-        <article>
+      <aside class="asideGrid">
+        <article class="forecast">
           <div id="today">
             <h3 id="today_h3"></h3>
             <p id="today_avg_temp_f"></p>
@@ -57,7 +56,7 @@
             <p id="today_min_temp_f"></p>
          </div>
         </article>
-        <article>
+        <article class="forecast onlytwo">
           <div id="tomorrow">
             <h3 id="tomorrow_h3"></h3>
             <p id="tomorrow_avg_temp_f"></p>
@@ -65,7 +64,7 @@
             <p id="tomorrow_min_temp_f"></p>
           </div>
         </article>
-        <article>
+        <article class="forecast onlytwo">
           <div id="dayAfterTomorrow">
             <h3 id="day_after_tomorrow_h3"></h3>
             <p id="day_after_tomorrow_avg_temp_f"></p>
@@ -83,7 +82,7 @@
         <section> 
             <h4>Previous Searches</h4>
             <ul class="searchUl"></ul>
-            <p class="chooseLocation">No previous searches.</p>
+            <p class="chooseLocation2">No previous searches.</p>
         </section> 
     </aside>
      </div> 
