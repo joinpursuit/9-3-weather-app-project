@@ -1,0 +1,42 @@
+body {
+    text-align: center;
+    display: grid;
+    margin: 0 10% 0 10%;
+}
+
+header {
+    color: white;
+    background-color: teal;
+    border-color: black;
+}
+
+header section {
+    margin: 20px;
+}
+
+#main_section {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+main {
+    margin: 10px;
+    grid-column: span 3;
+    align-items: center;
+    min-height: 200px;
+    background-color: lightgray;
+}
+
+.main {
+    border-color: teal;
+}
+
+#recent-search {
+    margin: 10px;
+}
+
+#forecast {
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
