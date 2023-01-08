@@ -58,11 +58,75 @@ It's hard for me to explain the next part. But the reason I write everything int
 Who said that a function should do one thing and one thing only? what book did it come from?
 this came from the book ["Clean Code" by Robert C. Martin](https://thixalongmy.haugiang.gov.vn/media/1175/clean_code.pdf). I highly recommend this book to anyone who wants to become a better developer.
 
-````js
+# Mis en place
+
+I'm going to start this section by mentioning that I'm a very big fan of the show **"Top Chef"**. I've been watching it since its 5th season. The New York City Season!!!!
+
+Mis en place is when you have all your ingredients and tools ready to go before you start cooking. This is a very important step in cooking. It makes the process of cooking much easier. It also makes the process of cooking much more enjoyable. I'm going to use this analogy to explain the next part.
+
+## Extracting the elements from the DOM
+
+Let's begin by extracting elements. This can be done in so many different ways.
 
 ```js
-````
-
+const weatherForm = document.querySelector("form");
 ```
 
+This line of code above extracts the 'form' element from the DOM, it will work sort of like '.find()' Higher Order Function. Which we have learned about in previous lessons. Which will return the first element of the 'form' tag.
+
+```js
+const weatherForm = document.getElementById("weatherForm");
+```
+
+The 'getElementById' method will return the element with the id of 'weatherForm'. This method will only return one element. If there are multiple elements with the same id, it will only return the first one.
+
+```js
+const weatherForm = document.getElementsByClassName("weatherForm");
+```
+
+The 'getElementsByClassName' method will return an array of elements with the class of 'weatherForm'. This method will return all elements with the same class. If only one element has this class then it will return an array with one element.
+
+---
+
+## Deep Dive into the `querySelector()', 'querySelectorAll()', 'getElementById()', and 'getElementsByClassName()'` methods
+
+### What is the difference of querySelector && getElementById || querySelectorAll && getElementByClassName?
+
+The difference is that the 'querySelector' method will return the first element that matches the selector. The 'getElementById' method will return the element with the id of 'weatherForm'.
+
+### Is there a difference in performance?
+
+Yes, the 'querySelector' method is faster than the 'getElementById' method. The 'querySelector' method is faster because it only returns the first element that matches the selector. The 'getElementById' method will return the element with the id of 'weatherForm'. But the performance difference is very small.
+
+### So why use one over the other?
+
+The real reason I found out why to use 'querySelector' and 'querySelectorAll' over the others is that it is more flexible. You can use the 'querySelector' method to select elements by id, class, tag, and attribute. The 'getElementById' method will only return the element with the id of 'weatherForm'. The 'getElementsByClassName' method will return an array of elements with the class of 'weatherForm'. The 'querySelectorAll' method will return an array of elements that match the selector. Finally using these two methods set up a single standardized way of making element selections whether by type, id, class, etc.
+
+## Let's Carry-On
+
+Now that we've extracted the 'form' element from the DOM. We can add an event listener to it. While we at it let's do the same to the 'convert_temp' form.
+
+```js
+const weatherF = document.querySelector("weather_form");
+weatherF.addEventListener("submit", handleWeatherFormSubmit);
+
+const tempConvF = document.querySelector("temp_form");
+tempConvF.addEventListener("submit", handleTempFormSubmit);
+```
+
+### Why does this event look different from the ones explained in class?
+
+MDN says that the 'addEventListener' method takes two arguments. The first argument is the event type. The second argument is the callback function. The callback function is the function that will be called when the event is triggered. The callback function will be called with an event object. The event object will contain information about the event that was triggered. The event object will also contain information about the element that the event was triggered on.
+
+### What is the event object?
+
+The event object is an object that contains information about the event that was triggered. The event object will also contain information about the element that the event was triggered on. The event object is passed into the callback function as an argument. The event object will be the first argument that is passed into the callback function.
+
+So what have we been doing lately? We've been adding an event listener to a DOM element via an annonymous function. This is not the best practice. We should be adding an event listener to a DOM element via a named function. This is the best practice. This is because it makes our code easier to read and understand. It also makes our code easier to debug. And again it makes our code easier to maintain.
+
+```js
+const weatherF = document.querySelector("weather_form");
+weatherF.addEventListener("submit", (event) => {
+  // our logic would normally go here
+});
 ```
