@@ -104,7 +104,47 @@ function weatherDisplay(userInput) {
         let chanceofsnow = document.createElement("p");
         chanceofsnow.innerHTML = ` <strong>Chance of Snow</strong> ${file.weather[0].hourly[0].chanceofsnow}`;
         currentWeather.append(chanceofsnow);
-    
 
+        let img = document.createElement("img");
+        if(file.weather[0].hourly[0].chanceofsunshine > 50) {
+            img.setAttribute("alt", "sun");
+            img.setAttribute("src", "./assets/icons8-summer.gif");
+        }else if (file.weather[0].hourly[0].chanceofrain > 50) {
+            img.setAttribute("alt", "rain");
+            img.setAttribute("src", "./assets/icons8-torrential-rain.gif");
+        }else if (file.weather[0].hourly[0].chanceofsnow >50) {
+            img.setAttribute("alt", "snow");
+            img.setAttribute("src", "./assets/icons8-light-snow.gif");
+        
+        }
+        currentWeather.prepend(img)
+
+        const tempConversion = document.querySelector("aside.temperature-conversion form");
+        tempConversion.addEventListener("submit", (event) => {
+            event.preventDefault();
+            
+            const temperature = event.target.querySelector("#temp-to-convert").value;
+            const types = event.target.querySelectorAll(".temperature");
+            console.log("This is type:", types);
+            if(types[0].checked) {
+                const celcius = (temperature -32)* 5 / 9
+                event.target.querySelector("h4").textContent = `${celcius.toFixed(2)}C`;
+            }else if (types[1].checked) {
+                const fahreinheit = (temperature * 9) / 5 + 32
+                event.target.querySelector("h4").textContent = ` ${fahreinheit.toFixed(2)}F`;
+            }
+        });
+
+        if(shouldIAdd){
+            addToPreviousSearch(userInput, file.current_condition[0].FeelsLikeF)
+        }
     })
-}
+    .catch((error) => console.log(error));
+
+    const clear_defaults = () => {
+        document.querySelectorAll(".defaults")
+        .forEach((item) => item.classList.add("hidden"));
+        document.querySelectorAll("weather").forEach((item) => (item.innerHTML = ""));
+    };
+
+};
