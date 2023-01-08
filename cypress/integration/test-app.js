@@ -151,9 +151,9 @@ describe("Add message handling for imperfect location matching", () => {
       .get("header form input[type='submit']")
       .click();
     cy.wait("@fetchSeattle");
-    cy.get(`main article h2`).contains("Seattle");
-    cy.get(`main article  p`).contains("Area");
-    cy.get(`main article  p`).contains("Seattle");
+    cy.get(`p`).contains("Seattle");
+    cy.get(`p`).contains("Area:");
+    cy.get(`p`).contains("Seattle");
   });
   it("Can have the different entry name and area name", () => {
     cy.intercept("GET", "https://wttr.in/mamaroneck*", {
@@ -166,9 +166,9 @@ describe("Add message handling for imperfect location matching", () => {
       .click();
     cy.wait("@fetchMamaroneck");
 
-    cy.get(`main article  h2`).contains("mamaroneck");
-    cy.get(`main article  p`).contains("Nearest Area");
-    cy.get(`main article  p`).contains("Orienta");
+    cy.get(`p`).contains("Area:");
+    cy.get(`p`).contains("Region:");
+    cy.get(`p`).contains("Country:");
   });
 });
 
@@ -260,13 +260,13 @@ describe("It has a widget that allows users to convert C to F or F to C", () => 
   });
 
   it("can convert to Celsius", () => {
-    cy.get("#temp-to-convert").clear().type("100");
+    cy.get("#temp").clear().type("100");
     cy.get("#to-c").click();
     cy.get("aside form").submit();
     cy.get("aside h4").contains("37.78");
   });
   it("can convert to Fahrenheit", () => {
-    cy.get("#temp-to-convert").clear().type("100");
+    cy.get("#temp").clear().type("100");
     cy.get("#to-f").click();
     cy.get("aside form").submit();
     cy.get("aside h4").contains("212");

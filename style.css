@@ -1,0 +1,123 @@
+header{
+    display: grid;
+    border-radius: 17px;
+    border: 3px solid #0b0b0b;
+    margin: 3px auto;
+    width: 85%;
+    background-color: rgb(11, 122, 11);
+  }
+  .form-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .principal {
+    width: 85%;
+    margin: 10px auto;
+  }
+ .choose {
+    display: flex;
+    justify-content: center;
+ }
+ .card {
+  text-align: center;
+ }
+
+  h1 {
+    color: white;
+    text-align: center;
+  }
+
+  form.localidad {
+    color: white;
+  }
+
+  .convertor {
+    padding-left: 15px;
+    float: left;
+    width: 22%;
+  }
+
+main {
+  border: 2px solid rgb(11, 122, 11);
+  background-color: #d3d0d0;
+  border-radius: 17px;
+  width: 54%;
+  float: left;
+  overflow: hidden;
+ 
+}
+
+.previous {
+  overflow: hidden;
+  padding-left: 30px;
+}
+
+.requ {
+  color: #c5c5c5;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.main-info {
+  grid-column: span 3;
+}
+
+.forecast {
+  background-color: rgb(242, 240, 237);
+  margin: 5px;
+  border-radius: 7px 7px 7px 7px ;
+}
+
+.today {
+  float: left;
+  width: 32%;
+}
+
+.tomorrow {
+  width: 32%;
+  float: left;
+  overflow:hidden;
+}
+
+.dayaftertom {
+  width: 32%;
+  overflow: hidden;
+}
+
+body {
+  background-color: rgb(234, 234, 231);
+}
+
+
+.buttonConvert {
+  background-color: green;
+  color:  white;
+  border-radius: 6px 6px 6px 6px ;
+  
+}
+.buttonConvert:hover {
+  background-color: orange;
+}
+  
+.buttoncity {
+  background-color: #d3d0d0;
+  color:  black;
+  border-radius: 6px 6px 6px 6px ;
+}
+ 
+.buttoncity:hover {
+  background-color: orange;
+}
+
+.titulo:hover {
+  color: orange;
+}  
+ 
+
+
+  
+
