@@ -4,34 +4,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css"/>
-    <script defer src="main.js"></script>
-    <title>Weather Application</title>
+    <script defer src="./main.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <title>Weather App</title>
 </head>
 <body>
-   <header>
-    <h1>Weather App</h1>
-    <form class="event">
-        <section>
-            <label for="location">Pick a Location</label>
-            <input type="text" name="location" id="location" required />
-            <input type="submit" value="Get the Weather" />
-        </section>
-    </form>
-   </header> 
-   <div id="main_section">
-    <main class="main">
-        Choose a location to view the weather.
+    <header class="form">
+        <form id="fetch-form">
+            <h1>Weather App</h1>
+            Pick a Location
+            <input id="requested-city" type="text"/>
+            <input class="button" id="fetch-button" type="submit" value="Get Weather"/>
+        </form>
+    </header>
+    <main>
+        <aside class="temp-converter">
+            <form id="convert-form" type="submit">
+                Convert the temperature:
+                <input  placeholder="0" type="number" id="temp-to-convert"/>
+                <br>
+                To Celsius <input type="radio" id="to-c" name="convert-temp" value="c"/>
+                <br>
+                To Farenheit <input type="radio" id="to-f" name="convert-temp" value="f"/>
+                <br>
+                <input type="submit" value="Submit"/>
+            </form>
+            <h4 id="calculation"></h4>
+        </aside>
+        <article class="location">
+            <img src="#" alt="">
+            <p id="placeholder">Choose a location to view the weather</p>
+            <!-- current requested city data -->
+            <h2 id="city"></h2>
+            <p id="area"></p>
+            <p id="region"></p>
+            <p id="country"></p>
+            <p id="currently"></p>
+            <p id="chanceOfSunshine"></p>
+            <p id="chanceOfRain"></p>
+            <p id="chanceOfSnow"></p>
+        </article>
+        <aside class="searches">
+            <section>
+                <h4>Previous Searches</h4>
+                <p id="searchPlaceholder">No previous searches</p>
+                <ul id="searchHistory">
+                    <!-- li will be previous searches -->
+                </ul>
+            </section>
+        </aside>
+        <aside class="forecast">
+            <article id="today">
+                <!-- today's forecast -->
+                <h3 id="todayForecast"></h3>
+                <p id="avgTemp"></p>
+                <p id="maxTemp"></p>
+                <p id="minTemp"></p>
+            </article>
+            <article id="tomorrow">
+                <!-- tomorrow's forecast -->
+                <h3 id="tomorrowForecast"></h3>
+                <p id="avgTempTomorrow"></p>
+                <p id="maxTempTomorrow"></p>
+                <p id="minTempTomorrow"></p>
+            </article>
+            <article id="dayAfterTomorrow">
+                <!-- day after tomorrow forecast -->
+                <h3 id="dayAfterTomorrowForecast"></h3>
+                <p id="avgTempAfterTomorrow"></p>
+                <p id="maxTempAfterTomorrow"></p>
+                <p id="minTempAfterTomorrow"></p>
+            </article>
+        </aside>
     </main>
-    <section id="recent-search" class="history">
-        <h3>
-            Previous Searches
-        </h3>
-        <div class="recent-searches">
-            No previous searches. 
-        </div>
-        <ul>
-    </section>
-   </div>
 </body>
 </html>
