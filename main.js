@@ -26,8 +26,6 @@ const h4result = document.querySelector('.h4_result')
 
 const convertForm = document.querySelector('.convertor-form')
 
-// const strong = document.createElement("strong")
-// const breakPoint = document.createElement("br")
 
 
 form.addEventListener("submit",(event)=>{
@@ -96,8 +94,29 @@ function getWeather(promise){
 const mainSection = document.createElement("section")
 mainSection.setAttribute("class", "mainWeather")
 
+
+if((promise.current_condition[0].weatherDesc[0].value === "Sunny") || (Number(promise.weather[0].hourly[0].chanceofsunshine) > 50)) {
+  const iconSunny = document.createElement("img")
+  iconSunny.setAttribute("src","./assets/icons8-summer.gif")
+  iconSunny.setAttribute("alt","sun")
+  mainSection.append(iconSunny)
+}
+if((promise.current_condition[0].weatherDesc[0].value === "Torrential-rain") || (Number(promise.weather[0].hourly[0].chanceofrain) > 50)) {
+  const iconTRain = document.createElement("img")
+  iconTRain.setAttribute("src","./assets/icons8-torrential-rain.gif")
+  iconTRain.setAttribute("alt","rain")
+  mainSection.append(iconTRain)
+}
+if((promise.current_condition[0].weatherDesc[0].value === "Light snow") || (Number(promise.weather[0].hourly[0].chanceofsnow) > 50)) {
+  const iconLightSnow = document.createElement("img")
+  iconLightSnow.setAttribute("src","./assets/icons8-light-snow.gif")
+  iconLightSnow.setAttribute("alt","snow")
+  mainSection.append(iconLightSnow)
+}
+
+
 const cityName = document.createElement("p")
-cityName.textContent = `Nearest Area ${promise.nearest_area[0].areaName[0].value}`
+cityName.textContent = `Area: ${promise.nearest_area[0].areaName[0].value}`
 mainSection.append(cityName)
 
 const region = document.createElement("p")
@@ -106,7 +125,7 @@ mainSection.append(region)
 
 
 const country = document.createElement("p")
-country.textContent = `Country:${promise.nearest_area[0].country[0].value}`
+country.textContent = `Country: ${promise.nearest_area[0].country[0].value}`
 mainSection.append(country)
 
 const currently = document.createElement("p")

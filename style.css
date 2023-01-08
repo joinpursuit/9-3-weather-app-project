@@ -1,5 +1,5 @@
 header{
-  background-color:rgb(20,142,136);
+  background-color:rgb(142, 20, 136);
   color:white;
   text-align: center;
   border:2px solid black; 
@@ -45,7 +45,7 @@ margin-bottom: 0px;
   grid-column: span 3;
 }
 .focast{
-  background-color: aqua;
+  background-color: rgba(200, 116, 219, 0.758);
   margin:2px;
 }
 .main-container{
@@ -61,7 +61,7 @@ main{
 width:54%;
 float: left;
 overflow: hidden;
-background-color: cornflowerblue;
+background-color: rgb(239, 125, 243);
 text-align: center;
 }
 .today{
@@ -82,5 +82,9 @@ text-align: center;
   
 }
 body{
-  background-color: rgb(0, 170, 255);
+  background-color: rgb(237, 180, 237);
+}
+.buttonHover:hover{
+  background-color: rgb(194, 204, 50);
+  
 }
