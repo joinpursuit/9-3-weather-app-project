@@ -1,22 +1,22 @@
+ // Creating variable to represent form for location input
+ const locationForm = document.querySelector("#location_form");
 
 locationForm.addEventListener("submit", submitLocation => {
     // Preventing default action on submit form 
     submitLocation.preventDefault();
     // Creating variable to store value of location input text
     const pickedLocation = document.querySelector("#picked_location_text").value;
-    // Creating variable to represent form for location input
-    const locationForm = document.querySelector("#locationForm");
     // Creating variable to store value of url link for fetch
     const BASE_URL = `https://wttr.in/${pickedLocation}?format=j1`
     // Fetching BASE_URL
     fetch(BASE_URL)
         .then((response) => response.json())
         // Using destructuring to unpack values from fetch response
-        .then(({nearest_area, current_condition, weather, request}) => {
+        .then(({nearest_area, current_condition, weather}) => {
             console.log(nearest_area);
             console.log(current_condition);
             console.log(weather);
-            console.log(request);
+            // console.log(request);
             // Creating variable to store value of current temperature 
             const currentTempF = current_condition[0].temp_F;
             // Creating variable to store value of nearest_area[0].region[0].value
@@ -44,7 +44,15 @@ locationForm.addEventListener("submit", submitLocation => {
             // Creating variable to store value for day after tomorrow's min temp in F
             const dayAfterTomorrowMinTempF = weather[2].mintempF;
             // Creating variable to store value for nearest area
-            const userArea = nearest_area[0].areaName[0].value;
+            const nearestArea = nearest_area[0].areaName[0].value;
+            // Creating variable to store value for today's chance of sunshine
+            const chanceOfSunshine = weather[0].hourly[0].chanceofsunshine;
+            // Creating variable to store value for today's chance of rain
+            const chanceOfRain = weather[0].hourly[0].chanceofrain;
+            // Creating variable to store value for today's chance of snow
+            const chanceOfSnow = weather[0].hourly[0].chanceofsnow;
+
+
             // Calling functions to pass cypress tests
             getDetailsFromTextInput();
             displayRegion(regionValue);
@@ -54,7 +62,12 @@ locationForm.addEventListener("submit", submitLocation => {
             getTodayTempF(todayAvgTempF, todayMaxTempF, todayMinTempF);
             getTomorrowTempF(tomorrowAvgTempF, tomorrowMaxTempF, tomorrowMinTempF);
             getDayAfterTomorrowTempF(dayAfterTomorrowAvgTempF, dayAfterTomorrowMaxTempF, dayAfterTomorrowMinTempF);
-            displayArea(userArea, pickedLocation);
+            displayArea(nearestArea, pickedLocation);
+            displayChanceOfSunshine(chanceOfSunshine);
+            displayChanceOfRain(chanceOfRain);
+            displayChanceOfSnow(chanceOfSnow);
+            
+
             // Calling function to reset input text element
             resetInputLocationText();
 
@@ -68,7 +81,7 @@ locationForm.addEventListener("submit", submitLocation => {
             // Creating variable to represent h2 tag in HTML with #displayLocation ID
             const displayLocation = document.querySelector("#main_h2_location");
             // Creating a variable to represent p tags in HTML with .pRemove class
-            const pChangeClass = document.querySelectorAll(".pRemove");
+            const pChangeClass = document.querySelectorAll(".p_placeholder");
             // Initializing value of displayLocation's text content to value of pickedLocation
             displayLocation.textContent = pickedLocation;
             // using .forEach method to set value of each p tag with .pRemove class to an empty string
@@ -87,7 +100,7 @@ locationForm.addEventListener("submit", submitLocation => {
         }
         // Creating a function to display currently feels like temp in F  in pickedLocation
         function displayCurrentlyFeelsF(feelsLike) {
-            main_p_currently_feels.textContent = `Feels like: ${feelsLike}`;
+            main_p_currently_feels.textContent = `Feels like: ${feelsLike}°F`;
         }
         // Creating a function to display previous search location and temp
         function displayPreviousSearchLocationAndTemp(userLocation, temp) {
@@ -145,9 +158,9 @@ locationForm.addEventListener("submit", submitLocation => {
             picked_location_text.value = "";
         }
         // Creating a function to determine if nearest area is equal to user's picked input location
-        function displayArea(area, location) {
+        function displayArea(area, userLocation) {
             // Using if statement to determine if  lowercased area parameter is equal to lowercased location parameter
-            if (area.toLowerCase() == location.toLowerCase()) {
+            if (area.toLowerCase() == userLocation.toLowerCase()) {
                 // Using .textContent method to set text content of element with main_p_area element to a template literal that displays area
                 main_p_area.textContent = `Area: ${area};`
             } else {
@@ -155,6 +168,26 @@ locationForm.addEventListener("submit", submitLocation => {
                 main_p_area.textContent = `Nearest Area: ${area};`
             }
             
+        }
+        // Creating function to display chance of sunshine for today
+        function displayChanceOfSunshine(chance) {
+            chance_of_sunshine.textContent = `Chance of Sunshine: ${chance}%`
+        }
+        // Creating function to display chance of rain for today
+        function displayChanceOfRain(chance) {
+            chance_of_rain.textContent = `Chance of Rain: ${chance}%`
+        }
+        // Creating function to display chance of snow for today
+        function displayChanceOfSnow(chance) {
+            chance_of_snow.textContent = `Chance of Snow: ${chance}%`
+        }
+        // Creating function to display sunny icon 
+        function displaySunnyIcon(chance) {
+            if (Number(chance) > 50) {
+                const sunnyIconImgElement = document.createElement("img");
+                // sunnyIconImgElement.setAttribute("src", "assets/icons8-summer.gif");
+                // chance_of_sunshine.append(sunnyIconImgElement);
+            }
         }
      
 })

@@ -11,10 +11,10 @@
 <body>
     <header>
         <h1>Weather App</h1>
-        <form id="locationForm">
+        <form id="location_form">
             <label>Pick a Location</label>
             <input type="text" id="picked_location_text" placeholder="Type a location">
-            <input type="submit" id="locationTextSubmit" value="Get Weather" />
+            <input type="submit" id="location_text_submit" value="Get Weather" />
         </form>
     </header>
 
@@ -23,7 +23,8 @@
     </aside>
 
     <main>
-        <p class="pRemove">Choose a location to view the weather</p>
+        <p class="p_placeholder">Choose a location to view the weather</p>
+        <div class="main_grid">
         <article id="main_article">
             <h2 id="main_h2_location"></h2>
             <p id="main_p_area"></p>
@@ -54,13 +55,14 @@
                 <p id="day_after_tomorrow_min_temp_f"></p>
             </article>
         </aside>
+        </div>
     </main>
 
     <aside>
         <section>
             <h4>Previous Searches</h4>
             <ul id="search_history_ul">
-                <p class="pRemove">No previous searches</p>
+                <p class="p_placeholder">No previous searches</p>
             </ul>
         </section>
         
