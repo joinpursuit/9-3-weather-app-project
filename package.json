@@ -13,6 +13,6 @@
   "devDependencies": {
     "cypress": "^12.3.0",
     "cypress-watch-and-reload": "^1.10.3",
-    "live-server": "^1.2.2"
+    "live-server": "^1.1.0"
   }
 }
