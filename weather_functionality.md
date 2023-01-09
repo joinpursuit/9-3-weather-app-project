@@ -122,7 +122,9 @@ MDN says that the 'addEventListener' method takes two arguments. The first argum
 
 The event object is an object that contains information about the event that was triggered. The event object will also contain information about the element that the event was triggered on. The event object is passed into the callback function as an argument. The event object will be the first argument that is passed into the callback function.
 
-So what have we been doing lately? We've been adding an event listener to a DOM element via an annonymous function. This is not the best practice. We should be adding an event listener to a DOM element via a named function. This is the best practice. This is because it makes our code easier to read and understand. It also makes our code easier to debug. And again it makes our code easier to maintain.
+So what have we been doing lately? We've been adding an event listener to a DOM element via an annonymous function. This is not the best practice. We should be adding an event listener to a DOM element via a named function. This is the best practice. This is because it makes our code easier to read and understand. It also makes our code easier to debug. And again it makes our code easier to maintain. P.S. Clean Code
+
+The code below shows and event listener being added to a DOM element via an annonymous function.
 
 ```js
 const weatherF = document.querySelector("weather_form");
@@ -130,3 +132,25 @@ weatherF.addEventListener("submit", (event) => {
   // our logic would normally go here
 });
 ```
+
+The code below shows and event listener being added to a DOM element via a named function.
+
+```js
+const weatherF = document.querySelector("weather_form");
+weatherF.addEventListener("submit", handleWeatherFormSubmit);
+```
+
+## Named Functions - Code Added
+
+Inside this named functions will contain the logic that we want to execute when the event is triggered. We must ask ourselves what we want to do:
+
+1. Prevent the default behavior of the event
+2. Extract the value of the input
+3. Construct the URL that we will use to make the API call
+4. Make the API call
+
+Even though I mentioned that a function should only do one thing. A function can also do multiple things. As long as those things are related to each other. And as long as those things are done well. This is the case with the function below. This function will do multiple things. But those things are related to each other. And those things are done well.
+
+As mentioned before a function should only do one thing, or at most perfom closely related tasks. Allowing your function to do multiple things will result in a function that is harder to read, understand, debug and most importantly maintain.
+
+Writing a function that does multiple things is not a bad thing. What is bad is when those things are not related to each other nor are they done well. Which can result in Code Smell.
