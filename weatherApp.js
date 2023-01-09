@@ -75,8 +75,6 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
     });
 
 
-
-
 // Create an event listener for the submit button within the form
        const form = document.querySelector("form");
            form.addEventListener("submit", (event) => {
@@ -93,9 +91,6 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
      }
    }
   
-               
-
-
 
        const BASE_URL = `https://wttr.in/${userSearch.value}?format=j1`
        fetch(BASE_URL)
@@ -105,16 +100,55 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
            const card = document.createElement("section")
            card.setAttribute("class", "card")
 
+
+
+           if((result.current_condition[0].weatherDesc[0].value === "Sunny") || (Number(result.weather[0].hourly[0].chanceofsunshine) > 50)) {
+            const iconSunny = document.createElement("img")
+            iconSunny.setAttribute("src","./assets/icons8-summer.gif")
+            iconSunny.setAttribute("alt","sun")
+            card.append(iconSunny)
+         }
+        if((result.current_condition[0].weatherDesc[0].value === "Torrential-rain") || (Number(result.weather[0].hourly[0].chanceofrain) > 50)) {
+            const iconTRain = document.createElement("img")
+            iconTRain.setAttribute("src","./assets/icons8-torrential-rain.gif")
+            iconTRain.setAttribute("alt","rain")
+            card.append(iconTRain)
+        }
+        if((result.current_condition[0].weatherDesc[0].value === "Light snow") || (Number(result.weather[0].hourly[0].chanceofsnow) > 50)) {
+            const iconLightSnow = document.createElement("img")
+            iconLightSnow.setAttribute("src","./assets/icons8-light-snow.gif")
+            iconLightSnow.setAttribute("alt","snow")
+            card.append(iconLightSnow)
+        }
+
+        if((result.current_condition[0].weatherDesc[0].value === "Foggy") || (Number(result.weather[0].hourly[0].humidity) > 50)) {
+          const iconFoggy = document.createElement("img")
+          iconFoggy.setAttribute("src","./assets/icons8-fog.gif")
+          iconFoggy.setAttribute("alt","fog")
+          card.append(iconFoggy)
+        }
+
+
+        if((result.current_condition[0].weatherDesc[0].value === "Windy") || (Number(result.weather[0].hourly[0].chanceofwindy) < 50)) {
+          const iconWindy = document.createElement("img")
+          iconWindy.setAttribute("src","./assets/icons8-wind.gif")
+          iconWindy.setAttribute("alt","wind")
+          card.append(iconWindy)
+        }
+
+
+
+
+
+
+
+
+
           const cityName = document.createElement('p');
           cityName.textContent = result.nearest_area[0].areaName[0].value;
           card.append(cityName);
-
-        // Create a paragraph element containing a strong element whose content is how the weather currently feels && the content of the paragraph is the Currently 
-           const cityCurrentFeel = document.createElement('p');
-           cityCurrentFeel.textContent = `Currently: Feels Like ${result.current_condition[0].FeelsLikeF}°F`
-           card.append(cityCurrentFeel);
    
-        // Create a paragraph element containing a strong element whose content is area && the content of   the paragraph tag is nearest_area name
+        // Create a paragraph element containing a strong element whose content is area && the content of the paragraph tag is nearest_area name
            const mainInfo = document.querySelector('.mainInfo');
            const nearestArea = document.createElement('p');
            nearestArea.textContent = `Nearest Area: ${result.nearest_area[0].areaName[0].value}`;
@@ -129,7 +163,11 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
            const cityCountry = document.createElement('p');
            cityCountry.textContent = `Country: ${result.nearest_area[0].country[0].value}`;
            card.append(cityCountry);
-           
+
+        // Create a paragraph element containing a strong element whose content is how the weather currently feels && the content of the paragraph is the Currently 
+            const cityCurrentFeel = document.createElement('p');
+            cityCurrentFeel.textContent = `Currently: Feels Like ${result.current_condition[0].FeelsLikeF}°F`
+            card.append(cityCurrentFeel);
    
         // Create a paragraph element containing a strong element whose content shows the areas chance of sunshine && the content of the paragraph is the Chance of Sunshine
            const sunChance = document.createElement('p');
@@ -216,46 +254,9 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
 }); 
 
 
-//displayArea(area, userSearch.value);
-
-
- //Create a function to determine if the nearest area is equal to user's searched input location
-//function displayArea(area, userLocation) {
- //   Using if statement to determine if  lowercased area parameter is equal to lowercased location parameter
- //   if (area.toLowerCase() == userLocation.toLowerCase()) {
- //        Using .textContent method to set text content of element with nearestArea element to a template literal that displays the area
- //       nearestArea.textContent = `Area: ${area};`
- //   } else {
- //       Using .textContent method to set text content of element with nearestArea element to a template literal that displays the nearest area
- //       nearestArea.textContent = `Nearest Area: ${area};`
- //   }
- //   
-// } End of nearestArea function!
-    
-
-    //const h2 = document.createElement('h2');
-    //h2.textContent = userSearch.value
-    //const currentWeatherInfo = document.querySelector('.currentWeatherArticle');
-    //currentWeatherInfo.append(h2);
-   //nameOfCity.textContent = userSearch.value
-   //console.log(name);
 
 
 
-
-
-// Display region to the main section
-/*function displayRegion() {
-    displayRegion.textContent = weatherData.region;
-}
-displayRegion();
-
-// Display country to the main section
-function displayCountry() {
-    country.textContent = weatherData.country;
-}
-displayCountry()
-*/
 
 function createCurrentWeather(result, location) {
     console.log(result, location)

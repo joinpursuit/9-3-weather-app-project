@@ -16,12 +16,12 @@
       <button></button>
       </div> -->
     <header>
-      <h1>Weather App</h1> 
+      <h1 class="myHover">Weather App</h1> 
       <div class="form-center">
       <form id="form">
         <label> Pick a Location: </label>
           <input name="preferredCity" id="preferredCity" type="text" />
-          <input type="submit" value="Get Weather" />
+          <input type="submit" value="Get Weather" class="myHover2"/>
       </form> 
       </div>  
     </header>
@@ -29,12 +29,12 @@
         <aside class="convertor">
           <form class="convertor-form">
             <label for="temp">Convert the Temperature</label>
-            <input type="number" name="temp" maxlength="5" /> <br>
+            <input type="number" name="temp" id="temp" maxlength="5" required/> <br>
             <label for="temp_c">To Celsius</label>
             <input type="radio" name="temp_to_convert" id="to-c" value="c" class="c" checked />
             <label for="temp_f">To Fahrenheit</label>
             <input type="radio" name="temp_to_convert" id="to-f" value="f" class="f" />
-            <input type="submit" value="Convert" />
+            <input type="submit" value="Convert" class="myHover3" />
             <h4 class="h4_result"></h4>
           </form>
           <h4></h4>

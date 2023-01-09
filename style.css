@@ -91,3 +91,15 @@ article {
 .onlytwo {
     margin-left: 32px;
 }
+
+.myHover2:hover {
+ background-color: rgb(217, 114, 217);
+}
+
+.myHover:hover {
+  background-color:  rgb(217, 114, 217);
+}
+
+.myHover3:hover {
+  background-color: rgb(217, 114, 217);
+}

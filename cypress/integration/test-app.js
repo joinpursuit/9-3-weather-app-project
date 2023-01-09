@@ -260,13 +260,13 @@ describe("It has a widget that allows users to convert C to F or F to C", () => 
   });
 
   it("can convert to Celsius", () => {
-    cy.get("#temp-to-convert").clear().type("100");
+    cy.get("#temp").clear().type("100");
     cy.get("#to-c").click();
     cy.get("aside form").submit();
     cy.get("aside h4").contains("37.78");
   });
   it("can convert to Fahrenheit", () => {
-    cy.get("#temp-to-convert").clear().type("100");
+    cy.get("#temp").clear().type("100");
     cy.get("#to-f").click();
     cy.get("aside form").submit();
     cy.get("aside h4").contains("212");
