@@ -66,6 +66,9 @@ locationForm.addEventListener("submit", submitLocation => {
             displayChanceOfSunshine(chanceOfSunshine);
             displayChanceOfRain(chanceOfRain);
             displayChanceOfSnow(chanceOfSnow);
+            displaySunnyIcon(chanceOfSunshine);
+            displayRainyIcon(chanceOfRain);
+            displaySnowyIcon(chanceOfSnow);
             
 
             // Calling function to reset input text element
@@ -184,11 +187,28 @@ locationForm.addEventListener("submit", submitLocation => {
         // Creating function to display sunny icon 
         function displaySunnyIcon(chance) {
             if (Number(chance) > 50) {
-                const sunnyIconImgElement = document.createElement("img");
-                // sunnyIconImgElement.setAttribute("src", "assets/icons8-summer.gif");
-                // chance_of_sunshine.append(sunnyIconImgElement);
+                const weatherIcon = document.querySelector("#weather_icon_img")
+                weatherIcon.setAttribute("src", "./assets/icons8-summer.gif");
+                weatherIcon.setAttribute("alt", "sun");
             }
         }
+        // Creating function to display rain icon 
+        function displayRainyIcon(chance) {
+            if (Number(chance) > 50) {
+                const weatherIcon = document.querySelector("#weather_icon_img")
+                weatherIcon.setAttribute("src", "./assets/icons8-torrential-rain.gif");
+                weatherIcon.setAttribute("alt", "rain");
+            }
+        }
+        // Creating function to display snow icon 
+        function displaySnowyIcon(chance) {
+            if (Number(chance) > 50) {
+                const weatherIcon = document.querySelector("#weather_icon_img")
+                weatherIcon.setAttribute("src", "./assets/icons8-light-snow.gif");
+                weatherIcon.setAttribute("alt", "snow");
+            }
+        }
+
      
 })
 
