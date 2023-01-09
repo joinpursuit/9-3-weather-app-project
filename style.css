@@ -5,6 +5,7 @@
 body{
   background-image: url('./assets/spinning_globe.gif');
   background-size: cover;
+  
 }
 
 header {
@@ -12,14 +13,6 @@ text-align: center;
 display: grid;
 padding-bottom: 5%;
 margin-bottom: 2%;
-/* display: flex; */
-/* flex-direction: column; */
-/* align-items: center;
-justify-content: center;
-margin: 0 auto;
-width: 100%;
-height: 100%; */
-
 background-image: url("./assets/four_seasons.gif");
 background-size: cover;
 
@@ -34,52 +27,31 @@ background-size: cover;
   border: 5px solid black;
   background-color: rgb(140, 221, 249);
   padding-bottom: 10%;
-  
-  
+  font-size: larger;
+  font-weight: bold;
+  color: black
 
 
 }
 
-/* Align the class hidden previous to the right side of the page */
-/* .hidden.previous{
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 20%;
-
-
-} */
+#picked_location{
+  font-weight: bolder;
+  color: white;
+}
 
 
 
 
-/* #previous { */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: right; */
-  /* justify-content: flex-end; */
-  /* margin-right: 15%; */
-  
-/* } */
 
 .move_to_the_right{
-  /* justify-content: end; */
-  /* display: flex;
-  justify-content: flex-end; */
+  
   display: flex;
   justify-content: flex-end;
   border: white 1px solid;
   
 }
 
-.container{
-  /* display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 100%; */
-  /* background-color: #3e8e41; */
-    
-  /* border: 5px solid black; */
 
-}
 
 #convertTemps{
   
@@ -87,8 +59,20 @@ background-size: cover;
   justify-content: left;
   margin-top: -8.9%;
   position: relative;
+  color: white;
   
 }
+
+#temp-to-convert{
+  border: blue 1px solid;
+  border-radius:5px;
+}
+
+#search{
+  border: blue 1px solid;
+  border-radius:5px;
+}
+
 
 #three_day_forcast{
   display: flex;
@@ -146,13 +130,133 @@ text-align: center;
   transform: translateY(4px);
 }
 
-/* .gif_container {
-  display: flex;
-  width: 50px;
-  height: 50px;
-  background-size: cover;
- 
-} */
+#convertTemps{
+  cursor: pointer;
+}
+
+#convertTemps:hover{
+  background-color: black;
+  color: white;
+}
+
+#convertTemps:active{
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#temperatureConvert{
+  color: white;
+}
+
+.hidden.previous{
+  color: lightblue;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.styleATag{
+  
+  
+  color: lightgreen;
+}
+
+.styleATag:hover{
+  color: white;
+}
+
+.styleATag:active{
+  color: lightblue;
+}
+
+.remove{
+  color: white; 
+}
+
+#search{
+  cursor: pointer;
+}
+
+#search:hover{
+  background-color: black;
+  color: white;
+}
+
+#search:active{
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#temp-to-convert{
+  cursor: pointer;
+}
+
+#temp-to-convert:hover{
+  background-color: black;
+  color: white;
+}
+
+#temp-to-convert:active{
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#temperatureConvert{
+  cursor: pointer;
+}
+
+#temperatureConvert:hover{
+  background-color: black;
+  color: white;
+}
+
+#temperatureConvert:active{
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#temperatureConvert{
+  color: white;
+}
+
+#temperatureConvert{
+  cursor: pointer;
+}
+
+#temperatureConvert:hover{
+  background-color: black;
+  color: white;
+}
+
+#temperatureConvert:active{
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+
+.dark-mode{
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+
+}
+
+#target-dark-mode{
+  width: 100px;
+  padding: 2px;
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  margin: 5px;
+
+}
+
 
 .fog{
   background-image: url('./assets/fog.gif');

@@ -311,6 +311,7 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
                 const previousSearchLink = document.createElement('a');
                 previousSearchLink.setAttribute('id', 'already_searched')
                 previousSearchLink.setAttribute('href', '#');
+                previousSearchLink.setAttribute('class', 'styleATag');
                 previousSearchLink.textContent = weatherData.city;
                 location.append(previousSearchLink);
 
@@ -323,7 +324,6 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
 
            //Function to give previous search links functionality display to the main section
             
-            //let priorSearched = ''
             
            function previousSearchLink() {
                const previousSearch = document.querySelectorAll('#already_searched');
@@ -345,10 +345,7 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
         previousSearchLink();
             
             
-            
-            
-           
-            
+              
             
 
             //Function to reset search input
@@ -361,9 +358,6 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
             resetSearch();
 
           
-
-            //Access Weather Data Object and console.log chance of sunshine
-            //console.log('10', weatherData.today.chanceofsunshine);
             
             
 
@@ -570,4 +564,9 @@ function checkIfFahrenheitToCelsiusIsChecked(event) {
     } else {
         convertCelsiusToFahrenheit()
     }
+}
+
+function myFunction() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
 }
