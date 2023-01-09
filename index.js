@@ -1,19 +1,27 @@
 const BASE_URL = "https://wttr.in/";
-const searchBar = document.querySelector(".search-bar")
-const articleCurrentWeather = document.querySelector('#current-weather')
-const articleTodaysWeather = document.querySelector('#today-weather')
-const articleTomorrowWeather = document.querySelector("#tomorrow")
-const articleDayAfterWeather = document.querySelector('#day-after')
-const main = document.querySelector("main")
+const searchBar = document.querySelector(".search-bar");
+const articleCurrentWeather = document.querySelector('#current-weather');
+const articleTodaysWeather = document.querySelector('#today-weather');
+const articleTomorrowWeather = document.querySelector("#tomorrow");
+const articleDayAfterWeather = document.querySelector('#day-after');
+const main = document.querySelector("main");
+const prevSearch = document.querySelector("ul");
+const prevSearchArray = [];
+const searchUl = document.querySelector(".search");
+let formattedURL;
+
 
 const form = document.querySelector("form");
-form.addEventListener("submit", getFormattedUrl)
+form.addEventListener("submit", getFormattedUrl) 
+
 
 function getFormattedUrl(event) {
     event.preventDefault();
     const location = `${searchBar.value}`;
-    const formattedURL = `${BASE_URL}${location}?format=j1`;
+    formattedURL = `${BASE_URL}${location}?format=j1`;
     getWeatherData(formattedURL)
+    
+    
 
 }
 
@@ -23,99 +31,124 @@ function getWeatherData(url) {
         .then((response) => response.json())
         
         .then((result) => {
-            createTodaysWeather(result);
+            createTheWeather(result,url);
+            
+            
         })
         
-        .catch((error) => {
-            createErrorMessage(error)
-        })
-}
+        // .catch((error) => {
+        //     createErrorMessage(error)
+        // })
 
-function createTodaysWeather(resultObj) {
-    console.log(resultObj);
-    appendSearchName();
-    getAreaName();
-    getRegionName();
-    getCountryName();
-    getCurrentlyWeather();
-    getTodaysWeather();
-    getTomorrowsWeather();
-    getDayAfterWeather();
     
 }
+
+function createTheWeather(resultObj, url) {
+    //console.log(resultObj);
+   
+    appendSearchName();
+    getCurrentWeatherDetails(resultObj);
+    getTodaysWeather(resultObj);
+    getTomorrowsWeather(resultObj);
+    getDayAfterWeather(resultObj);
+    appendPreviousSearches(resultObj, url);
+    
+    form.reset();
+    
+}
+
 
 function appendSearchName() {
+    // const note = document.querySelector(".note");
+    // note.remove();
     const searchTitle = document.createElement("h3");
-    searchTitle.textContent = `${searchBar.value}`;
+    searchTitle.textContent = searchBar.value;;
     articleCurrentWeather.append(searchTitle);
+        
+
 }
-function getAreaName() {
-    const areaName = document.createElement('p');
-    areaName.innerHTML = `<strong>Area: </strong> 
+function getCurrentWeatherDetails(details) {
+    const allDetails = document.createElement('p');
+    allDetails.innerHTML = `
+    <strong>Area: </strong> ${details.nearest_area[0].areaName[0].value} 
+    <p><strong>Region: </strong> ${details.nearest_area[0].region[0].value}</p>
+    <p><strong>Country: </strong> ${details.nearest_area[0].country[0].value}</p>   
+    <p><strong>Currently: </strong> Feels like ${details.current_condition[0].FeelsLikeF}°F</p>
+    `;
     
-    `;
-    // ${nearest_area[0].value}
-    articleCurrentWeather.append(areaName);
-}
-function getRegionName() {
-    const regionName = document.createElement('p');
-    regionName.innerHTML = `<strong>Region: </strong> 
+    articleCurrentWeather.append(allDetails);
     
-    `; 
-    articleCurrentWeather.append(regionName);
 }
-function getCountryName() {
-    const countryName = document.createElement('p');
-    countryName.innerHTML = `<strong>Country: </strong> 
-    
+function getTodaysWeather(today) {
+    const todaysWeather = document.createElement('h3');
+    todaysWeather.innerHTML = `<center>Today </center>`;
+    const temp = document.createElement("p");
+    temp.innerHTML = `
+    <p><strong>Average Temperature: </strong> ${today.weather[0].avgtempF}°F</p>
+    <p><strong>Max Temperature: </strong> ${today.weather[0].maxtempF}°F</p>
+    <p><strong>Min Temperature: </strong> ${today.weather[0].mintempF}°F</p>
     `;
-    articleCurrentWeather.append(countryName);
+    articleTodaysWeather.append(todaysWeather, temp);
 }
-function getCurrentlyWeather() {
-    const currentlyWeather = document.createElement('p');
-    currentlyWeather.innerHTML = `<strong>Currently: </strong> 
-   
-    `;
-    articleCurrentWeather.append(currentlyWeather);
-}
-function getTodaysWeather() {
-    const todaysWeather = document.createElement('h4');
-    todaysWeather.innerHTML = `<center>Today </center>
-    `;
-    const avgTemp = document.createElement("p");
-    avgTemp.innerHTML = `<strong>Average Temperature: </strong>`;
-    const maxTemp = document.createElement("p");
-    maxTemp.innerHTML = `<strong>Max Temperature: </strong>`;
-    const minTemp = document.createElement('p');
-    minTemp.innerHTML = `<strong>Min Temperature: </strong>`;
-    articleTodaysWeather.append(todaysWeather, avgTemp, minTemp, maxTemp);
-}
-function getTomorrowsWeather() {
-    const tommorowWeather = document.createElement('h4');
+function getTomorrowsWeather(tomorrow) {
+    const tommorowWeather = document.createElement('h3');
     tommorowWeather.innerHTML = `<center>Tommorow </center>
     `;
-    const avgTemp = document.createElement("p");
-    avgTemp.innerHTML = `<strong>Average Temperature: </strong>`;
-    const maxTemp = document.createElement("p");
-    maxTemp.innerHTML = `<strong>Max Temperature: </strong>`;
-    const minTemp = document.createElement('p');
-    minTemp.innerHTML = `<strong>Min Temperature: </strong>`;
-    articleTomorrowWeather.append(tommorowWeather, avgTemp, minTemp, maxTemp);
+    const temp = document.createElement("p");
+    temp.innerHTML = `
+    <p><strong>Average Temperature: </strong> ${tomorrow.weather[1].avgtempF}°F</p>
+    <p><strong>Max Temperature: </strong> ${tomorrow.weather[1].maxtempF}°F</p>
+    <p><strong>Min Temperature: </strong> ${tomorrow.weather[1].mintempF}°F</p>
+    `;
+    articleTomorrowWeather.append(tommorowWeather, temp);
 }
-function getDayAfterWeather() {
-    const dayAfterWeather = document.createElement('h4');
+function getDayAfterWeather(dayAfter) {
+    const dayAfterWeather = document.createElement('h3');
     dayAfterWeather.innerHTML = `<center>Day Ater Tommorow </center>
     `;
-    const avgTemp = document.createElement("p");
-    avgTemp.innerHTML = `<strong>Average Temperature: </strong>`;
-    const maxTemp = document.createElement("p");
-    maxTemp.innerHTML = `<strong>Max Temperature: </strong>`;
-    const minTemp = document.createElement('p');
-    minTemp.innerHTML = `<strong>Min Temperature: </strong>`;
-    articleDayAfterWeather.append(dayAfterWeather, avgTemp, minTemp, maxTemp);
+    const temp = document.createElement("p");
+    temp.innerHTML = `
+    <p><strong>Average Temperature: </strong> ${dayAfter.weather[2].avgtempF}°F</p>
+    <p><strong>Max Temperature: </strong> ${dayAfter.weather[2].maxtempF}°F</p>
+    <p><strong>Min Temperature: </strong> ${dayAfter.weather[2].mintempF}°F</p>
+    `;
+    articleDayAfterWeather.append(dayAfterWeather, temp);
 }
 
+function appendPreviousSearches(previous, url) {
+    const location = searchBar.value;
+    prevSearchArray.push(location);
+    console.log(prevSearchArray)
+    
+    // const note = document.querySelector(".note");
+    // note.remove();
+   
 
+        const searchLi = document.createElement("li");
+        searchLi.innerHTML = `
+        <a href=${url}>${location}</a> 
+        - ${previous.current_condition[0].FeelsLikeF}°F`
+        ;
+    
+        searchLi.addEventListener("click", (event) => {
+            event.preventDefault(); //stops page from reloading) 
+        
+
+        })
+
+        searchUl.append(searchLi);
+
+    }
+  
+     
+    
+    
+    if (prevSearchArray.length > 3) {
+        prevSearchArray.pop();
+    
+
+    
+}
 
 // function createErrorMessage()
 

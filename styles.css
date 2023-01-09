@@ -19,22 +19,27 @@ main {
     display: grid;
     grid-column: span 2;
     background-color: rgb(240, 241, 241);
-    border: 2px solid rgb(0,76,84);
     margin-top: 10px;
     margin-left: 20px;
 }
 #upcoming-weather {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    
+    background-color: rgb(255, 255, 255);
+      
 }
 #prev-search {
     padding-left: 10px;
 }
-p {
+.note {
     text-align: center;
     
 }
 #current-weather {
-    text-align: center;    
+    text-align: center; 
+      
 }
+
+
+
+
