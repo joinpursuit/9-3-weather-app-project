@@ -209,8 +209,41 @@ locationForm.addEventListener("submit", submitLocation => {
             }
         }
 
-     
 })
+
+// 
+const temperatureForm = document.querySelector("#convert_temp_form");
+
+// 
+temperatureForm.addEventListener("submit", temperatureConverter);
+    // 
+    function temperatureConverter(event) {
+        // 
+        event.preventDefault();
+        // 
+        const tempToConvert = document.querySelector("#temp-to-convert").value;
+        // 
+        const celsiusRadio = document.querySelector("#to-c");
+        // 
+        const fahrenheitRadio = document.querySelector("#to-f");
+        // 
+        let convertAnswer;        
+        const convertAnswerArea = document.querySelector("#convert_temp_answer");
+        // 
+        if (celsiusRadio.checked) {
+            convertAnswer = (tempToConvert - 32) * (5/9);
+            convertAnswer = convertAnswer.toFixed(2);
+            convertAnswerArea.textContent = `${convertAnswer}°C`;
+        }
+        // 
+        if (fahrenheitRadio.checked) {
+            convertAnswer = (tempToConvert * (9/5)) + 32;
+            convertAnswer = convertAnswer.toFixed(2);
+            convertAnswerArea.textContent = `${convertAnswer}°C`;
+        }
+    }
+
+
 
 function handleError(error) {
     console.log(error);
