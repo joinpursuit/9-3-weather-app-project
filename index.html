@@ -7,13 +7,23 @@
     <body>
         <header>
             <h1>Weather App</h1>
-            <form>
+            <form id="weatherForm">
                 <label for="query">Pick a location</label>
                 <input id="cityInput" type="text" name="query">
                 <input type="submit" value="Get Weather" id="locationSubmission">
             </form>
         </header>
-        <aside></aside>
+        <aside>
+            <form id="tempConversionForm">
+                <input id="temp-to-convert" type="number">
+                <input id="to-f" type="radio" name="units">
+                <label for="°F">°F</label>
+                <input id="to-c" type="radio" name="units">
+                <label for="°C">°C</label>
+                <input id="conversion" type="submit">
+            </form>
+            <h4 id="temp"></h4>
+        </aside>
         <main>
             <img id="icon">
             <article id="current">
