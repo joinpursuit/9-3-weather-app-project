@@ -1,12 +1,7 @@
-//const previousCities = [];
-
-// Create a variable for the BASE_URL
-//const BASE_URL = `https://wttr.in/${userSearch.value}?format=j1`
-
-//const erase = document.querySelectorAll(".card")
-
 // Create a variable for the user Search
 const userSearch = document.querySelector("#preferredCity");
+
+const resetSearch = document.querySelector('.myHover2');
 
 // Create a variable for users chosen location
 const chooseLocationPTag = document.querySelector(".chooseLocation");
@@ -90,13 +85,12 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
         erase[i].remove()
      }
    }
-  
 
        const BASE_URL = `https://wttr.in/${userSearch.value}?format=j1`
        fetch(BASE_URL)
        .then((response) => response.json())
        .then ((result) => {
-           //console.log(result);
+           console.log(result);
            const card = document.createElement("section")
            card.setAttribute("class", "card")
 
@@ -108,14 +102,15 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
             iconSunny.setAttribute("alt","sun")
             card.append(iconSunny)
          }
-        if((result.current_condition[0].weatherDesc[0].value === "Torrential-rain") || (Number(result.weather[0].hourly[0].chanceofrain) > 50)) {
+          else if ((result.current_condition[0].weatherDesc[0].value === "Torrential-rain") || (Number(result.weather[0].hourly[0].chanceofrain) > 50)) {
             const iconTRain = document.createElement("img")
             iconTRain.setAttribute("src","./assets/icons8-torrential-rain.gif")
             iconTRain.setAttribute("alt","rain")
             card.append(iconTRain)
         }
 
-        if((result.current_condition[0].weatherDesc[0].value === "Light snow") || (Number(result.weather[0].hourly[0].chanceofsnow) > 50)) {
+        else {
+          (result.current_condition[0].weatherDesc[0].value === "Light snow") || (Number(result.weather[0].hourly[0].chanceofsnow) > 50) 
             const iconLightSnow = document.createElement("img")
             iconLightSnow.setAttribute("src","./assets/icons8-light-snow.gif")
             iconLightSnow.setAttribute("alt","snow")
@@ -155,8 +150,8 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
 
 
 
-          const cityName = document.createElement('p');
-          cityName.textContent = result.nearest_area[0].areaName[0].value;
+          const cityName = document.createElement('h2');
+          cityName.textContent =  userSearch.value;
           card.append(cityName);
    
         // Create a paragraph element containing a strong element whose content is area && the content of the paragraph tag is nearest_area name
@@ -235,7 +230,7 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
 
 // Create a 'p' element whose content shows the previously searched cities
    const displayPreviousSearch = document.createElement('p');
-   displayPreviousSearch.textContent = `${userSearch.value} - ${result.current_condition[0].FeelsLikeF} °F` ;
+   //displayPreviousSearch.textContent = `${userSearch.value} - ${result.current_condition[0].FeelsLikeF} °F` ;
           //console.log(displayPreviousSearch);
 
          
@@ -246,13 +241,18 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
 // Create a variable to store the value of the location that the user searches
       const storeValue = userSearch.value;
 
-//if (storeValue) {
-//    chooseLocationPTag.forEach(erasePrevious => {
-//   erasePrevious.remove();
-//  }) 
-//     displayPreviousSearch();
-//
-// };
+
+// Create an 'a' element for hyperlink that allows me to click on previously searched locations 
+const list = document.createElement('li')
+const aTag = document.createElement('a');
+aTag.setAttribute("href", "#")
+aTag.textContent = `${storeValue} - ${result.current_condition[0].FeelsLikeF} °F`;
+previousSearch.append(list)
+list.append(aTag);
+
+
+const form = document.querySelector('#preferredCity');
+form.value = "";
 
 
        })
@@ -260,9 +260,6 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
            console.log(error);
        })
 }); 
-
-
-
 
 
 
