@@ -30,6 +30,7 @@ const inputHeading = document.createElement("h2");
 // inputHeading.innerHTML = "";
 const currentSection = document.querySelector(".view-weather section");
 console.log(currentSection)
+currentSection.append(inputHeading, areaP, regionP, countryP, currentlyFP);
 
 /* function unhideCurrentClass(pclass)
  - (pclass) {user input => json}
@@ -65,14 +66,40 @@ what elements must we use in this function?:
 - article.today√, article.tomorrow√, article.day-after-tm√
 -
  */
-// 3-Day Forecast Selectors
+// 3-Day Forecast Selectors and respective elements.
+// ** TODAY **
 const articleToday = document.querySelector("article.today");
-// detailed info for current day
-const articleTomorrow = document.querySelector("article.tomorrow");
-// detailed info for tomorrow's weather
+// <p> for Average Temperature 
+const todayAvgTemp = document.createElement("p");
+// <p> for Max Temperature
+const todayMaxTemp = document.createElement("p");
+// <p> for Min Temperature
+const todayMinTemp = document.createElement("p");
 
+articleToday.append(todayAvgTemp, todayMaxTemp, todayMinTemp)
+
+// ** TOMORROW **
+const articleTomorrow = document.querySelector("article.tomorrow");
+// <p> for Tomorrow's Average Temperature
+const tmmAvgTemp = document.createElement("p");
+// <p> for Tomorrow's Max Temperature
+const tmmMaxTemp = document.createElement("p");
+// <p> for Tomorrow's Min Temperature
+const tmmMinTemp = document.createElement("p");
+
+articleTomorrow.append(tmmAvgTemp,tmmMaxTemp, tmmMinTemp)
+
+// ** DAY AFTER TOMORROW **
 const articleDayAfter = document.querySelector("article.day-after-tm");
-//detailed info for day after tomorrow's weather
+const dayAfterAvgTemp = document.createElement("p");
+// <p> for Day After Tomorrow Average Temperature
+const dayAfterMaxTemp = document.createElement("p");
+// <p> for Day After Tomorrow Max Temperature
+const dayAfterMinTemp = document.createElement("p");
+// <p> for Day After Tomorrow Min Temperature
+
+
+articleDayAfter.append(dayAfterAvgTemp, dayAfterMaxTemp, dayAfterMinTemp)
 
 // console.log(articleToday, articleTomorrow, articleDayAfter)
 

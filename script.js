@@ -30,13 +30,17 @@ const search = document.querySelector("form.search");
 
 // Current Forecast Selectors
 // creates <p> for nearest Area value
- const areaP = document.createElement("p");
- // <p> for region value
- const regionP = document.createElement("p"); 
- // <p> for country value
- const countryP = document.createElement("p");
- // <p> for Feels Like value
- const currentlyFP = document.createElement("p");
+
+const areaP = document.createElement("p");
+// <p> for region value
+const regionP = document.createElement("p"); 
+// <p> for country value
+const countryP = document.createElement("p");
+// <p> for Feels Like value
+const currentlyFP = document.createElement("p");
+
+// currentSection.append(inputHeading, areaP, regionP, countryP, currentlyFP);
+ 
 
 
 search.addEventListener("submit", (event) => {
@@ -105,10 +109,21 @@ search.addEventListener("submit", (event) => {
             
             console.log(areaP);
             
+        // Adding data to 3-Day Forecast Elements! 
+        // ** TODAY **
+
+        // Average
+        const todayAvgTempJson = json.weather[0].avgtempF;
+        todayAvgTemp.innerHTML = `<strong>Average Temperature: </strong>${todayAvgTempJson}`;
+
+        // Max
+        const todayMaxTempJson = json.weather[0].maxtempF;
+        todayMaxTemp.innerHTML = `<strong>Max Temperature:</strong> ${todayMaxTempJson}`;
+
+        // Min 
+        const todayMinTempJson = json.weather[0].mintempF;
+        todayMinTemp.innerHTML = `<strong>Min Temperature: </strong> ${todayMinTempJson}`
             
-            
-            
-            currentSection.append(inputHeading, areaP, regionP, countryP, currentlyFP);
             
             // updateForecast(json);
             
