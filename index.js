@@ -137,7 +137,7 @@ function createWeatherReport(result, userInput){ // creates the main article
     chanceOfRain.innerHTML = "Chance of Rain: " + result.weather[0].hourly[0].chanceofrain + "%";
     chanceOfSnow.innerHTML = "Chance of Snow: " + result.weather[0].hourly[0].chanceofsnow + "%";
     chanceOfFog.innerHTML = "Chance of Fog: " + result.weather[0].hourly[0].chanceoffog + "%";
-    chanceOfWindy.innerHTML = "Chance of Windy: " + result.weather[0].hourly[0].chanceofwind + "%";
+    chanceOfWindy.innerHTML = "Chance of Windy: " + result.weather[0].hourly[0].chanceofwindy + "%";
     chanceOfThunder.innerHTML = "Chance of Thunder: " + result.weather[0].hourly[0].chanceofthunder + "%";
 
     if(parseInt(result.weather[0].hourly[0].chanceofsunshine) > 50){ // checks api data to see what img to create
@@ -170,9 +170,9 @@ function threeDayForecast(result){ // creates 3 sub articles
     forecast[0].append(today);
     forecast[1].append(tomorrow);
     forecast[2].append(dayAfterTomorrow);
-    
 
     for(let i=0; i<forecast.length; i++){ //loops 3 times and creates the info for the 3 sub articles
+        forecast[i].setAttribute("class", "updatedDays");
 
         averageTemperture[i].innerHTML = "Average Temperture:" + result.weather[i].avgtempF + "°F";
         maxTemperture[i].innerHTML = "Max Temperture:" + result.weather[i].maxtempF + "°F";
