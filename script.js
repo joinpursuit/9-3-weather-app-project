@@ -68,14 +68,17 @@ search.addEventListener("submit", (event) => {
     .then((response) => response.json())
     .then((json) => {
         
-        // If p.empty is visible, remove element
+        // Removes "Choose a location..." <p> that appears on landing page.
         const empty = document.querySelector('p.empty');
         if (empty) {
             empty.remove();
-            unhideCurrentClass(current);
+            // unhideCurrentClass(current);
             // if (divForecast.hasAttribute("hidden"))
-                unhideForecast(divForecast);
-            
+                // unhideForecast(divForecast);
+            removeHidden(current);
+            removeHidden(divForecast);
+
+
             console.log(prettyInput + ": prettyInput")
             //makes user input look pretty: "salt lake city" => Salt Lake City"
             inputHeading.innerHTML = prettyInput;
@@ -110,6 +113,7 @@ search.addEventListener("submit", (event) => {
             console.log(areaP);
             
         // Adding data to 3-Day Forecast Elements! 
+
         // ** TODAY **
 
         // Average
@@ -123,9 +127,35 @@ search.addEventListener("submit", (event) => {
         // Min 
         const todayMinTempJson = json.weather[0].mintempF;
         todayMinTemp.innerHTML = `<strong>Min Temperature: </strong> ${todayMinTempJson}`
-            
-            
-            // updateForecast(json);
+    
+        // ** TOMORROW ** 
+
+        // Average
+        const tmmAvgTempJson = json.weather[1].mintempF;
+        tmmAvgTemp.innerHTML = `<strong>Average Temperature: </strong>${tmmAvgTempJson}`
+        // Max 
+        const tmmMaxTempJson = json.weather[1].maxtempF;
+        tmmMaxTemp.innerHTML = `<strong>Max Temperature: </strong>${tmmMaxTempJson}`
+
+        // Min
+        const tmmMinTempJson = json.weather[1].mintempF;
+        tmmMinTemp.innerHTML = `<strong>Min Temperature: </strong>${tmmMinTempJson}`
+
+        // ** DAY AFTER TOMORROW **
+
+        // Average
+        const dayAfterAvgTempJson = json.weather[2].avgtempF;
+        dayAfterAvgTemp.innerHTML = innerHTML = `<strong>Average Temperature: </strong>${dayAfterAvgTempJson}`
+
+        // Max 
+        const dayAfterMaxTempJson = json.weather[2].maxtempF;
+        dayAfterMaxTemp.innerHTML = `<strong>Max Temperature: </strong>${dayAfterMaxTempJson}`
+
+        //Min
+
+        const dayAfterMinTempJson = json.weather[2].mintempF;
+        dayAfterMinTemp.innerHTML = `<strong>Min Temperature: </strong>${dayAfterMinTempJson}`
+        
             
             
             

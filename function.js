@@ -4,10 +4,7 @@ takes in a string and replaces all spaces with +s. if the string contains no spa
 */
 function plusify(entry) {
     let plusified = entry;
-    if (plusified.includes(" ")) {
-    plusified = entry.split(" ").join("+");
-}
-return plusified;
+   return plusified = entry.split(" ").join("+");
 }
 
 /* Current Forecast Selector - contains space for forecast */
@@ -19,11 +16,11 @@ console.log(divForecast)
 
 
 // Function that displays the template for our 3-day Forecast
-function unhideForecast(div) {
-    if(div.hasAttribute("hidden")){
- div.removeAttribute("hidden");
-}
-}
+// function unhideForecast(div) {
+//     if(div.hasAttribute("hidden")){
+//  div.removeAttribute("hidden");
+// }
+// }
 
 const inputHeading = document.createElement("h2");
 // current.prepend(inputHeading);
@@ -35,11 +32,17 @@ currentSection.append(inputHeading, areaP, regionP, countryP, currentlyFP);
 /* function unhideCurrentClass(pclass)
  - (pclass) {user input => json}
  removes the hidden attribute from article class "current" */
-function unhideCurrentClass(pclass) {
-    if (pclass.hasAttribute("hidden")) {  pclass.removeAttribute("hidden");
-}
-}
+// function unhideCurrentClass(pclass) {
+//     if (pclass.hasAttribute("hidden")) {  pclass.removeAttribute("hidden");
+// }
+// }
 
+// Function that removes the "hidden" attribute from an element :)
+function removeHidden(element) {
+    if (element.hasAttribute("hidden")) {
+        element.removeAttribute("hidden");
+    }
+}
 //makes user input look pretty: "salt lake city" => Salt Lake City"
 function editValue(uInput) {
     const inputArr = uInput.split(" ");
@@ -61,9 +64,7 @@ function editValue(uInput) {
 
 /* - The 3-day forecast should appear within its respective grid cell <article class="today/tomorrow/day-after-tm">
 
-what elements must we use in this function?:
-- the json file we got from the fetch
-- article.today√, article.tomorrow√, article.day-after-tm√
+
 -
  */
 // 3-Day Forecast Selectors and respective elements.
@@ -101,10 +102,11 @@ const dayAfterMinTemp = document.createElement("p");
 
 articleDayAfter.append(dayAfterAvgTemp, dayAfterMaxTemp, dayAfterMinTemp)
 
-// console.log(articleToday, articleTomorrow, articleDayAfter)
+
 
 
 
 // function updateForecast(data) {
     //  console.log(response.nearest_area[0].areaName[0].value);
     // }
+ // updateForecast(json);
