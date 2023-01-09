@@ -6,12 +6,12 @@ form.addEventListener("submit", (event)=> {
     let userCity = event.target["search-bar"].value;
     weatherDisplay(userCity);
 });
-function addToPrevious(userInput, currentTemp) {
-    let ul =document.querySelector("ul");
+function addToPreviousSearch(userInput, currentTemp) {
+    let ul = document.querySelector("ul");
 }
 
 function weatherDisplay(userInput) {
-
+    
     fetch(`https://wttr.in/${userInput}?format=j1`)
     .then((res) => res.json())
     .then((file) => {
@@ -38,7 +38,7 @@ function weatherDisplay(userInput) {
         currentWeather.append(country);
 
         let currently = document.createElement("p");
-        currently.innerHTML = `<strong>Currently</strong> Feels Like ${file.current_condition[0].FeelsLikeF}F`;
+        currently.innerHTML = `<strong>Currently:</strong> Feels Like ${file.current_condition[0].FeelsLikeF}°F`;
         currentWeather.append(currently);
 
         let today = document.querySelector("article.today-weather");
@@ -47,15 +47,15 @@ function weatherDisplay(userInput) {
         today.append(todayText);
 
         let avgToday = document.createElement("p");
-        avgToday.innerHTML = ` <strong>Average Temperature:</strong> ${file.weather[0].avgtempF}F`;
+        avgToday.innerHTML = `<strong>Average Temperature:</strong> ${file.weather[0].avgtempF}°F`;
         today.append(avgToday);
 
         let maxToday = document.createElement("p");
-        maxToday.innerHTML = `<strong> Max Temperature:</strong> ${file.weather[0].maxtempF}F`;
+        maxToday.innerHTML = `<strong> Max Temperature:</strong> ${file.weather[0].maxtempF}°F`;
         today.append(maxToday);
 
         let minToday = document.createElement("p");
-        minToday.innerHTML = `<strong> Min Temperature:</strong> ${file.weather[0].mintempF}F`;
+        minToday.innerHTML = `<strong> Min Temperature:</strong> ${file.weather[0].mintempF}°F`;
         today.append(minToday);
 
         let tommorrow = document.querySelector(".tommorrow-weather");
@@ -64,15 +64,15 @@ function weatherDisplay(userInput) {
         tommorrow.append(tommorrowText);
 
         let avgTommorrow = document.createElement("p");
-        avgTommorrow.innerHTML = ` <strong>Average Temperature</strong> ${file.weather[1].avgtempF}F`;
+        avgTommorrow.innerHTML = `<strong>Average Temperature:</strong> ${file.weather[1].avgtempF}°F`;
         tommorrow.append(avgTommorrow);
 
         let maxTommorrow = document.createElement("p");
-        maxTommorrow.innerHTML = ` <strong> Max Temperature </strong> ${file.weather[1].maxtempF}F`;
+        maxTommorrow.innerHTML = `<strong> Max Temperature </strong> ${file.weather[1].maxtempF}°F`;
         tommorrow.append(maxTommorrow);
 
         let minTommorrow = document.createElement("p");
-        minTommorrow.innerHTML = ` <strong> Min Temperature </strong> ${file.weather[1].mintempF}F`;
+        minTommorrow.innerHTML = `<strong> Min Temperature: </strong> ${file.weather[1].mintempF}°F`;
         tommorrow.append(minTommorrow);
         
         let dayAfterTommorrow = document.querySelector(".day-after-tommorrow-weather");
@@ -81,29 +81,29 @@ function weatherDisplay(userInput) {
         dayAfterTommorrow.append(dayAfterTommorrowText);
 
         let avgDayAfterTommorrow = document.createElement("p");
-        avgDayAfterTommorrow.innerHTML = ` <strong> Average Temperature: </strong> ${file.weather[2].avgtempF}F`;
+        avgDayAfterTommorrow.innerHTML = `<strong> Average Temperature: </strong> ${file.weather[2].avgtempF}°F`;
         dayAfterTommorrow.append(avgDayAfterTommorrow);
 
         let maxDayAfterTommorrow = document.createElement("p");
-        maxDayAfterTommorrow.innerHTML = ` <strong> Max Temperature: </strong> ${file.weather[2].maxtempF}F`;
+        maxDayAfterTommorrow.innerHTML = `<strong> Max Temperature: </strong> ${file.weather[2].maxtempF}°F`;
         dayAfterTommorrow.append(maxDayAfterTommorrow);
 
         let minDayAfterTommorrow = document.createElement("p");
-        minDayAfterTommorrow.innerHTML = ` <strong>Min Temperature: </strong> ${file.weather[2].mintempF}F`;
+        minDayAfterTommorrow.innerHTML = `<strong>Min Temperature: </strong> ${file.weather[2].mintempF}°F`;
         dayAfterTommorrow.append(minDayAfterTommorrow);
 
 
-        let chanceofsunshine = document.createElement("p");
-        chanceofsunshine.innerHTML = ` <strong>Chance of Sunshine</strong> ${file.weather[0].hourly[0].chanceofsunshine}`;
-        currentWeather.append(chanceofsunshine);
+        let chanceOfSunshine = document.createElement("p");
+        chanceOfSunshine.innerHTML = `<strong>Chance of Sunshine:</strong> ${file.weather[0].hourly[0].chanceofsunshine}`;
+        currentWeather.append(chanceOfSunshine);
 
-        let chanceofrain = document.createElement("p");
-        chanceofrain.innerHTML = ` <strong>Chance of Rain</strong> ${file.weather[0].hourly[0].chanceofrain}`;
-        currentWeather.append(chanceofrain);
+        let chanceOfRain = document.createElement("p");
+        chanceOfRain.innerHTML = `<strong>Chance of Rain:</strong> ${file.weather[0].hourly[0].chanceofrain}`;
+        currentWeather.append(chanceOfRain);
 
-        let chanceofsnow = document.createElement("p");
-        chanceofsnow.innerHTML = ` <strong>Chance of Snow</strong> ${file.weather[0].hourly[0].chanceofsnow}`;
-        currentWeather.append(chanceofsnow);
+        let chanceOfSnow = document.createElement("p");
+        chanceOfSnow.innerHTML = `<strong>Chance of Snow:</strong> ${file.weather[0].hourly[0].chanceofsnow}`;
+        currentWeather.append(chanceOfSnow);
 
         let img = document.createElement("img");
         if(file.weather[0].hourly[0].chanceofsunshine > 50) {
@@ -112,39 +112,66 @@ function weatherDisplay(userInput) {
         }else if (file.weather[0].hourly[0].chanceofrain > 50) {
             img.setAttribute("alt", "rain");
             img.setAttribute("src", "./assets/icons8-torrential-rain.gif");
-        }else if (file.weather[0].hourly[0].chanceofsnow >50) {
+        }else if (file.weather[0].hourly[0].chanceofsnow > 50) {
             img.setAttribute("alt", "snow");
             img.setAttribute("src", "./assets/icons8-light-snow.gif");
-        
         }
-        currentWeather.prepend(img)
-
-        const tempConversion = document.querySelector("aside.temperature-conversion form");
-        tempConversion.addEventListener("submit", (event) => {
-            event.preventDefault();
+        currentWeather.prepend(img);
+        // if(shouldIAdd){
+        //             addToPrevious(userInput, file.current_condition[0].FeelsLikeF)
+              
             
-            const temperature = event.target.querySelector("#temp-to-convert").value;
-            const types = event.target.querySelectorAll(".temperature");
-            console.log("This is type:", types);
-            if(types[0].checked) {
-                const celcius = (temperature -32)* 5 / 9
-                event.target.querySelector("h4").textContent = `${celcius.toFixed(2)}C`;
-            }else if (types[1].checked) {
-                const fahreinheit = (temperature * 9) / 5 + 32
-                event.target.querySelector("h4").textContent = ` ${fahreinheit.toFixed(2)}F`;
+        
+    
+    // const add_prev_search = (file, location) => {
+    //     let previousSearch = document.querySelector("aside.weather-history ul");
+    //     let searchItems = document.querySelectorAll("ul li a");
+        
+    //     let listItem = document.createElement("li");
+    //     listItem.innerHTML = `<a href="#">${location}</a> - ${file.current_condition[0].FeelsLikeF}°F`;
+    //     previousSearch.append(listItem);
+
+    //     listItem.addEventListener("click", (event) => {
+    //         event.preventDefault();
+    //         fetch(`https://wttr.in/${location}?format=j1`)
+    //          .then((res) => res.json())
+    //          .then((json) => {
+    //             clear_defaults()
+    //                 add_weather(json, location)
+    //                 let location = document.querySelector("input.search-bar").value;
+    //                 if(!location) {
+    //                     window.reload();
+
+                    // }
+                
+
+                   let result = querySelector("h4.converted-temp");
+                    let convertC = document.getElementById("to-c");
+                    let convertF = document.getElementById("to-f");
+                    let originalNum = document.querySelector("#temp-to-covert");
+          
+
+                    if(convertC.checked) {
+                        result.textContent = `${((originalNum.value - 32) / 1.8).toFixed(2)}`;
+                    }else if (convertF.checked) {
+                        result.textContent = `${((originalNum.value * 1.8 + 32).toFixed(2))}`
+                    }
+                })
+        
+            //  .catch((error) => console.log(error))
+             
+
+        // const tempConversion = document.querySelector("aside.temperature-conversion form");
+        // tempConversion.addEventListener("submit", (event) => {
+        //     event.preventDefault();
+            
             }
-        });
+           
+    //     });
 
-        if(shouldIAdd){
-            addToPreviousSearch(userInput, file.current_condition[0].FeelsLikeF)
-        }
-    })
-    .catch((error) => console.log(error));
-
-    const clear_defaults = () => {
-        document.querySelectorAll(".defaults")
-        .forEach((item) => item.classList.add("hidden"));
-        document.querySelectorAll("weather").forEach((item) => (item.innerHTML = ""));
-    };
-
-};
+    //     if(shouldIAdd){
+    //         addToPrevious(userInput, file.current_condition[0].FeelsLikeF)
+    // }   
+    
+    // .catch((error) => console.log(error));
+        
