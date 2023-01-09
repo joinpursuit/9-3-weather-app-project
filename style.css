@@ -2,18 +2,14 @@ body {
               display: grid;
               grid-template-columns: repeat(6, 1fr);
               grid-gap: .4rem;
-              font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+              font-family:Georgia, 'Times New Roman', Times, serif;
               font-weight: 300;
               padding: 0.4rem;
-            background-image: radial-gradient(#000763 4px, transparent 4px), radial-gradient(#000763 4px, transparent 4px);
+              font-size: .9rem;
+               background-image: radial-gradient(#da1cd4 4px, transparent 4px), radial-gradient(#18d139 4px, transparent 4px);
                 background-size: 100px 100px;
                 background-position: 0 0, 50px 50px;
                 background-color: #fefefe;
-          }
-
-h1 {
-    font-size: 2.8rem;
-    font-weight: 100;
 }
 
 h2,
@@ -43,11 +39,8 @@ header {
     border-radius: .8rem;
     border-color: white;
     background-color: white;
-    /* background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%); */
-
-   
-    
-
+    /* background: transparent; */
+    /* background-image: linear-gradient(to top, #da1cd4 0%, #18d139 120%); */
 }
 
 form {
@@ -62,6 +55,7 @@ form {
     border-radius: .8rem;
     display: grid;
     background-color: white;
+    /* background: transparent; */
 }
 
 .current {
@@ -79,7 +73,8 @@ form {
 
 .history {
     grid-column: 5 / 6;
-    padding-left: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     text-align: center;
     background-color: white;
     border: 5px inset;
@@ -89,6 +84,7 @@ form {
 .temperature-conversion {
     grid-column: 2 / 3;
     padding-left: 2rem;
+    padding-right: 2rem;
     content: center;
     background-color: white;
     border-radius: .8rem;
@@ -99,8 +95,6 @@ form {
 .icon {
     width: 8rem;
     height: 8rem;
-
-
 }
 
 .form-input {
