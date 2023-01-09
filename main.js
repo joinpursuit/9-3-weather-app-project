@@ -214,6 +214,7 @@ function createForecastArticleByDay(day) {
 
   return upComingWeatherArticle;
 }
+
 function convertToClassName(dayName) {
   if (dayName.includes(`${sc._SPACE_}`)) {
     return dayName.replaceAll(`${sc._SPACE_}`, `${sc._DASH_}`).toLowerCase();
@@ -291,3 +292,5 @@ function checkForValidInput(input) {
 function displayError(error) {
   console.log(error);
 }
+// what is javascript hoisting
+java;
