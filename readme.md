@@ -102,9 +102,9 @@ The following features are required for your application. These features detail 
   - [x] See a `main` element on the left side of the page, that suggests that they make a search.
   - [ ] See an `aside` element on the right side of the page, that includes the text "Previous Searches".
 - When a user enters text into the search form and presses submit, they should:
-  - [ ] See the text disappear from the search bar.
-  - [ ] See the name of the city that was searched as well as the area, region, country, and currently "feels like" temperature for that location.
-  - [ ] See detailed information for the current day and the next two days below the `main` element.
+  - [x] See the text disappear from the search bar.
+  - [x] See the name of the city that was searched as well as the area, region, country, and currently "feels like" temperature for that location.
+  - [x] See detailed information for the current day and the next two days below the `main` element.
   - [ ] See the city name and "feels like" temperature show up in the `aside` element.
 - If another search is made, the user should:
   - [ ] See the `main` element change to account for the new city, updating all relevant information.
