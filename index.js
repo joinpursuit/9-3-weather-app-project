@@ -8,6 +8,7 @@ let lastSearchList = document.querySelector("ul.previousList");
 let lastSearchSection = document.querySelector("#previousSearchesList");
 let prevMessage = document.querySelector(".prevMessage");
 let submitButton = document.querySelector("#locationSubmission");
+let icon = document.querySelector("#icon");
 document.addEventListener("submit",(e)=>{
     e.preventDefault();
 
@@ -24,8 +25,26 @@ document.addEventListener("submit",(e)=>{
             <li><a value ="${queryString}">${data.nearest_area[0].areaName[0].value}</a><p> ${data.current_condition[0].FeelsLikeF}°F</p></li>
             `
         }
-
+        if (data.weather[0].hourly[0].chanceofsunshine > 50){
+            icon.style.display = "grid";
+            icon.setAttribute("src","./assets/icons8-summer.gif");
+            icon.setAttribute("alt","sun");
+        }
+        else if (data.weather[0].hourly[0].chanceofrain > 50){
+            icon.style.display = "grid";
+            icon.setAttribute("src","./assets/icons8-torrential-rain.gif");
+            icon.setAttribute("alt","rain");
+        }
+        else if (data.weather[0].hourly[0].chanceofsnow > 50){
+            icon.style.display = "grid";
+            icon.setAttribute("src","./assets/icons8-light-snow.gif");
+            icon.setAttribute("alt","snow");
+        }
+        else{
+            icon.style.display = "none";
+        }
         currentOutput.innerHTML = 
+        
         `
         <h2>${queryString}</h2>
 
@@ -33,6 +52,9 @@ document.addEventListener("submit",(e)=>{
         <p><strong>Region: </strong>${data.nearest_area[0].region[0].value}<p>
         <p><strong>Country: </strong>${data.nearest_area[0].country[0].value}<p>
         <p><strong>Currently: </strong> Feels Like ${data.current_condition[0].FeelsLikeF}°F<p>
+        <p><strong>Chance of Sunshine:</strong> ${data.weather[0].hourly[0].chanceofsunshine}</p>
+        <p><strong>Chance of Rain:</strong> ${data.weather[0].hourly[0].chanceofrain}</p>
+        <p><strong>Chance of Snow:</strong> ${data.weather[0].hourly[0].chanceofsnow}</p>
         `
 
         todayOutput.innerHTML = 
