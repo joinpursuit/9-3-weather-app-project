@@ -1,4 +1,10 @@
+html{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 body{
+    width: 70%;
     font-family: sans-serif;
     text-align: center;
     display: grid;
@@ -6,7 +12,6 @@ body{
 }
 
 header{
-
     background-color: dodgerblue;
     grid-column: 1 / span 3;
 }
@@ -17,6 +22,35 @@ main{
 }
 
 #current{
-    
+    background-color: rgb(162, 157, 157);
     grid-column: 1/span 3;
+}
+
+#today{
+    background-color: rgb(162, 157, 157);
+}
+
+#tomorrow{
+    background-color: rgb(162, 157, 157);
+}
+
+#afterThat{
+    background-color: rgb(162, 157, 157);
+}
+
+img{
+    grid-column: 2;
+}
+
+#tempConversionForm{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+#topHint{
+    grid-column: 1/span 2;
+}
+
+#temp-to-convert{
+    grid-column: 1/span 2;
 }
