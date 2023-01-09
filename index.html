@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="weatherApp.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Weather App</h1>
+            <form>
+                <label for="locationSearch">Pick a Location</label>
+                <input class="searchField" type="text" name="locationSearch" id="locationSearch" pattern="^[A-Za-z\s,]+$"
+                    required>
+                <input class="submit" type="submit" name="submit" value="Get Weather">
+            </form>
+        </header>
+        <aside class="convert hidden">
+            <form class="convertForm">
+                <div class="numInput">
+                    <label for="temp-to-convert">Convert the temperature</label>
+                    <input type="number" class="convertInput" id="temp-to-convert" min="-40" max="120">
+                </div>
+                <div class="convertToCelsiusDiv">
+                    <label>To Celsius</label>
+                    <input type="radio" id="to-c" name="convert-temp" class="celsiusRadioButton" value="c">
+                </div>
+                <div class="convertToFahrenheitDiv">
+                    <label>To Fahrenheit</label>
+                    <input type="radio" id="to-f" name="convert-temp" class="fahrenheitRadioButton" value="f" checked>
+                </div>
+                <input type="submit" class="convertSubmit" name="convertSubmit" value="Submit">
+                <h4 class="convertedNum"></h4>
+            </form>
+           
+        </aside>
+        <main>
+            <article class="currentWeather">Choose a location to view the weather.</article>
+            <aside class="tempAside">
+                <article class="today"></article>
+                <article class="tomorrow"></article>
+                <article class="dayAfterTomorrow"></article>
+            </aside>
+        </main>
+        <aside class="previousSearches">
+            <section>
+                <h4>Previous Searches</h4>
+                <ul class="searchUl"></ul>
+                <p class="noPreviousSearches">No previous searches.</p>
+            </section>
+        </aside>
+    </div>
+    <footer>
+        <p class="imgCreditPTag">Image by <a class="imgCredit" href="https://www.freepik.com/free-photo/cloud-blue-sky_1017702.htm#query=weather%20background&position=6&from_view=keyword" target="_blank">jannoon028</a> on Freepik
+        </p>
+        <a class="nameTag" href="https://github.com/joshuanelsondev" target="_blank">joshuanelsondev</a>
+    </footer>
+    
+</body>
+</html>
