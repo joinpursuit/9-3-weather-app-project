@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marangely's Weather App Project</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="weatherApp.js" defer></script>
+</head>
+
+<body>
+    <div class="container"> 
+      <!--  <div class="search">
+        <input type="text" class="searh-bar">
+      <button></button>
+      </div> -->
+    <header>
+      <h1 class="myHover">Weather App</h1> 
+      <div class="form-center">
+      <form id="form">
+        <label> Pick a Location: </label>
+          <input name="preferredCity" id="preferredCity" type="text" />
+          <input type="submit" value="Get Weather" class="myHover2"/>
+      </form> 
+      </div>  
+    </header>
+      <div class="mainThree">
+        <aside class="convertor">
+          <form class="convertor-form">
+            <label for="temp">Convert the Temperature</label>
+            <input type="number" name="temp" id="temp" maxlength="5" required/> <br>
+            <label for="temp_c">To Celsius</label>
+            <input type="radio" name="temp_to_convert" id="to-c" value="c" class="c" checked />
+            <label for="temp_f">To Fahrenheit</label>
+            <input type="radio" name="temp_to_convert" id="to-f" value="f" class="f" />
+            <input type="submit" value="Convert" class="myHover3" />
+            <h4 class="h4_result"></h4>
+          </form>
+          <h4></h4>
+        </aside>
+
+
+    <main>
+      <article class="currentWeatherArticle">
+         <p class="chooseLocation">Choose a location to view the weather.</p>
+      </article>
+      <div class="main-grid">
+      <article class="mainInfo"></article> 
+      <aside class="asideGrid">
+        <article class="forecast">
+          <div id="today">
+            <h3 id="today_h3"></h3>
+            <p id="today_avg_temp_f"></p>
+            <p id="today_max_temp_f"></p>
+            <p id="today_min_temp_f"></p>
+         </div>
+        </article>
+        <article class="forecast onlytwo">
+          <div id="tomorrow">
+            <h3 id="tomorrow_h3"></h3>
+            <p id="tomorrow_avg_temp_f"></p>
+            <p id="tomorrow_max_temp_f"></p>
+            <p id="tomorrow_min_temp_f"></p>
+          </div>
+        </article>
+        <article class="forecast onlytwo">
+          <div id="dayAfterTomorrow">
+            <h3 id="day_after_tomorrow_h3"></h3>
+            <p id="day_after_tomorrow_avg_temp_f"></p>
+            <p id="day_after_tomorrow_max_temp_f"></p>
+            <p id="day_after_tomorrow_min_temp_f"></p>
+          </div>
+        <article>
+        </div>
+    </aside>
+        <!-- <article></article> -->
+      <!-- </aside> -->
+    </main>
+
+    <aside class="previousSearches">
+        <section> 
+            <h4>Previous Searches</h4>
+            <ul class="searchUl">
+              <p class="chooseLocation2">No previous searches.</p>
+            </ul>
+        </section> 
+    </aside>
+     </div> 
+    </div>
+</body>
+</html>

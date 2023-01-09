@@ -1,0 +1,124 @@
+header{
+    display: grid;
+    border-radius: 17px;
+    text-align: center;
+    border: 3px solid #FFEBFF;
+    margin: 15px auto;
+    width: 85%;
+    background-color: #b794b7;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .form-center {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+
+
+ body {
+    justify-content: center;
+    margin: 0;
+    background: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ }
+
+ .container {
+    background: #e0c9f1;
+    padding: 5px;
+    border-radius: 30px;
+    width: auto;
+    margin: 0;
+    border: 2px solid #FFEBFF;
+    
+  }
+
+ main {
+    display: grid;
+    border: 2px solid #FFEBFF;
+    float: left;
+    width: 52%;
+    overflow: hidden;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+
+article {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .mainThree {
+    margin: 15px auto;
+    background-color: ;
+    justify-content: left;
+    width: 85%;
+    overflow: hidden;
+  }
+
+  .hidden {
+    float: left;
+    width: 22%;
+  }
+
+  .previousSearches {
+    width: 22%;
+    overflow: hidden;
+    padding-left: 35px;
+}
+
+
+.mainInfo {
+    grid-column: span 3;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.asideGrid {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.forecast {
+    
+    margin-left: 10px;
+}
+
+.onlytwo {
+    margin-left: 32px;
+}
+
+.myHover2:hover {
+ background-color: rgb(217, 114, 217);
+}
+
+.myHover:hover {
+  background-color:  rgb(217, 114, 217);
+}
+
+.myHover3:hover {
+  background-color: rgb(217, 114, 217);
+}
+
+#today {
+  border: solid rgb(217, 114, 217) 2px;
+  width: 100px;
+  height: 94%;
+}
+
+#tomorrow {
+  border: solid rgb(217, 114, 217)  2px;
+  width: 100px;
+  height: 94%;
+}
+
+#dayAfterTomorrow {
+  border:  solid rgb(217, 114, 217)2px;
+  width: 100px;
+  height: 94%;
+}
+
