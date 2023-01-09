@@ -78,7 +78,7 @@ function getWeatherByLocation(location) {
         getToday.innerText = "Today";
         getTomorrow.innerText = "Tomorrow"
         getDayAfter.innerText = "Day After Tomorrow"
-        
+
 
 
         
