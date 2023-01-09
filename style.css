@@ -3,31 +3,52 @@
 body {
     display: grid;
     justify-content: center;
+    margin: 0;
+    background-image: url(assets/cloud-blue-sky.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    width: 100vw;
+    align-content: space-between;
 }
 
 .container {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 120px 3fr 1fr;
     gap: 20px;
-    width: 1000px;
+    width: 100vw;
     font-family: 'Merriweather Sans', sans-serif;
 }
 
 header {
     grid-column: 1 / 4;
     grid-row: 1;
-    border: 3px solid #2b3636;
     font-weight: 800;
     color: white;
-    background: #268080;
+    background: #0387c7a8;
     display: grid;
     align-content: center;
     justify-content: center;
     justify-items: center;
     text-align: center;
     width: auto;
-    height: 200px;
+    height: 120px;
     grid-template-columns: 300px;
+}
+
+footer {
+    background-color: #0080c182;
+    width: 100vw;
+    height: 50px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    bottom: 0;
 }
 
 form {
@@ -47,7 +68,7 @@ form {
 main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
     grid-column: 1 / 3;
     grid-row: 2 / 4;
     padding-left: 20px;
@@ -60,8 +81,10 @@ main {
     justify-content: center;
     align-content: center;
     font-size: 14px;
-    border: 2px solid #268080;
-    background: #efefef;
+    border: 2px solid #2293d1;
+    border-radius: 10px;
+    background: #efefef82;
+    height: auto;
     min-height: 100px;
     text-align: center;
 }
@@ -81,15 +104,17 @@ main {
     grid-column: 1 / 4;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
 }
 
 .tempCard {
     display: grid;
     align-items: center;
     text-align: center;
-    border: 2px solid #268080;
-    background: #efefef;
-    max-height: 280px;
+    border: 2px solid #2293d1;
+    background: #efefef82;
+    height: fit-content;
+    border-radius: 10px;
 }
 
 .tempCard p {
@@ -108,20 +133,27 @@ strong {
     margin-right: 5px;
 }
 
-a {
-    color: #268080;
+.prevSearchInput {
+    color: #0080c1;
 }
+
 
 li {
     width: max-content;
+}
+
+aside.convert {
+    margin-left: 2vw;
 }
 
 .convertForm {
     display: grid;
     grid-column: 1 / 2;
     grid-row: 2;
-    border: 2px solid #268080; 
+    border: none; 
     padding: 10px;
+    background-color: #ffffff70;
+    border-radius: 10px;
 }
 
 .numInput {
@@ -133,4 +165,34 @@ li {
 }
 .convertedNum {
     text-align: center;
+    margin: 0;
+    font-weight: 600;
+}
+
+.celsiusRadioButton, .fahrenheitRadioButton {
+    float: left;
+}
+
+.convertInput {
+    width: fit-content;
+}
+
+.convertSubmit {
+    width: fit-content;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+}
+
+.imgCreditPTag {
+    padding-left: 10px;
+}
+
+.imgCredit, .nameTag {
+    color: white;
+    text-decoration: none;
+}
+
+.nameTag {
+    position: absolute;
+    left: 46%;
 }

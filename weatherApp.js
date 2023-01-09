@@ -40,9 +40,6 @@ function getWeatherInfo(api, location) {
 
     fetch(api)
         .then((response) => response.json())
-            // if (response.ok){
-            // }
-            // createErrorMessage();
         .then((result) => {
             generateWeatherResults(result, location);
         })
@@ -200,6 +197,7 @@ function appendPreviousSearch(temperatureFeelsLike, location) {
     if (!searchArray.includes(location)) {
         searchArray.push(location);
         const anchorTagForSearchLink = document.createElement('a');
+        anchorTagForSearchLink.setAttribute('class', 'prevSearchInput');
         anchorTagForSearchLink.setAttribute('href', '#');
         anchorTagForSearchLink.setAttribute('name', currentApi);
         anchorTagForSearchLink.classList.add('previousSearchLink');
@@ -270,8 +268,6 @@ function generateDayAfterTomorrowCard(weather) {
 
 function appendConversionForm() {
     tempeConversionAside.classList.remove('hidden');
-   
-        console.log(convertInput);
         convertForm.addEventListener('submit', (event) => {
             event.preventDefault();
             if (Number(convertInput.value) <= 120 && Number(convertInput.value) >= -40) {
@@ -303,8 +299,8 @@ function capitalizeFirstLetter(string) {
 }
 
 function createErrorMessage(error) {
-    // currentWeatherArticle.innerHTML = '<strong style="font-size: 20px;">You have entered an invalid entry. Please try again.</strong>';
-    // if (searchArray.length < 1) {
-    //     main.style.cssText = 'grid-column: 1 / 3;';
-    // } 
+    currentWeatherArticle.innerHTML = '<strong style="font-size: 20px;">You have entered an invalid entry. Please try again.</strong>';
+    if (searchArray.length < 1) {
+        main.style.cssText = 'grid-column: 1 / 3;';
+    } 
 }
