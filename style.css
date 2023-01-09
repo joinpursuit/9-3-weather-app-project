@@ -103,3 +103,22 @@ article {
 .myHover3:hover {
   background-color: rgb(217, 114, 217);
 }
+
+#today {
+  border: solid rgb(217, 114, 217) 2px;
+  width: 100px;
+  height: 94%;
+}
+
+#tomorrow {
+  border: solid rgb(217, 114, 217)  2px;
+  width: 100px;
+  height: 94%;
+}
+
+#dayAfterTomorrow {
+  border:  solid rgb(217, 114, 217)2px;
+  width: 100px;
+  height: 94%;
+}
+

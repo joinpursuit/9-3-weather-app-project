@@ -114,6 +114,7 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
             iconTRain.setAttribute("alt","rain")
             card.append(iconTRain)
         }
+
         if((result.current_condition[0].weatherDesc[0].value === "Light snow") || (Number(result.weather[0].hourly[0].chanceofsnow) > 50)) {
             const iconLightSnow = document.createElement("img")
             iconLightSnow.setAttribute("src","./assets/icons8-light-snow.gif")
@@ -121,25 +122,35 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
             card.append(iconLightSnow)
         }
 
-        if((result.current_condition[0].weatherDesc[0].value === "Foggy") || (Number(result.weather[0].hourly[0].humidity) > 50)) {
+        if((result.current_condition[0].weatherDesc[0].value === "Foggy") || (Number(result.weather[0].hourly[0].visibility) > 50)) {
           const iconFoggy = document.createElement("img")
           iconFoggy.setAttribute("src","./assets/icons8-fog.gif")
           iconFoggy.setAttribute("alt","fog")
           card.append(iconFoggy)
         }
 
-
-        if((result.current_condition[0].weatherDesc[0].value === "Windy") || (Number(result.weather[0].hourly[0].chanceofwindy) < 50)) {
+        if((result.current_condition[0].weatherDesc[0].value === "Windy") || (Number(result.weather[0].hourly[0].WindGustKmph) < 50)) {
           const iconWindy = document.createElement("img")
           iconWindy.setAttribute("src","./assets/icons8-wind.gif")
           iconWindy.setAttribute("alt","wind")
           card.append(iconWindy)
         }
 
+        if((result.current_condition[0].weatherDesc[0].value === "Drizzling") || (Number(result.weather[0].hourly[0].chanceofrain) <= 50 )) {
+          const iconRainCloud = document.createElement("img")
+          iconRainCloud.setAttribute("src","./assets/icons8-rain-cloud.gif")
+          iconRainCloud.setAttribute("alt","light-rain")
+          card.append(iconRainCloud)
+        }
 
 
-
-
+        // Below from lines 147-153, I was attempting to figure out how to get the 'night' icon added to my Weather App, but I failed-forward.
+        //if(result.weather[0].hourly[0].time >= 600) {
+        // const iconNightTime = document.createElement("img")
+        // iconNightTime.setAttribute("src","./assets/icons8-night.gif")
+        // iconNightTime.setAttribute("alt","night")
+        // card.append(iconNightTime)
+        //}
 
 
 
@@ -218,12 +229,11 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
            celsiusToFahrenheit();
            fahrenheitToCelsius();
 
-           //displayWeather(userSearch.value);
-            
-           
-              //previousCities();
+          //displayWeather(userSearch.value);
+          //previousCities();
    
-           // Create a 'p' element whose content shows the previously searched cities
+
+// Create a 'p' element whose content shows the previously searched cities
    const displayPreviousSearch = document.createElement('p');
    displayPreviousSearch.textContent = `${userSearch.value} - ${result.current_condition[0].FeelsLikeF} °F` ;
           //console.log(displayPreviousSearch);
@@ -238,15 +248,13 @@ const chooseLocationPTag2 = document.querySelector(".chooseLocation2");
 
 //if (storeValue) {
 //    chooseLocationPTag.forEach(erasePrevious => {
-//    erasePrevious.remove();
+//   erasePrevious.remove();
 //  }) 
+//     displayPreviousSearch();
+//
+// };
 
- //};
 
-
-   
-
-   
        })
        .catch((error) => {
            console.log(error);
