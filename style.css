@@ -2,14 +2,13 @@
 
 html, 
 body{
-    
     text-align: center;
     background-color: cadetblue;
     margin: 0;
     padding: 0;
     display: grid;
     font-family: cursive;
-    color: white;
+    color: black;
     
     padding: 4%;
 }
@@ -23,12 +22,12 @@ main {
         margin-left: 5%;
         width: 80%;
         height: 100%;
-        border: 3px rgb(114, 166, 168) solid;
-        background-color: rgb(240, 234, 234);
+        border: 3px rgb(134, 235, 239) solid;
+        background-color: rgb(111, 192, 255);
       }
 .aSide{
     width: auto;
-    font-family:initial
+    font-family:initial;
     margin-left: 5%;
 }
   .showWeather{
@@ -37,7 +36,7 @@ main {
     width: 150%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border: 1px rgb(114, 166, 168) solid; 
+    border: 1px rgb(80, 183, 242) solid; 
   }
   .theWeather{
     margin-top: 3%;
@@ -51,8 +50,8 @@ main {
 
   .weather{
     text-align: center;
-    border: 2px rgb(114, 166, 168) solid;
-  background-color: rgb(240, 234, 234);
+    border: 2px rgb(169, 234, 236) solid;
+  background-color: rgb(141, 202, 117);
 
   }
   .widget{
