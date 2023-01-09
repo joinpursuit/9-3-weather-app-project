@@ -1,0 +1,67 @@
+body {
+    padding: 9px;
+    text-align: center;
+    background-color: rgb(32, 48, 77);
+    color: rgb(188, 188, 188);
+
+}
+section {
+    display: grid;
+    grid-template-columns: 1fr, 2fr, 1fr;
+    justify-content: center;
+    grid-gap: 6px;
+    padding: 5px;
+}
+
+header {
+    font-family:sans-serif;
+    background-color: rgb(100, 148, 177);
+    border: 2px solid black;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 10px;
+    width: 50%;
+    grid-template-columns: 1fr;
+    color: rgb(25, 59, 78);
+}
+div.converter {
+    border: 1.5px solid black;
+    font-size: small;
+    padding: 6px;
+    left: 50%;
+    top: 35%;
+}
+.hidden{
+    text-decoration-color: grey;
+    visibility: hidden;
+}
+div{
+    border-radius: 1px;
+    border: 1px black;
+    background-color: rgb(35, 35, 35);
+}
+aside.weather-history {
+    color: cyan;
+    padding: 5px;
+    border: 1px solid black;
+
+}
+input.button{
+    font-size: 16px;
+    background-color: darkcyan;
+    color: darkcyan;
+}
+input.button.hover{
+    background-color: red;
+}
+main{
+    border: 1px solid black;
+}
+main p{
+    text-shadow: 2px 2px 5px black;
+}
+main h2,
+main h4 {
+    text-shadow: 2px 2px 5px fuchsia;
+}
+

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styling.css"/>
+    <script src="main.js" defer></script>
+    <title>Weather App</title>
+</head>
+<body>
+    <header>
+        <h1>Weather App</h1>
+        <form id="choose-a-location">
+            <label for="search-bar" id="label">Choose a Location</label>
+            <input type="text"  type="submit" name="location"    id="search-bar" required/>
+            <input type="submit"  name="Get Weather" id="Get Weather"    value="Get Weather" required/>
+        </form>
+    </header>
+    <section class="main">
+        <div class="converter">
+            <aside>
+
+    <form class="converter">
+        <label>
+             Convert °C to °F
+             <input type="number" id="temp-to-convert" required/>
+        </label>
+        <label>
+            <input type="radio" name="temp-to-convert" id="to-c" value="C"/>°C
+       checked="yes to celcius"
+       
+        </label>
+        <label>
+            <input type="radio" name="temp-to-convert" id="to-f" value="F"/>°F
+            checked="yes to fahrenheit"
+        </label>
+        <label>
+            <input type="submit"  class="button"   value="convert"/>
+
+        </label>
+        <h4 class="converted-temp"></h4>
+    </form>
+            </aside>
+        </div>
+        <div>
+            <main>
+
+
+                <p class="defaults">Choose a location to view the weather</p>
+                <article class="current-weather weather"></article>
+                <aside class="upcoming-weather">
+            
+            <div>
+                    <article class="today-weather"></article>
+                </div>
+                <div>
+                    <article class="tommorrow-weather"></article>
+                </div>
+                <div>
+                    <article class="day-after-tommorrow-weather"></article>
+                
+                </div>
+            </aside>
+            </main>
+        </div>
+        <div>
+            <aside class="weather-history">
+<section>
+           
+      
+   <h5>Previous Searches
+    <ul>
+        
+        
+    </ul>
+    <p class="default"> No previous searches</p>
+</h5>
+</section>
+</aside>
+</body>
+</html>
