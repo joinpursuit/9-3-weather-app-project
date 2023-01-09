@@ -8,31 +8,46 @@
 </head>
 <body>
     <header>
-        <h1>weather app~</h1>
+        <h1>weather app</h1>
             <form id="search form">
                 <label>
-                    <!-- choose a location 
-                    input desired location text box
-                    add a submit button to get the weather from the selected location
-                -->
+                    choose a location
+                    <input type="text" name="location" id="location" />
+                    <input type="submit" name="Get Weather" id="Get Weather" value="Get Weather" />
                 </label>
             </form>
-            <aside></aside>
-        
     </header>
-
+<aside class="tempurature-conversion">
+    <form id="conversion-form">
+        <div class="form-input">
+            <label for="temp-to-convert"> convert the temp</label>
+            <input type="number" name="tempurature" id="temp-to-convert" />
+        </div>
+        <div class="form-input">
+            <label for="to-c">to C</label>
+            <input type="radio" id="to-c" name="convertTemp" value="c" checked/>
+            <label for="to-f">to F</label>
+            <input type="radio" id="to-f" name="convertTemp" value="f" />
+            <input type="submit" value="Convert" />
+        </div>
+    </form>
+<h4 id="conversion-result"></h4>
+</aside>
 </html>
-<main>
-    <article> </article>
-        <!-- class current weather reading -->
-        <aside>
-            <!-- up to three searches? -->
+<main id="main" class="main">
+    <article id="current weather" class="current"></article>
+        <aside class="three-days">
+            <article id="today"></article>
+            <article id="tommorrow"></article>
+            <article id="day-after-tommmorrow"></article>
         </aside>
-        <p>
-            <!-- choose a location -->
-        </p>
+        <p id="choose-location-hint"> choose a location to view weather</p>
         <section>
-            <!-- prior searches? -->
+            <aside class="history">
+                <section class="previous">
+                    <h4>Previous Searches</h4>
+                    <p id="no-searches-hint">no previous searches</p>
+                    <ul id="history-list"></ul>
           
         </section>
     
