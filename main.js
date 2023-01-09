@@ -84,7 +84,8 @@ if(deleteCity.length > 0){
 
   })
   .catch((error) =>{
-    createErrorMeassage(error)
+    console.log(error)
+    // createErrorMeassage(error)
   })
 }
 
