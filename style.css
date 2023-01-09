@@ -1,0 +1,65 @@
+
+
+html, 
+body{
+    text-align: center;
+    background-color: cadetblue;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    font-family: cursive;
+    color: black;
+    
+    padding: 4%;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 2 fr 1 fr;
+}
+    .description {
+        text-align: center;
+        margin-left: 5%;
+        width: 80%;
+        height: 100%;
+        border: 3px rgb(134, 235, 239) solid;
+        background-color: rgb(111, 192, 255);
+      }
+.aSide{
+    width: auto;
+    font-family:initial;
+    margin-left: 5%;
+}
+  .showWeather{
+    margin-top: 3%;
+    margin-left: 110%;
+    width: 150%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px rgb(80, 183, 242) solid; 
+  }
+  .theWeather{
+    margin-top: 3%;
+  margin-left: 110%;
+  width: 150%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px rgb(114, 166, 168) solid; 
+
+  }
+
+  .weather{
+    text-align: center;
+    border: 2px rgb(169, 234, 236) solid;
+  background-color: rgb(141, 202, 117);
+
+  }
+  .widget{
+    margin-left: 5%;
+    display: inline-block;
+    margin-left: 40%;
+  }
+
+  .searches{
+    font-family:initial
+  }
