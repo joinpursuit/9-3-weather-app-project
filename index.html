@@ -7,75 +7,85 @@
     <title>Weather App</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="main.js"></script>
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body >
     
-        <header>
+    
+        <header id="user_search_base">
             <h1>Weather App</h1>
             <form id="form">
               <label for="submit">Pick a location: </label>
               <input type="text" id="search" name="search" autocomplete="on" />
               <input type="submit" id="submit" name="submit" value="Submit" />
+              <!-- <button type="submit" id="submit"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"></path></svg></button> -->
             </form>
           </header>
     
-
-    <aside>
-        <section>
-            <p class="hidden" >Previous Searches</p>
+<div class="container">
+    <aside class="move_to_the_right">
+        <section >
+            <p  class="hidden previous">Previous Searches</p>
             <ul id="previous">
                 <p class="remove">No previous searches</p>
                 
             </ul>
             
         </section>
+        </aside>
+
+        </div>
+
+        <div>
+        <aside class="convert">
         <form id="convertTemps">
           <label for="temp">Convert the Temperature</label>
           <input type="number" name="temp-to-convert" id="temp-to-convert"/>
       
-          <label for="temp_c">To Celcius</label>
+          <label for="temp_c">To Celsius</label>
           <input type="radio" name="temp" id="to-c" value="c" />
       
           <label for="temp_f">To Fahrenheit</label>
           <input type="radio" name="temp" id="to-f" value="f" />
       
-          <input type="submit" value="Submit" />
+          <input id="cursor" type="submit" value="Submit" />
         </form>
         <h4 id="temperatureConvert"></h4>
       </aside>
+</div>
 
-      <main>
-        <p class="remove">Choose a location to view the weather</p>
-        <article>
+      <main id="background">
+        <p class="remove location">Choose a location to view the weather</p>
+        <article class="main_content">
             <h2 id="LocationName"></h2>
             <span class="gif_container">
                 <img id="weatherImage" src="" alt="" />
             </span>
-            <p id="area"></p>
-            <p id="region"></p>
-            <p id="country"></p>
-            <p id="currentTemperature"></p>
-            <p id="sunshine"></p>
-            <p id="rain"></p>
-            <p id="snow"></p>
+            <p> <strong id="area"></strong></p>
+            <p> <strong id="region">Region</strong> </p>
+            <p><strong id="country"></strong></p>
+            <p><strong id="currentTemperature"></strong></p>
+            <p> <strong id="sunshine"></strong></p>
+            <p><strong id="rain"></strong></p>
+            <p><strong id="snow"></strong></p>
         </article>
-        <aside>
+        <aside id="three_day_forcast">
             <article class="today">
-                <h2 id="today"></h2>
+                <h2 id="today"> <strong>Today</strong> </h2>
                 <p id="todayAvg"></p>
                 <p id="todayMax"></p>
                 <p id="todayMin"></p>
             </article>
 
             <article class="tomorrow">
-                <h2 id="tomorrow"></h2>
+                <h2 id="tomorrow"> <strong>Tomorrow</strong> </h2>
                 <p id="tomorrowAvg"></p>
                 <p id="tomorrowMax"></p>
                 <p id="tomorrowMin"></p>
             </article>
 
             <article class="dayAfterTomorrow">
-                <h2 id="TwoDaysLater"></h2>
+                <h2 id="TwoDaysLater"> <strong>Two Days Later</strong> </h2>
                 <p id="TwoDaysLaterAvg"></p>
                 <p id="TwoDaysLaterMax"></p>
                 <p id="TwoDaysLaterMin"></p>

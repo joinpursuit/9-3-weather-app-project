@@ -11,9 +11,10 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
         .then(({current_condition, nearest_area, weather, request }) => {
             console.log(current_condition);
             console.log(nearest_area);
-            console.log(weather);
+            console.log('123131',weather);
             console.log(weather[0].avgtempF)
             console.log(request);
+
 
             const weatherData = {
                 city: nearest_area[0].areaName[0].value,
@@ -41,6 +42,9 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
                     chanceoffrost: weather[0].hourly[0].chanceoffrost,
                     chanceofsnow: weather[0].hourly[0].chanceofsnow,
                     chanceofrain: weather[0].hourly[0].chanceofrain,
+                    chanceoffog: weather[0].hourly[0].chanceoffog,
+                    chanceofwindy: weather[0].hourly[0].chanceofwindy,
+                    chanceofthunder: weather[0].hourly[0].chanceofthunder,
                     winddirdegree: weather[0].hourly[0].winddirDegree,
                     windspeed: weather[0].hourly[0].windspeedMiles,
                     weathercode: weather[0].hourly[0].weatherCode,
@@ -53,12 +57,6 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
                     windchillC: weather[0].hourly[0].WindChillC,
                     windgustMiles: weather[0].hourly[0].WindGustMiles,
                     windgustKmph: weather[0].hourly[0].WindGustKmph,
-                    cloudcover: weather[0].hourly[0].cloudcover,
-                    chanceofthunder: weather[0].hourly[0].chanceofthunder,
-                    chanceoffog: weather[0].hourly[0].chanceoffog,
-                    weathericon: weather[0].hourly[0].weatherIconUrl[0].value,
-                    weatherDesc: weather[0].hourly[0].weatherDesc[0].value,
-
                     
                 },
                 tomorrow: {
@@ -112,37 +110,14 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
                 },
     
             };
+
+            //console.log('12313212', weatherData.today.weatherDesc);
+            console.log('232112',weather[0].hourly[0].weatherDesc)
+            const weatherDescriptions = weather[0].hourly[0].weatherDesc.map(hour => hour.value.toLowerCase());
+
+            console.log('weatherDescriptions', weatherDescriptions);
             
-            //Function to display location or nearest area to the main section
-            function displayLocation() {
-                const userLocation = document.querySelector('#search');
-                LocationName.textContent = userLocation.value;
-                if (weatherData.city.toLowerCase() == userLocation.value.toLowerCase()) {
-                    area.textContent = `Area: \n${weatherData.city}`;
-                } else {
-                    area.textContent = `Nearest Area: \n${weatherData.city}`;
-                }
-                }
-            displayLocation();
-            
-            //Display region to the main section
-            function displayRegion() {
-                region.textContent = weatherData.region;
-            }
-            displayRegion();
 
-            //Display country to the main section
-            function displayCountry() {
-                country.textContent = weatherData.country;
-            }
-            displayCountry();
-
-            //Display current weather to the main section
-
-            function displayCurrentWeather() {
-                currentTemperature.textContent = `Current: ${weatherData.today.FeelsLikeF}°F`;
-            }
-            displayCurrentWeather();
 
             //Function to display location or nearest area to the main section
             function displayLocation() {
@@ -155,18 +130,26 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
                 }
                 }
             displayLocation();
+
+            
             
             //Display region to the main section
             function displayRegion() {
-                region.textContent = weatherData.region;
+                //region.textContent = `Region: ${weatherData.region}`;
+                const region = document.querySelector('#region');
+                region.textContent = `Region: ${weatherData.region}`;
             }
             displayRegion();
 
+
+
             //Display country to the main section
             function displayCountry() {
-                country.textContent = weatherData.country;
+                country.textContent = `Country: ${weatherData.country}`;
             }
             displayCountry();
+
+            
 
             //Display current weather to the main section
 
@@ -174,7 +157,7 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
                 currentTemperature.textContent = `Current: ${weatherData.today.FeelsLikeF}°F`;
             }
             displayCurrentWeather();
-
+        
             //Function to display chance of sunshine to the main section
             function displayChanceOfSunshine() {
                 sunshine.textContent = `Chance of Sunshine: ${weatherData.today.chanceofsunshine}%`;
@@ -186,6 +169,8 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
                 rain.textContent = `Chance of Rain: ${weatherData.today.chanceofrain}%`;
             }
             displayChanceOfRain();
+
+            
 
             //Function to display chance of snow to the main section
             function displayChanceOfSnow() {
@@ -255,7 +240,7 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
 
             //Display average temp to the main section for today
             function displayAverageTemp() {
-                todayAvg.textContent = `Today average temp: ${weatherData.today.averageTemp}°F`;
+                todayAvg.textContent = `Today Average temp: ${weatherData.today.averageTemp}°F`;
             }
             displayAverageTemp();
 
@@ -268,43 +253,43 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
 
             //Display min temp temp to the main section for today
             function displayMinTemp() {
-                todayMin.textContent = `Today min temp: ${weatherData.today.minTemp}°F`;
+                todayMin.textContent = `Today Min Temp: ${weatherData.today.minTemp}°F`;
             }
             displayMinTemp();
 
             //Display average temp to the main section for tomorrow
             function displayAverageTempTomorrow() {
-                tomorrowAvg.textContent = `Tomorrow average temp: ${weatherData.tomorrow.averageTemp}°F`;
+                tomorrowAvg.textContent = `Tomorrow Average Temp: ${weatherData.tomorrow.averageTemp}°F`;
             }
             displayAverageTempTomorrow();
 
             //Display max temp temp to the main section for tomorrow
             function displayMaxTempTomorrow() {
-                tomorrowMax.textContent = `Tomorrow max temp: ${weatherData.tomorrow.maxTemp}°F`;
+                tomorrowMax.textContent = `Tomorrow Max Temp: ${weatherData.tomorrow.maxTemp}°F`;
             }
             displayMaxTempTomorrow();
 
             //Display min temp temp to the main section for tomorrow
             function displayMinTempTomorrow() {
-                tomorrowMin.textContent = `Tomorrow min temp: ${weatherData.tomorrow.minTemp}°F`;
+                tomorrowMin.textContent = `Tomorrow Min Temp: ${weatherData.tomorrow.minTemp}°F`;
             }
             displayMinTempTomorrow();
 
             //Display average temp to the main section for day after tomorrow
             function displayAverageTempDayAfterTomorrow() {
-                TwoDaysLaterAvg.textContent = `2 days later temp average: ${weatherData.dayAfterTomorrow.averageTemp}°F`;
+                TwoDaysLaterAvg.textContent = `Two Days Later Temp Average: ${weatherData.dayAfterTomorrow.averageTemp}°F`;
             }
             displayAverageTempDayAfterTomorrow();
 
             //Display max temp temp to the main section for day after tomorrow
             function displayMaxTempDayAfterTomorrow() {
-                TwoDaysLaterMax.textContent = `2 days later temp max: ${weatherData.dayAfterTomorrow.maxTemp}°F`;
+                TwoDaysLaterMax.textContent = `Two Days Later Temp Max: ${weatherData.dayAfterTomorrow.maxTemp}°F`;
             }
             displayMaxTempDayAfterTomorrow();
 
             //Display min temp temp to the main section for day after tomorrow
             function displayMinTempDayAfterTomorrow() {
-                TwoDaysLaterMin.textContent = `2 days later min temp:${weatherData.dayAfterTomorrow.minTemp}°F`;
+                TwoDaysLaterMin.textContent = `Two Days Later Min Temp:${weatherData.dayAfterTomorrow.minTemp}°F`;
             }
             displayMinTempDayAfterTomorrow();
 
@@ -324,6 +309,7 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
                 const location = document.createElement('li');
                 //location.textContent = weatherData.city;
                 const previousSearchLink = document.createElement('a');
+                previousSearchLink.setAttribute('id', 'already_searched')
                 previousSearchLink.setAttribute('href', '#');
                 previousSearchLink.textContent = weatherData.city;
                 location.append(previousSearchLink);
@@ -335,6 +321,36 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
             }
             displayLocationAside();
 
+           //Function to give previous search links functionality display to the main section
+            
+            //let priorSearched = ''
+            
+           function previousSearchLink() {
+               const previousSearch = document.querySelectorAll('#already_searched');
+               console.log('12',previousSearch)
+            previousSearch.forEach(link => {
+                link.addEventListener('click', (clickEvent) => {
+                    clickEvent.preventDefault();
+                    link = BASE_URL
+                    
+                    
+                
+                    
+
+                   
+
+                })
+            })
+        }
+        previousSearchLink();
+            
+            
+            
+            
+           
+            
+            
+
             //Function to reset search input
 
             function resetSearch() {
@@ -344,97 +360,214 @@ weatherSubmit.addEventListener('click', (submitEvent) => {
 
             resetSearch();
 
+          
 
-            //Function to convert fahrenheit to celsius
-            function convertTemp() {
-                const convertForm = document.querySelector('#convertTemps');
-                convertForm.addEventListener('submit', checkIfFahrenheitToCelsiusIsChecked);
-
-            }
-            convertTemp();
-
-            //Function to create a widget that converts fahrenheit to celsius
-             function convertFahrenheitToCelsius(event) {
-                const celsiusResult = document.querySelector('#temperatureConvert')
-                const givenTemp = document.querySelector('#temp-to-convert').value;
-
-                 const fahrenheitToCelsius = (givenTemp - 32) * 5 / 9;
-                 celsiusResult.textContent = `${fahrenheitToCelsius.toFixed(2)}\u00B0C`;
-
-             }
-            
-
-            //Function to create a widget that converts celsius to fahrenheit
-            function convertCelsiusToFahrenheit(event) {
-                const fahrenheitResult = document.querySelector('#temperatureConvert')
-                const givenTemp = document.querySelector('#temp-to-convert').value;
-                const celsiusToFahrenheit = (givenTemp * 9 / 5) + 32;
-                fahrenheitResult.textContent = `${celsiusToFahrenheit.toFixed(2)}\u00B0F`;
-            }
-            
-
-            //Function to check if radio button is checked for fahrenheit to celsius
-            function checkIfFahrenheitToCelsiusIsChecked(event) {
-                event.preventDefault();
-                const fahrenheitToCelsius = document.querySelector('#to-c');
-                if (fahrenheitToCelsius.checked) {
-                    convertFahrenheitToCelsius();
-                } else {
-                    convertCelsiusToFahrenheit()
-                }
-            }
-
-             //Access Weather Data Object and console.log chance of sunshine
+            //Access Weather Data Object and console.log chance of sunshine
             //console.log('10', weatherData.today.chanceofsunshine);
             
             
 
          //Function to display weather gif over 50% chance
-         function displayWeatherGif() {
+            function displayWeatherGif() {
                 
-            const weatherGif = document.querySelector('#weatherImage');
-           
+                const weatherGif = document.querySelector('#weatherImage');
+               
+                        
+                        if (Number(weatherData.today.chanceofsunshine) > 50) {
+                            console.log('10', (weatherData.today.chanceofsunshine))
+                            weatherGif.setAttribute('src', './assets/icons8-summer.gif');
+                            weatherGif.setAttribute('alt', 'sun');
+                            //weatherGifImage.setAttribute('class', 'weatherGif');
+                            
+                        } else if (Number(weatherData.today.chanceofrain) > 50) {
+                            weatherGif.setAttribute('src', './assets/icons8-torrential-rain.gif');
+                            weatherGif.setAttribute('alt', 'rain');
+                            //weatherGifImage.setAttribute('class', 'weatherGif');
+                           
+                        } else if (Number(weatherData.today.chanceofsnow) > 50) {
+                            weatherGif.setAttribute("src", "./assets/icons8-light-snow.gif");
+                            weatherGif.setAttribute("alt", "snow");
+                            //weatherGifImage.setAttribute('class', 'weatherGif');
+                           
+                        } else if (Number(weatherData.today.chanceoffog) > 50) {
+                            weatherGif.setAttribute("src", "./assets/icons8-fog.gif");
+                            weatherGif.setAttribute("alt", "fog");
+                            //weatherGifImage.setAttribute('class', 'weatherGif');
+                        } else if (Number(weatherData.today.chanceofwindy) > 50) {
+                            weatherGif.setAttribute("src", "./assets/icons8-wind.gif");
+                            weatherGif.setAttribute("alt", "windy");
+                            //weatherGifImage.setAttribute('class', 'weatherGif');
+                        } else if (Number(weatherData.today.chanceofthunder) > 50) {
+                            weatherGif.setAttribute("src", "./assets/icons8-storm.gif");
+                            weatherGif.setAttribute("alt", "thunder");
+                            //weatherGifImage.setAttribute('class', 'weatherGif');
+                        }
+                        
+                        else {
+                            weatherGif.setAttribute("src", "./assets/icons8-night.gif");
+                            weatherGif.setAttribute("alt", "clouds");
+                            //weatherGifImage.setAttribute('class', 'weatherGif');
+                            
+                        }
+
+    //}
+            }
+        
+            displayWeatherGif();
+
+            
+console.log('weatherDescriptions', weatherData.today);
+            
+
+            //Function to display current weather fog gif
+
+            function displayCurrentWeatherGif() {
+                const displayBackground = document.querySelector('#background');
+                if (weatherDescriptions.some(description => description.includes('fog'))) {
+                    displayBackground.setAttribute('class', 'fog');
                     
-                    if (Number(weatherData.today.chanceofsunshine) > 50) {
-                        console.log('10', (weatherData.today.chanceofsunshine))
-                        weatherGif.setAttribute('src', './assets/icons8-summer.gif');
-                        weatherGif.setAttribute('alt', 'sun');
-                        //weatherGifImage.setAttribute('class', 'weatherGif');
-                        
-                    } else if (Number(weatherData.today.chanceofrain) > 50) {
-                        weatherGif.setAttribute('src', './assets/icons8-torrential-rain.gif');
-                        weatherGif.setAttribute('alt', 'rain');
-                        //weatherGifImage.setAttribute('class', 'weatherGif');
-                       
-                    } else if (Number(weatherData.today.chanceofsnow) > 50) {
-                        weatherGif.setAttribute("src", "./assets/icons8-light-snow.gif");
-                        weatherGif.setAttribute("alt", "snow");
-                        //weatherGifImage.setAttribute('class', 'weatherGif');
-                       
-                    } else {
-                        weatherGif.setAttribute("src", "./assets/icons8-night.gif");
-                        weatherGif.setAttribute("alt", "clouds");
-                        //weatherGifImage.setAttribute('class', 'weatherGif');
-                        
-                    }
-          }
+                }
+
+            }
+
+            displayCurrentWeatherGif();
+
+            //Function to display current weather rain gif
+
+            function displayCurrentWeatherRainGif() {
+                const displayBackground = document.querySelector('#background');
+                if (weatherDescriptions.some(description => description.includes('rain'))) {
+                    displayBackground.setAttribute('class', 'rain');
+                    
+                }
+            }
+
+            displayCurrentWeatherRainGif();
+
+            //Function to display current weather sunny gif
+
+            function displayCurrentWeatherSunnyGif() {
+                const displayBackground = document.querySelector('#background');
+                if (weatherDescriptions.some(description => description.includes('sun'))) {
+                    displayBackground.setAttribute('class', 'sunny');
+                    
+                }
+            }
+
+            displayCurrentWeatherSunnyGif();
+
+            //Function to display current weather snow gif
+
+            function displayCurrentWeatherSnowGif() {
+                const displayBackground = document.querySelector('#background');
+                if (weatherDescriptions.some(description => description.includes('snow'))) {
+                    displayBackground.setAttribute('class', 'snow');
+                    
+                }
+            }
+
+            displayCurrentWeatherSnowGif();
+
+            //Function to display clear sky gif
+
+            function displayCurrentWeatherClearSkyGif() {
+                const displayBackground = document.querySelector('#background');
+                if (weatherDescriptions.some(description => description.includes('clear'))) {
+                    displayBackground.setAttribute('class', 'clear_day');
+                    
+                }
+
+            }
+
+            displayCurrentWeatherClearSkyGif();
+
+            //Function to display current weather overcast gif
+
+            function displayCurrentWeatherOvercastGif() {
+                const displayBackground = document.querySelector('#background');
+                if (weatherDescriptions.some(description => description.includes('overcast'))) {
+                    displayBackground.setAttribute('class', 'overcast');
+                    
+                }
+            }
+
+            displayCurrentWeatherOvercastGif();
+
+            //Function to display current weather mist gif
+
+            function displayCurrentWeatherMistGif() {
+                const displayBackground = document.querySelector('#background');
+                if (weatherDescriptions.some(description => description.includes('mist'))) {
+                    displayBackground.setAttribute('class', 'mist');
+                    
+                }
+            }
+
+            displayCurrentWeatherMistGif();
+
+            //Function to display current thunder gif
+
+            function displayCurrentWeatherThunderGif() {
+                const displayBackground = document.querySelector('#background');
+                if (weatherDescriptions.some(description => description.includes('thunder'))) {
+                    displayBackground.setAttribute('class', 'thunderstorm');
+                    
+                }
+            }
+
+            displayCurrentWeatherThunderGif();
+
+
+
+
+
+            })
+        
     
-         displayWeatherGif();
-
-          
-
-        
-        
-
-
-
-
-
-
-        })
         
         .catch((error) => {
             console.log(error);
         })
     
     });
+
+    
+   
+//Function to convert fahrenheit to celsius
+function convertTemp() {
+    const convertForm = document.querySelector('#convertTemps');
+    convertForm.addEventListener('submit', checkIfFahrenheitToCelsiusIsChecked);
+
+}
+convertTemp();
+
+//Function to create a widget that converts fahrenheit to celsius
+ function convertFahrenheitToCelsius(event) {
+    const celsiusResult = document.querySelector('#temperatureConvert')
+    const givenTemp = document.querySelector('#temp-to-convert').value;
+
+     const fahrenheitToCelsius = (givenTemp - 32) * 5 / 9;
+     celsiusResult.textContent = `${fahrenheitToCelsius.toFixed(2)}\u00B0C`;
+
+ }
+
+
+//Function to create a widget that converts celsius to fahrenheit
+function convertCelsiusToFahrenheit(event) {
+    const fahrenheitResult = document.querySelector('#temperatureConvert')
+    const givenTemp = document.querySelector('#temp-to-convert').value;
+    const celsiusToFahrenheit = (givenTemp * 9 / 5) + 32;
+    fahrenheitResult.textContent = `${celsiusToFahrenheit.toFixed(2)}\u00B0F`;
+}
+
+
+//Function to check if radio button is checked for fahrenheit to celsius
+function checkIfFahrenheitToCelsiusIsChecked(event) {
+    event.preventDefault();
+    const fahrenheitToCelsius = document.querySelector('#to-c');
+    if (fahrenheitToCelsius.checked) {
+        convertFahrenheitToCelsius();
+    } else {
+        convertCelsiusToFahrenheit()
+    }
+}
