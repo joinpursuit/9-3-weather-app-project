@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+    <title>Weatherwise</title>
+    <script src="./main.js" defer></script>
+</head>
+<body>
+    <div class="header">
+        <header class = "menu">
+            <h1 class = "shadowBox rainbow">Weather App</h1>
+            <form>
+                <input type="text" id="search" name="search" pattern= "^[A-Za-z0-9]+$" title="Only letters and numbers are allowed" placeholder="Type a Location:" required>
+                <input id="submit" type="submit" name="submit" value="Get Weather">
+            </form> 
+            <audio id="sound" class = "sound" src="" controls loop autoplay volume="0.5"></audio>        
+        </header>
+    </div>
+    <div class="primary-content ">
+        <aside id = "hidden" class = "sidebarConvert">
+            
+            <input id="toggle_dark_mode" type="submit" name="Toggle_dark_mode" value="Toggle Dark/Light Mode" onclick="myFunction()" style = "margin: 28px;">
+             
+            <form id = "tempConvert">
+                <label for="temp" style="font-size: 22px;">Convert the Temperature</label> <br><br>
+                <input type="number" name="temp" id = "temp-to-convert" title="Only numbers are allowed" placeholder="Type a number:"/> <br/> <br>
+    
+                <label for="temp_c" style="font-size: 20px;">To Celsius&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
+                <input type="radio" name="convert-temp" id="to-c" value="c" /> <br/> <br>
+    
+                <label for="temp_f" style="font-size: 20px;">To Fahrenheit&nbsp;&nbsp;&nbsp;</label>
+                <input type="radio" name="convert-temp" id="to-f" value="f" /> <br> <br>
+
+                <input type="submit" value="Submit" id = "submitConvert"/> 
+
+            </form>
+            <h4 id = "displayTempinCorF"></h4>
+            <input id="hourly-button" type="submit" name="submit" value="Show Hourly Forecast" style="margin: 25px;">
+
+        </aside>
+        <main class="main">
+            <div class = "styleTop">
+            <p id = "pInitial" style = "text-align: center;">Choose a location to view the weather.</p>
+            
+                <article class="top-section"> <!-- current weather -->
+                    <h2 id = "h2inputText"> </h2>   
+                    <h3 id = "h1inputText"> </h3>
+                    <h3 id = "h3inputCondition"> </h3> 
+                    <p id = "Area">  </p>  <!-- Area -->    
+                    <p id = "Region"> </p> <!--Region -->
+                    <p id = "Country"> </p> <!-- Country-->
+                    <p id = "CurrentTemp"> </p> <!--Currently feel like -->
+                    <span class="weather-image-container">
+                        <img id = "weatherIcon" src="" alt=""/>
+                    </span>
+                    <p> <strong id = "Sunshine"></strong></p> <!--Chance of Sunshine-->
+                    <p id = "Rain"></p> <!--Chance of Rain -->
+                    <p id = "Snow" style="padding-bottom: 17px"></p> <!--Chance of Snow -->
+                </article>
+            </div>
+            <div class = "style-gap"> <h2 id = "three_day_forecast"></h2>  </div>
+
+            <div class = "styleBottom">
+                <aside class="bottom-section"> <!--weather for 3 days-->
+                    <article class="today">
+                        <h2 id = "h2Today"></h2> <!--today -->
+                        <p id = "TodayAvg"></p> 
+                        <p id = "TodayMax"></p> 
+                        <p id = "TodayMin"></p> 
+                    </article>
+                    <article class="tomorrow">
+                        <h2 id = "h2Tomorrow"></h2> <!--tomorrow -->
+                        <p id = "TomorrowAvg"></p> 
+                        <p id = "TomorrowMax"></p> 
+                        <p id = "TomorrowMin"></p> 
+                    </article>
+                    <article class="dayaftertomorrow">
+                        <h2 id = "h2DayAfterTomorrow" style="font-size: 23px;"></h2> <!--day after tomorrow -->
+                        <p id = "DayAfterTomorrowAvg"></p> 
+                        <p id = "DayAfterTomorrowMax"></p> 
+                        <p id = "DayAfterTomorrowMin"></p>
+                    </article>
+                </aside>
+            </div>
+        </main>
+        
+        <aside class="sidebarSearch">
+            <section>
+                <h4 style="font-size: 24px;">Previous Searches</h4>
+                <ul id = "ulPreviousSearch">
+                    <p id = "previousSearch">No previous searches.</p>
+                </ul>
+            </section>
+        </aside>
+    </div>
+
+    
+
+    
+    <footer class="footer" role="contentinfo">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Leave a Feedback</a></li>
+                <li> Follow us on:
+                    <div class="social-icons">
+                        <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-square" alt="Facebook"></i></a>
+                        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" alt="Instagram"></i></a>
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter-square" alt="Twitter"></i></a>
+                        <a href="https://pinterest.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-pinterest" alt="Pinterest"></i></a>
+                        <a href="https://whatsapp.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" alt="Whatsapp"></i></a>
+                        <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube" alt="YouTube"></i></a>
+                        <a href="https://github.com/Vandhana-Mohan" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" alt="GitHub"></i></a>
+                    </div>
+                </li>
+                <li style = "margin-top: -7px; margin-bottom: -20px;"> Download us on:
+                    <div class="social-icons">
+                        <a href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer"><i class="fab fa-apple" alt="Download on Apple store"></i></a>
+                        <a href="https://play.google.com/store/games?hl=en_US&gl=US&pli=1" target="_blank" rel="noopener noreferrer"><img src="./assets/icons8-google-play-48.png" alt="Get it on Google Play"></a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <p class = "copyright">Copyright &copy;2023 <a href="https://github.com/Vandhana-Mohan" target="_blank" rel="noopener noreferrer">Vandhana Mohan</a>. All rights reserved.</p>
+    </footer>
+</body>
+</html>
