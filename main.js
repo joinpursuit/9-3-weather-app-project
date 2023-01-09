@@ -13,10 +13,6 @@ locationForm.addEventListener("submit", submitLocation => {
         .then((response) => response.json())
         // Using destructuring to unpack values from fetch response
         .then(({nearest_area, current_condition, weather}) => {
-            console.log(nearest_area);
-            console.log(current_condition);
-            console.log(weather);
-            // console.log(request);
             // Creating variable to store value of current temperature 
             const currentTempF = current_condition[0].temp_F;
             // Creating variable to store value of nearest_area[0].region[0].value
@@ -211,35 +207,42 @@ locationForm.addEventListener("submit", submitLocation => {
 
 })
 
-// 
+// Creating variable to represent form for temperature converter
 const temperatureForm = document.querySelector("#convert_temp_form");
 
-// 
+// Adding an event listener to temperatureForm variable that is listening for a submit event and using temperatureConverter as a callback function
 temperatureForm.addEventListener("submit", temperatureConverter);
-    // 
+    // creating a function to convert temperature, passing event as a parameter
     function temperatureConverter(event) {
-        // 
+        // Using .preventDefault to prevent default action of submit form
         event.preventDefault();
-        // 
+        // Creating variable to represent the value of the HTML input element with #temp-to-convert ID
         const tempToConvert = document.querySelector("#temp-to-convert").value;
-        // 
+        // Creating variable to represent celsius radio button 
         const celsiusRadio = document.querySelector("#to-c");
-        // 
+        // Creating variable to represent fahrenheit radio button 
         const fahrenheitRadio = document.querySelector("#to-f");
-        // 
-        let convertAnswer;        
+        // Declaring empty variable to represent answer for the temperature converter function
+        let convertAnswer;
+        // Creating variable to represent h4 HTML element with #convert_temp_answer ID
         const convertAnswerArea = document.querySelector("#convert_temp_answer");
-        // 
+        // Using an if condition to determine if celsiusRadio.checked has a truthy value
         if (celsiusRadio.checked) {
+            // Initiating convertAnswer variable to value of (tempToConvert minus 32) multiplied by (5 divided by 9)
             convertAnswer = (tempToConvert - 32) * (5/9);
+            // Using .toFixed on convertAnswer to set number of digits after the decimal point to 2
             convertAnswer = convertAnswer.toFixed(2);
+            // Using .textContent to add a template literal as text to the h4 HTML element with #convert_temp_answer ID
             convertAnswerArea.textContent = `${convertAnswer}°C`;
         }
-        // 
+        // Using an if condition to determine if fahrenheitRadio.checked has a truthy value
         if (fahrenheitRadio.checked) {
+            // Initiating convertAnswer variable to value of (tempToConvert multiplied by (9 divided by 5) plus 32
             convertAnswer = (tempToConvert * (9/5)) + 32;
+            // Using .toFixed on convertAnswer to set number of digits after the decimal point to 2
             convertAnswer = convertAnswer.toFixed(2);
-            convertAnswerArea.textContent = `${convertAnswer}°C`;
+             // Using .textContent to add a template literal as text to the h4 HTML element with #convert_temp_answer ID
+            convertAnswerArea.textContent = `${convertAnswer}°F`;
         }
     }
 

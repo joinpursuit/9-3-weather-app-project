@@ -2,10 +2,23 @@
     display: grid;
     grid-column: 3;
     grid-template-columns: repeat (3, 1fr);
-    grid-template-rows: repeat (3, 1fr);
+    grid-template-rows: repeat (6, 1fr);
 }
 
-header {
-    position: center;
+body header {
+    text-align: center;
+    border: 3px solid black;
+}
+
+#convert_temp_form {
+    text-align: left;
+}
+
+#previous_searches {
+    text-align: right;
+}
+
+main {
+    text-align: center;
 }
 
