@@ -53,7 +53,7 @@ const ENDPOINT: "?format=j1";
 
 ```
 
-It's hard for me to explain the next part. But the reason I write everything into it's separate function is because of the Single Responsibility Principle. This principle states that a function should only do one thing. And that one thing should be done well. This is a very important principle to follow. It makes your code easier to read and understand. It also makes your code easier to debug. And it makes your code easier to maintain.
+It's hard for me to explain the next part. But the reason I write everything into it's separate function is because of the Single Responsibility Principle(SRP). This principle states that a function should only do one thing. And that one thing should be done well. This is a very important principle to follow. It makes your code easier to read and understand. It also makes your code easier to debug. And it makes your code easier to maintain.
 
 Who said that a function should do one thing and one thing only? what book did it come from?
 this came from the book ["Clean Code" by Robert C. Martin](https://thixalongmy.haugiang.gov.vn/media/1175/clean_code.pdf). I highly recommend this book to anyone who wants to become a better developer.
@@ -149,6 +149,39 @@ Inside this named functions will contain the logic that we want to execute when 
 3. Construct the URL that we will use to make the API call
 4. Make the API call
 
-As mentioned before a function should only do one thing, or at most perfom closely related tasks. Allowing your function to do multiple things will result in a function that is harder to read, understand, debug and most importantly maintain.
+```js
+function handleWeatherFormSubmit(event) {
+  event.preventDefault();
+  const user_input = weatherF.weather_submit;
+  const BASE_URL = `https://wttr.in/${user_input.value}?format=j1`;
 
-Writing a function that does multiple things is not a bad thing. What is bad is when those things are not related to each other nor are they done well. Which can result in Code Smell.
+  // normally we make an API call here
+  // but with the info we know now we can make a function
+  // to handle that logic and pass in the BASE_URL as an argument
+  fetchWeatherInformation(BASE_URL);
+}
+```
+
+As mentioned before a function should only do one thing, or at most do closely related tasks. Allowing your function to do multiple things will result in a function that is harder to read, understand, debug and most importantly maintain.
+
+Writing a function that do multiple things is not a bad thing. What is bad is when those things are not related to each other nor are they done well can result in Code Smell.
+
+## What is Code Smell?
+
+Code Smell is when you have a function that performs multiple unrelated tasks. Unfourtunatly this is bad practice. We must strive to learn the concept of breaking up functions into smaller pieces.
+
+```js
+fetchWeatherInformation(BASE_URL);
+```
+
+The function 'fetchWeatherInformation()' was called inside my 'handleWeatherFormSubmit()' function. I decided to move this logic outside. To keep things clean and organized.
+
+```js
+function fetchWeatherInformation(url) {
+  fetch(url)
+    .then((response) => response.json())
+    .then((response) => {
+      // do something with the response
+      ).catch((error) => {});
+}
+```
