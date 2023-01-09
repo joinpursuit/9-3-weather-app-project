@@ -1,54 +1,415 @@
-/* Style the container element */
-.slider-container {
-    display: flex;
-    align-items: center;
-    margin: 20px 0;
-}
-  
-/* Style the label element */
-.slider-container label {
-    margin-right: 10px;
-    font-size: 16px;
-}
-  
-/* Style the input element */
-.slider-container .slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 25px;
-    background: #ddd;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-}
-  
-.slider-container .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #4caf50;
-    cursor: pointer;
-}
-  
-.slider-container .slider::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #4caf50;
-    cursor: pointer;
+body{
+    font-family: 'Montserrat', sans-serif;
+    color:black;
 }
 
-.slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 15px;
-    border-radius: 5px;
-    background: #ddd;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+input[type="submit"] {
+    color: rgb(12, 11, 11);
+    font-size: 16px;
+    font-family: sans-serif;
+    padding:10px;
+    margin:5px;
+    letter-spacing: 1.3px; /* add a letter-spacing of 5px */
+    background-color: #9d93b2;
+    margin-bottom: -1px;
+    border: 1px solid black;
 }
+
+input[type="text"] {
+    color: blue;
+    font-size: 22px;
+    font-family: sans-serif;
+    padding: 5px;
+    margin: 4px;
+    width: 58%;
+    margin-bottom: -8px;
+    border: 1px solid black;
+}
+
+input[type="number"]{
+    color: blue;
+    font-size: 22px;
+    font-family: sans-serif;
+    padding: 4px;
+    margin: -12px;
+    width: 58%;
+    border: 1px solid black;
+}
+
+header{
+    text-align: center;
+}
+
+.shadowBox{
+    /* background-color: rgb(0,0,0);  */
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    /* border:3px solid; */
+}
+
+.rainbow{
+    text-align: center;
+    animation: colorRotate 5s linear 0s infinite;
+}
+
+@keyframes colorRotate {
+ from {
+    color: #6666ff;
+ }  
+
+ 10%{
+    color:#0099ff;
+ } 
+
+ 24% {
+    color:red;
+ }
+
+ 40%{
+    color:rgb(230, 117, 89)
+ }
+ 50%{
+    color:#00ff00;
+ }
+ 
+ 60% {
+    color: indigo;
+ }
+ 
+ 75%{
+    color:#ff3399;
+ }
+
+ 90%{
+    color:yellow;
+ }
+
+ 100%{
+    color:#6666ff;
+ }
+}
+
+ .primary-content {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 100%;
+} 
+
+.menu {
+    display: grid;
+    justify-content: center;
+}
+
+ html, 
+ body{
+    /* background: linear-gradient(to bottom, #a4e7fc 0%, #8cd8f1 100%); */
+    background: linear-gradient(0deg,#e5dee2,#e5dee2 20%,#aba2b4 60%,#59516e 90%,#59516e);
+    background-size: cover;
+}
+
+.weather-image-container {
+    width: 50px;
+    height: 50px;
+}
+
+.sidebarConvert,.sidebarSearch {
+    color: white;
+    text-align: center;
+}
+
+.sidebarSearch li a {
+    margin-right: 25px;
+}
+
+.sidebarSearch li a::after {
+        content: "\2022\2022\2022"; /* add three dots after the a element */
+        cursor: pointer; /* change the cursor to a pointer when hovering over the three dots */
+        padding:15px
+}
+
+.sidebarSearch li a:hover::after {
+        content: "Delete"; /* show the delete button when hovering over the three dots */
+      }
+      
+
+.sidebarSearch li{
+  font-size: 16px; /* set the font size for the li elements */
+  line-height: 24px; /* set the line height for the li elements */
+  list-style-type: none; /* move the bullet point inside the list item */
+  text-align:left;
+  /* text-align: justify; */
+} 
+
+.main {
+    height: auto;
+    text-align: center;
+    justify-content: flex-end;
+}
+
+.top-section {
+    width: 59vw;
+}
+
+.bottom-section {
+    width: 54vw;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 66px;
+    margin-bottom: 47px;
+}
+
+.styleTop,
+.styleBottom {
+    text-align: center;
+    justify-content: center;
+    
+}
+
+.styleBottom {
+    padding-top: 1px;
+    margin-bottom: 5px;
+}
+.today {
+    flex: 0 0 33.33%;
+    margin-left: -7%;
+    text-align: center;
+}
+  
+.tomorrow {
+    flex: 0 0 33.33%;
+    margin-left: 2%;
+    text-align: center;
+}
+  
+.dayaftertomorrow {
+    flex: 0 0 33.33%;
+    margin-left: 4%;
+    text-align: center;
+}
+
+.footer {
+    background-color: #333;
+    padding: 1%;
+    text-align: center;
+    color: #fff;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-content: stretch;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+nav{
+    margin-top: -1.5%;
+}
+
+nav ul li {
+    margin: 0 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.footer ul li a{
+    text-decoration: none;
+    color: #fff;
+    transition: 2s ease;
+}
+
+.footer ul li a:hover {
+    font-size: 28px; 
+}
+
+.social-icons {
+    display: flex;
+}
+
+.social-icons a .fab.fa-facebook-square {
+    color: #4267B2;
+}
+
+.social-icons a .fab.fa-twitter-square {
+    color: #1DA1F2;
+}
+
+.social-icons a .fab.fa-youtube {
+    color: #FF0000;
+}
+  
+.social-icons a .fab.fa-pinterest {
+    color: #E60023;
+}
+  
+.social-icons a .fab.fa-instagram {
+    background: linear-gradient(to right, #405DE6, #5B51D8, #833AB4, #C13584,#E1306C, #FD1D1D, #F56040, #F77737, #FCAF45, #FFDC80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.social-icons a .fab.fa-google-play {
+    background: linear-gradient(to right,rgb(72, 255, 72),  rgb(255, 212, 0), rgb(59, 204, 255), rgb(255, 51, 51));
+}
+.social-icons a .fab.fa-github {
+    color: #6e767d;
+}
+
+.social-icons a .fab.fa-whatsapp {
+    color: #128C7E;
+}
+
+.social-icons a .fab.fa-apple {
+    /* color: black; */
+}
+
+.footer .social-icons a {
+    font-size: 30px;
+    padding: 0 10px;
+    color: #fff;
+    margin-right: 15px;
+    transition: 3s ease;
+}
+  
+.footer .social-icons a:hover {
+    text-decoration: none;
+    font-size: 44px;
+    padding: 0 10px;
+    /* color: #aaa; */
+}
+
+.social-icons a img {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .social-icons a i {
+    font-size: 30px;
+    margin: 0 10px;
+  }
+  
+  .social-icons a:hover i {
+    font-size: 38px;
+  }
+  
+.copyright,
+.copyright a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    margin: 0px;
+    text-decoration: none;
+    color: #fff;
+    padding-bottom: 0px;
+}
+
+.sound {
+    width: 234px;
+    height: 30px;
+    border: 2px solid black;
+    margin-left: 170%;
+    margin-top: -31%;
+}
+  
+.sound::-webkit-media-controls {
+    background-color: #ffffff;
+}
+  
+@media screen and (max-width: 800px) {
+    .top-section,
+    .bottom-section {
+      width: 30vw; /* 30% of the viewport width */
+    }
+}
+  
+  .blue-strip {
+    background-color: blue; /* add a blue background color */
+    padding: 10px; /* add some padding to the h2 element */
+  }
+  .styleTop, .styleBottom {
+    text-align: center;
+    justify-content: center;
+}
+
+.styleTop{
+    margin: 1px;
+    margin-bottom: 21px
+}
+
+.delete-button {
+    color: blue;
+    font-size: 2em;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    text-align: center;
+  }
+
+  /* .sun {
+    background-image: url('./assets/icons8-summer.gif');
+    background-size: cover;
+  } */
+  
+  .cloudy {
+    background-image: url('./assets/overcast.gif');
+    background-size: cover;
+  }
+  
+  .snow {
+    background-image: url('./assets/rain_new.gif');
+    background-size: cover;
+    color: white; 
+  }
+  
+  .rain {
+    background-image: url('./assets/lightning.gif');
+    background-size: cover;
+    color: white; 
+  }
+  
+  p{
+    font-size: larger;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .style-gap{
+    margin-top: 2%;
+  }
+
+  .dark-mode * {
+    background-color: black;
+    background-size: cover;
+    color: white;
+  }
+  
+  .dark-mode input {
+    border: 1px solid white;
+  }
+  
+  .dark-mode header,footer {
+    border: 1px solid white;
+  }
+  
+.styleAtag{
+    color: white;
+    font-size: 20px;
+}
+      
+.styleAtag:visited {
+    color: white;
+}
+
+.dark-mode .rainbow {
+    animation-play-state: paused;
+    color: white;
+  }
+
+  html.dark-mode {
+    background: black;
+  }
+  
