@@ -1,0 +1,79 @@
+header {
+    background-color: rgb(104, 241, 216);
+    text-align: center;
+    box-sizing: border-box;
+    border-style: solid;
+    border-color: black;
+    height: 200px;
+    width: 75%;
+    margin: 10px auto;
+ 
+   
+   
+}
+h1 {
+    /* padding-top: 20px; */
+    font-size: 60px;
+}
+
+form {
+    font-size: 25px;
+}
+form input {
+    height: 25px;
+    width: 180px;
+}
+form button {
+    height:30px;
+    width: 125px;
+    font-size: 15px;
+   
+}
+main {
+    display: grid;
+    block-size: fit-content;
+    position: fixed;
+    background-color: rgb(244, 245, 237);
+    box-sizing: border-box;
+    margin-left: 15%;
+    min-height: 100px;
+    max-height: 50%;
+    width: 50%;
+    font-size: 25px;
+    text-align: center;
+    border: 1px solid  rgb(104, 241, 216);
+   
+}
+.previous-searches link {
+    list-style-type: circle;
+}
+/* main article {
+    padding-top: 15px;
+} */
+
+.side-bar {
+   
+    box-sizing: border-box;
+    font-size: 25px;
+    text-align: right;
+    margin: 10px 200px;
+  
+   
+}
+.heading {
+    font-size: 50px;
+    font-weight: bold;
+}
+.forecast {
+    display: grid;
+    position: fixed;
+    bottom: 0px;
+    width: auto;
+    grid-template-columns: repeat(3, 250px);
+    grid-auto-rows: minmax(100px, auto);
+    margin: 100px 100px;
+}
+  
+
+
+  

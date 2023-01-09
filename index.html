@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width">
+       <title>Weather App</title>
+       <link rel="stylesheet" href="./style.css"/>
+       <script defer src="weather.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Weather App</h1> 
+            <!-- <a href="https://wttr.in/">wttr.in</a> -->
+            <form>
+                <label>Pick a location</label>
+                <input id="location" name="-search-bar" type="text" required/>
+                <button type="submit">Get Weather</button> 
+            </form>
+        </header>
+        <aside></aside>
+        <main id="current" class="current"> 
+            <article id="location-info">
+                 
+            </article>
+            <aside class="forecast"> 
+                <article id="one">
+                    <h4 id="today"></h3>
+                        <br>
+                </article>
+                <article id="two">
+                    <h4 id="tomorrow"></h4>
+                    <br>
+                </article>
+                <article id="three">
+                    <h4 id="day-after-tomorrow"></h4>
+                    <br>
+                </article>
+            </aside>
+        </main>
+        <aside class="side-bar">
+            <section></section>
+            <h4>Previous Searches</h4>
+            <ul class="previous-searches"> </ul>
+        </aside>
+            
+
+
+    </body>
+</html>
+
