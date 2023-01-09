@@ -80,7 +80,7 @@ textInput.addEventListener("click", handleClick => {
                 weatherImage.setAttribute('alt', 'night icon');
             } else if (weatherDescriptions.some(description => description.includes('rain'))) {
                 weatherImage.setAttribute('src', './assets/icons8-rain-cloud.gif');
-                weatherImage.setAttribute('alt', 'rain-cloud icon');
+                weatherImage.setAttribute('alt', 'rain-cloud-icon');
                 playRainSound();
             } else if (weatherDescriptions.some(description => description.includes('storm'))) {
                 weatherImage.setAttribute('src', './assets/icons8-storm.gif');
