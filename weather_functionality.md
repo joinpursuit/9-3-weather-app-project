@@ -170,6 +170,10 @@ Writing a function that do multiple things is not a bad thing. What is bad is wh
 
 Code Smell is when you have a function that performs multiple unrelated tasks. Unfourtunatly this is bad practice. We must strive to learn the concept of breaking up functions into smaller pieces.
 
+## Back to project
+
+Now that we got that out of the way. We can move along and explain the logic that would go into the following function.
+
 ```js
 fetchWeatherInformation(BASE_URL);
 ```
@@ -181,7 +185,27 @@ function fetchWeatherInformation(url) {
   fetch(url)
     .then((response) => response.json())
     .then((response) => {
-      // do something with the response
-      ).catch((error) => {});
+      handleWeatherAPIResponse(response);
+    })
+    .catch((error) => {});
 }
 ```
+
+## THE GOD FUNCTION
+
+The God Function is a function that essentially does too much. It does way too many things at once. Sometimes these things may not be even related to the other.
+
+## Assinging Responsibility To The handleWeatherAPIResponse(response) Function
+
+```js
+function handleWeatherAPIResponse(response) {}
+```
+
+Putting more than one parameter in a function is also bad practice. This is called a God Function. A God Function is a function that does too much. It is a function that does too many things. It is a function that does too many things at once. It is a function that does too many things at once and does them poorly. It is a function that does too many things at once and does them poorly and is hard to read, understand, debug and maintain.
+
+https://medium.com/swlh/clean-code-writing-functions-or-methods-4e6e53ff4ac2
+
+innertext vs innerHTML vs textContent
+the difference between innerText and textContent is that innerText will return the text content of an element and all of its children. textContent will return the text content of an element and all of its children. innerHTML will return the HTML content of an element and all of its children.
+
+textContent is a property of the Element interface. It represents the text content of an element and all of its descendants. It is a read-only property.
