@@ -39,7 +39,7 @@ function updUi(search){
     chooseLocationHint.hidden = true;
 
     if(!search) {
-        chooseLocationHint = false;
+        chooseLocationHint.hidden = false;
         return;
     }
     const areaMatch = search.userInput.toLowerCase() === search.area.toLowerCase();
@@ -50,7 +50,7 @@ function updUi(search){
     if (search.chanceOfSunshine > 50) img = makeImg('icons8-summer.gif', 'sun');
     if (search.chanceOfRain > 50) img = makeImg('icons8-torrential-rain.gif', 'rain');
     if (search.chanceOfSnow > 50) img = makeImg('icons8-light-snow.gif', 'snow');
-
+    // if (search.chanceOfFog > 50) img = makeImg('icons8-fog.gif', 'fog');
 
     currentWeather.innerHTML = `
     ${img}
@@ -63,6 +63,7 @@ function updUi(search){
       <em>Chance of Sunshine:</em> ${search.chanceOfSunshine}<br>
       <em>Chance of Rain:</em> ${search.chanceOfRain}<br>
       <em>Chance of Snow:</em> ${search.chanceOfSnow}<br>
+    //   <em>Chance of Fog:</em> ${search.chanceOfFog}<br>
     </p>`;
 
     const articles = document.querySelectorAll('aside article');
