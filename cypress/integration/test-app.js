@@ -39,11 +39,7 @@ describe("Get details from text input", () => {
   it("should allow the user to search for a location and show them current weather information", () => {
     cy.get("header form input[type='text']").type("Melbourne").get("header form input[type='submit']").click();
     cy.wait("@fetchMelbourne");
-    cy.get("main")
-      .should("contain.text", "Melbourne")
-      .should("contain.text", "Victoria")
-      .should("contain.text", "Australia")
-      .should("contain.text", "47");
+    cy.get("main").should("contain.text", "Melbourne").should("contain.text", "Victoria").should("contain.text", "Australia").should("contain.text", "47");
   });
 });
 
@@ -72,11 +68,7 @@ describe("Keep track of previous searches", () => {
 
     cy.get("aside section a").first().click();
 
-    cy.get("main")
-      .should("contain.text", "Melbourne")
-      .should("contain.text", "Victoria")
-      .should("contain.text", "Australia")
-      .should("contain.text", "47");
+    cy.get("main").should("contain.text", "Melbourne").should("contain.text", "Victoria").should("contain.text", "Australia").should("contain.text", "47");
     cy.get("main")
       .should("contain.text", "49")
       .should("contain.text", "51")
@@ -150,14 +142,14 @@ describe("Add icon based on chance data", () => {
     cy.get("header form input[type='text']").type("mamaroneck").get("header form input[type='submit']").click();
     cy.wait("@fetchMamaroneck");
     cy.get(`main article p`).contains("Chance of Sunshine");
-    cy.get(`main article  p`).contains("53");
+    cy.get(`main article p`).contains("53");
   });
   it("Has a Chance of Rain p tag with appropriate data", () => {
-    cy.get(`main article  p`).contains("Chance of Rain");
-    cy.get(`main article  p`).contains("0");
+    cy.get(`main article p`).contains("Chance of Rain");
+    cy.get(`main article p`).contains("0");
   });
   it("Has a Chance of Snow p tag with appropriate data", () => {
-    cy.get(`main article  p`).contains("Chance of Snow");
+    cy.get(`main article p`).contains("Chance of Snow");
   });
 
   // sunny icon
