@@ -117,35 +117,14 @@ function weatherDisplay(userInput) {
             img.setAttribute("src", "./assets/icons8-light-snow.gif");
         }
         currentWeather.prepend(img);
-        // if(shouldIAdd){
-        //             addToPrevious(userInput, file.current_condition[0].FeelsLikeF)
-              
+       
             
-        
-    
-    // const add_prev_search = (file, location) => {
-    //     let previousSearch = document.querySelector("aside.weather-history ul");
-    //     let searchItems = document.querySelectorAll("ul li a");
-        
-    //     let listItem = document.createElement("li");
-    //     listItem.innerHTML = `<a href="#">${location}</a> - ${file.current_condition[0].FeelsLikeF}°F`;
-    //     previousSearch.append(listItem);
+                const converter = document.querySelector("form.converter");
+                converter.addEventListener("submit", (event) => {
+                    event.preventDefault();
+               
 
-    //     listItem.addEventListener("click", (event) => {
-    //         event.preventDefault();
-    //         fetch(`https://wttr.in/${location}?format=j1`)
-    //          .then((res) => res.json())
-    //          .then((json) => {
-    //             clear_defaults()
-    //                 add_weather(json, location)
-    //                 let location = document.querySelector("input.search-bar").value;
-    //                 if(!location) {
-    //                     window.reload();
-
-                    // }
-                
-
-                   let result = querySelector("h4.converted-temp");
+                   let result = document.querySelector("h4.converted-temp");
                     let convertC = document.getElementById("to-c");
                     let convertF = document.getElementById("to-f");
                     let originalNum = document.querySelector("#temp-to-covert");
@@ -158,8 +137,13 @@ function weatherDisplay(userInput) {
                     }
                 })
         
-            //  .catch((error) => console.log(error))
-             
+
+            })
+              .catch((error) => console.log(error))
+           
+                //         addToPrevious(userInput, file.current_condition[0].FeelsLikeF)
+                // }   
+                
 
         // const tempConversion = document.querySelector("aside.temperature-conversion form");
         // tempConversion.addEventListener("submit", (event) => {
