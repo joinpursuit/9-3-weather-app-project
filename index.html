@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <script defer src="index.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Weather App</h1>
+            <form id="weatherForm">
+                <label for="query">Pick a location</label>
+                <input id="cityInput" type="text" name="query">
+                <input type="submit" value="Get Weather" id="locationSubmission">
+            </form>
+        </header>
+        <aside>
+            <form id="tempConversionForm">
+                <label id="topHint" for="temp-to-convert">Convert the temperature:</label>
+                <input id="temp-to-convert" type="number">
+                <input id="to-f" type="radio" name="units">
+                <label for="to-f">°F</label>
+                <input id="to-c" type="radio" name="units">
+                <label for="to-c">°C</label>
+                <input id="conversion" type="submit">
+            </form>
+            <h4 id="temp"></h4>
+        </aside>
+        <main>
+            <img id="icon">
+            <article id="current">
+                <h2>Choose a location to view the weather</h2>
+            </article>
+            <article id="today"></article>
+            <article id="tomorrow"></article>
+            <article id="afterThat"></article>
+        </main>
+        <aside>
+            <section id="previousSearchesList">
+                <h4>Previous Searches</h4>
+                <p class="prevMessage">No previous searches.</p>
+                <ul class="previousList"></ul>
+            </section>
+        </aside>
+    </body>
+</html>
