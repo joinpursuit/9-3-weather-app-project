@@ -83,4 +83,81 @@ form.addEventListener("submit", (event) => {
       
             mainAside.innerHTML = '';
       
+             // Add 3 article elements under main aside to get today, tomorrow, etc data
+             const article1 = document.createElement("article");
+             const article2 = document.createElement("article");
+             const article3 = document.createElement("article");
+             function addDaysInfo(article, dayName, dayNum) {
+               const h3 = document.createElement("h3");
+               h3.innerText = dayName;
+               const p5 = document.createElement("p");
+               const p6 = document.createElement("p");
+               const p7 = document.createElement("p");
+       
+               const avgTemp = weatherInfo.weather[dayNum].avgtempF;
+               p5.innerHTML =
+                 "<strong>Average Temperature: </strong>" + avgTemp + " °F";
+               const maxTemp = weatherInfo.weather[dayNum].maxtempF;
+               p6.innerHTML =
+                 "<strong>Maximum Temperature: </strong>" + maxTemp + " °F";
+               const minTemp = weatherInfo.weather[dayNum].mintempF;
+               p7.innerHTML =
+                 "<strong>Minimum Temperature: </strong>" + minTemp + " °F";
+       
+               article.append(h3, p5, p6, p7);
+               // append article to main aside
+      
+               mainAside.append(article);
+      
+      
+             }
              
+             // do for reach to increment 0 to 1 to 2 for each different day
+             addDaysInfo(article1, "Today", 0);
+             addDaysInfo(article2, "Tomorrow", 1);
+             addDaysInfo(article3, "Day After Tomorrow", 2);
+      
+           
+             // Creating the functionality of the Previous Searches Tab
+             const previousSearchList = document.querySelector(".previous-searches");
+             const newLi = document.createElement("li");
+             previousSearchList.append(newLi);
+             // Creating the text for previous searches "X degrees fahrenheit"
+             const a = document.createElement("a");
+             a.setAttribute("href", base_url + city + format);
+             a.setAttribute("searchID", city)
+             a.innerText = city;
+             newLi.append(a);
+             newLi.innerHTML += ` - ${feelsLikeF} degF`;
+             previousSearchList.append(newLi);
+       
+             //This removes the "no previous searches" text after you input a location
+               document.querySelector(".hide").setAttribute("style", "display: none");
+       
+             // make inputted text disappear
+             event.target.search.value = "";
+       
+             // Make an array to hold the data to the reload the page
+           })
+           .catch(console.log);
+       });
+      
+       
+              a.addEventListener("click", (click) => {
+               click.preventDefault();
+               const locationName = this.searchID;
+               alert(locationName);
+               // reload page with this data
+               h2.innerText = locationName;
+               p1.innerHTML = "<strong>Area: </strong>" + locationName;
+               p2.innerHTML = "<strong>Region: </strong>" + region;
+               p3.innerHTML = "<strong>Country: </strong>" + country;
+               p4.innerHTML =
+                 "<strong>Currently:</strong> Feels Like " + feelsLikeF + "°F";
+             });
+       
+       
+       
+       
+       
+      
