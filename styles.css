@@ -22,23 +22,26 @@ main {
     margin-top: 10px;
     margin-left: 20px;
 }
-#upcoming-weather {
+.aside-upcoming {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     background-color: rgb(255, 255, 255);
       
 }
-#prev-search {
+.prev-search {
     padding-left: 10px;
 }
 .note {
     text-align: center;
     
 }
-#current-weather {
+.current-weather {
     text-align: center; 
+    padding-top: 20px;
       
 }
+
+
 
 
 

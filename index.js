@@ -1,11 +1,13 @@
 const BASE_URL = "https://wttr.in/";
 const searchBar = document.querySelector(".search-bar");
-const articleCurrentWeather = document.querySelector('#current-weather');
-const articleTodaysWeather = document.querySelector('#today-weather');
-const articleTomorrowWeather = document.querySelector("#tomorrow");
-const articleDayAfterWeather = document.querySelector('#day-after');
+const articleCurrentWeather = document.querySelector('.current-weather');
+let asideUpcoming = document.querySelector('.aside-upcoming')
+let articleTodaysWeather = document.querySelector('.today-weather');
+let articleTomorrowWeather = document.querySelector(".tomorrow");
+let articleDayAfterWeather = document.querySelector('.day-after');
 const main = document.querySelector("main");
 const prevSearch = document.querySelector("ul");
+const note = document.querySelector(".note")
 const prevSearchArray = [];
 const searchUl = document.querySelector(".search");
 let formattedURL;
@@ -18,20 +20,21 @@ form.addEventListener("submit", getFormattedUrl)
 function getFormattedUrl(event) {
     event.preventDefault();
     const location = `${searchBar.value}`;
+    const formattedLocation = location[0].toUpperCase() + location.slice(1).toLowerCase();
     formattedURL = `${BASE_URL}${location}?format=j1`;
-    getWeatherData(formattedURL)
+    getWeatherData(formattedURL, formattedLocation)
     
     
 
 }
 
-function getWeatherData(url) {
+function getWeatherData(url, formattedLocation) {
         
     fetch(url) 
         .then((response) => response.json())
         
         .then((result) => {
-            createTheWeather(result,url);
+            createTheWeather(result, url, formattedLocation);
             
             
         })
@@ -43,26 +46,38 @@ function getWeatherData(url) {
     
 }
 
-function createTheWeather(resultObj, url) {
+function createTheWeather(resultObj, url, formattedLocation) {
     //console.log(resultObj);
-   
-    appendSearchName();
-    getCurrentWeatherDetails(resultObj);
+    articleCurrentWeather.textContent = '';
+    resetArticles();
+    appendSearchName(formattedLocation);
+    getCurrentWeatherDetails(resultObj, formattedLocation);
     getTodaysWeather(resultObj);
     getTomorrowsWeather(resultObj);
     getDayAfterWeather(resultObj);
-    appendPreviousSearches(resultObj, url);
+    appendPreviousSearches(resultObj, url, formattedLocation);
     
     form.reset();
     
 }
 
+function resetArticles() {
+    [articleTodaysWeather, articleTomorrowWeather, articleDayAfterWeather].forEach(article => article.remove());
 
-function appendSearchName() {
-    // const note = document.querySelector(".note");
-    // note.remove();
+    articleTodaysWeather = document.createElement('article');
+    articleTomorrowWeather = document.createElement('article');
+    articleDayAfterWeather = document.createElement('article');
+    articleTodaysWeather.classList.add('today-weather');
+    articleTomorrowWeather.classList.add('tomorrow');
+    articleDayAfterWeather.classList.add('day-after');
+    asideUpcoming.append(articleTodaysWeather, articleTomorrowWeather, articleDayAfterWeather);
+} 
+
+
+function appendSearchName(formattedLocation) {
+  
     const searchTitle = document.createElement("h3");
-    searchTitle.textContent = searchBar.value;;
+    searchTitle.textContent = formattedLocation;
     articleCurrentWeather.append(searchTitle);
         
 
@@ -77,22 +92,29 @@ function getCurrentWeatherDetails(details) {
     `;
     
     articleCurrentWeather.append(allDetails);
+    main.prepend(articleCurrentWeather)
+   
     
 }
 function getTodaysWeather(today) {
-    const todaysWeather = document.createElement('h3');
-    todaysWeather.innerHTML = `<center>Today </center>`;
+    articleTodaysWeather.classList.add('tempCard')
+    const todaysTitle = document.createElement('h3');
+    todaysTitle.innerHTML = `<center>Today </center>`;
     const temp = document.createElement("p");
     temp.innerHTML = `
     <p><strong>Average Temperature: </strong> ${today.weather[0].avgtempF}°F</p>
     <p><strong>Max Temperature: </strong> ${today.weather[0].maxtempF}°F</p>
     <p><strong>Min Temperature: </strong> ${today.weather[0].mintempF}°F</p>
     `;
-    articleTodaysWeather.append(todaysWeather, temp);
+    articleTodaysWeather.append(todaysTitle, temp);
+    asideUpcoming.append(articleTodaysWeather);
+    
+    
 }
 function getTomorrowsWeather(tomorrow) {
-    const tommorowWeather = document.createElement('h3');
-    tommorowWeather.innerHTML = `<center>Tommorow </center>
+    articleTomorrowWeather.classList.add('tempCard')
+    const tommorowTitle = document.createElement('h3');
+    tommorowTitle.innerHTML = `<center>Tommorow </center>
     `;
     const temp = document.createElement("p");
     temp.innerHTML = `
@@ -100,11 +122,14 @@ function getTomorrowsWeather(tomorrow) {
     <p><strong>Max Temperature: </strong> ${tomorrow.weather[1].maxtempF}°F</p>
     <p><strong>Min Temperature: </strong> ${tomorrow.weather[1].mintempF}°F</p>
     `;
-    articleTomorrowWeather.append(tommorowWeather, temp);
+    articleTomorrowWeather.append(tommorowTitle, temp);
+    asideUpcoming.append(articleTomorrowWeather)
+    
 }
 function getDayAfterWeather(dayAfter) {
-    const dayAfterWeather = document.createElement('h3');
-    dayAfterWeather.innerHTML = `<center>Day Ater Tommorow </center>
+    articleDayAfterWeather.classList.add('tempCard')
+    const dayAfterTitle = document.createElement('h3');
+    dayAfterTitle.innerHTML = `<center>Day Ater Tommorow </center>
     `;
     const temp = document.createElement("p");
     temp.innerHTML = `
@@ -112,40 +137,38 @@ function getDayAfterWeather(dayAfter) {
     <p><strong>Max Temperature: </strong> ${dayAfter.weather[2].maxtempF}°F</p>
     <p><strong>Min Temperature: </strong> ${dayAfter.weather[2].mintempF}°F</p>
     `;
-    articleDayAfterWeather.append(dayAfterWeather, temp);
+    articleDayAfterWeather.append(dayAfterTitle, temp);
+    asideUpcoming.append(articleDayAfterWeather)
+    
 }
 
-function appendPreviousSearches(previous, url) {
-    const location = searchBar.value;
-    prevSearchArray.push(location);
-    console.log(prevSearchArray)
+function appendPreviousSearches(previous, url, formattedLocation) {
+    const searchLi = document.createElement("li");
     
-    // const note = document.querySelector(".note");
-    // note.remove();
-   
 
-        const searchLi = document.createElement("li");
+    if (!prevSearchArray.includes(formattedLocation)) {
+        prevSearchArray.push(formattedLocation);
+        note.remove();
         searchLi.innerHTML = `
-        <a href=${url}>${location}</a> 
-        - ${previous.current_condition[0].FeelsLikeF}°F`
-        ;
-    
-        searchLi.addEventListener("click", (event) => {
-            event.preventDefault(); //stops page from reloading) 
-        
-
-        })
-
+        <a href=${url} name="currentLink">${formattedLocation}</a> 
+            - ${previous.current_condition[0].FeelsLikeF}°F`
+            ;
         searchUl.append(searchLi);
+        searchLi.addEventListener("click", (event) => {
+                event.preventDefault();
+                const h3 = document.querySelector("h3"); 
+                if (h3.textContent !== formattedLocation) {
+                    getWeatherData(url, formattedLocation);
+                    searchUl.append(searchLi);
+                }
+            });  
 
     }
-  
-     
-    
-    
+
     if (prevSearchArray.length > 3) {
-        prevSearchArray.pop();
-    
+        searchUlElement.firstChild.remove();
+        prevSearchArray.shift();
+    }
 
     
 }
