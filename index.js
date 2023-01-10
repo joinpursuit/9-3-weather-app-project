@@ -1,5 +1,5 @@
 // create a variable to represent the URL
-const BASE_URL = `https://wttr.in/`
+const BASE_URL = `https://wttr.in`
 // ${user_input.value}
 const searchResult = document.querySelector(".searchResults")
 const form = document.querySelector("form");
@@ -17,8 +17,9 @@ form.addEventListener("submit", getCurrentApi)
 function getCurrentApi(event) {
     event.preventDefault();
     const location = `${searchResult.value}`
-     formattedUrl = `${BASE_URL} ${location}?format=j1`
+     formattedUrl = `${BASE_URL}/${location}?format=j1`
     getWeatherAppData(formattedUrl, location)
+    form.reset()
 }
 // write a function that uses the result from the fetch to create weather app data
 
@@ -27,7 +28,9 @@ function getWeatherAppData(url, location) {
         .then((response) => response.json())
         .then((result) => {
             //call our  function with result
+            console.log("I'm in Fetch")
             createCurrentWeather(result, location);
+            // form.reset()
         })
         .catch((error) => {
             // call createErrorMessage function with error
@@ -43,23 +46,28 @@ function createCurrentWeather(result, location) {
     getTomorrowWeatherArticle(result, location)
     getDayAfterWeatherArticle(result, location)
     getPreviousSearches(result, location)
-    form.reset()
+    //form.reset()
    
 
 }
 function appendCurrentWeatherResult(result, location) {
     currentWeatherArticle.textContent = ""
-    const h1 = document.createElement('h1');
-    h1.textContent = location
+    const h2 = document.createElement('h2');
+    h2.textContent = location
     const area = document.createElement("p");
-    area.innerHTML = `<strong>Area:</strong> ${result.nearest_area[0].areaName[0].value}`
+    if (`${result.nearest_area[0].areaName[0].value}` === location){
+        area.innerHTML = `<strong>Area:</strong> ${result.nearest_area[0].areaName[0].value}`
+    } else {
+        area.innerHTML = `<strong>Nearest Area:</strong> ${result.nearest_area[0].areaName[0].value}`
+    } 
+    
     const region = document.createElement("p")
     region.innerHTML = `<strong>Region:</strong> ${result.nearest_area[0].region[0].value} `
     const country = document.createElement("p")
     country.innerHTML = `<strong>Country:</strong> ${result.nearest_area[0].country[0].value}`
     const current = document.createElement("p")
     current.innerHTML = `<strong>Current:</strong> Feels Like ${result.current_condition[0].FeelsLikeF}°F`
-    currentWeatherArticle.append(h1, area, region, country, current)
+    currentWeatherArticle.append(h2, area, region, country, current)
     
 
     // call the function to get the numbers
@@ -115,5 +123,4 @@ const search = document.querySelector("#no-previous-search")
         getWeatherAppData(`${event.target.name}`, location)
     })
 
-    
 };

@@ -105,7 +105,7 @@ The following features are required for your application. These features detail 
   - [x] See the text disappear from the search bar.
   - [x] See the name of the city that was searched as well as the area, region, country, and currently "feels like" temperature for that location.
   - [x] See detailed information for the current day and the next two days below the `main` element.
-  - [ ] See the city name and "feels like" temperature show up in the `aside` element.
+  - [x] See the city name and "feels like" temperature show up in the `aside` element.
 - If another search is made, the user should:
   - [ ] See the `main` element change to account for the new city, updating all relevant information.
   - [ ] See the new city name appear at the bottom of the list in the `aside` element, with the "feels like" temperature.

@@ -12,7 +12,7 @@
     border-bottom: 5px solid #154e6a;
     color: #ececec;
     padding: 0.5rem 25%;
-    text-align: center;
+    text-align: scroll;
    
     /* grid-template-columns: repeat(4, auto);
     grid-template-rows: auto;
