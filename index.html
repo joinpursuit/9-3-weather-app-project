@@ -6,7 +6,6 @@
     <script src="./main.js" defer></script>
 </head>
 <body>
-    <div class="container">
     <header>
         <h1>Weather App</h1>
         <form id="mainSearch">
@@ -36,12 +35,11 @@
         </form>
     </aside>
     <main>
+        <p>Choose a location to view the weather</p>
         <!-- Will contain current weather-->
-        <article id="temp-summary">
-            <p>Choose a location to view the weather</p>
-        </article>
+        <article id="temp-summary"></article>
         <!-- Will contain 3 article elements that will have upcoming weather -->
-        <aside id="forcastDays"></aside>
+        <aside id="main-aside"></aside>
     </main>
 
     <!-- Will contain weather history -->
@@ -54,5 +52,4 @@
         </section>
     </aside>
 </body>
-</div>
 </html>
