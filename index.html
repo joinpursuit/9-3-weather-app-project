@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather App</title>
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+    <header>
+        <h1>Weather App</h1>
+        <form>
+            <label> Pick a Location
+                <input class="searchResults" name="text" type="text" />
+                <input type="submit" value="Get Weather" />
+        </form>
+    </header>
+    <aside id="temp-widget" hidden></aside>
+    <main>
+        <article id="current-weather">
+            <p>Choose a location to view the weather</p>
+        </article>
+
+        <aside id="upcoming-weather">
+            <article id="today"></article>
+            <article id="tomorrow"></article>
+            <article id="day-after"></article> 
+        </aside >
+    </main>
+    <aside id="previous-search">
+        <section> 
+            <h2>Previous Searches</h2>
+            <ul id ="search-ul">
+                <p id="no-previous-search"> No previous searches.</p>
+            </ul>
+       </section>
+    </aside>
+</div>
+</body>
+</html>
