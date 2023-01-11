@@ -209,3 +209,8 @@ innertext vs innerHTML vs textContent
 the difference between innerText and textContent is that innerText will return the text content of an element and all of its children. textContent will return the text content of an element and all of its children. innerHTML will return the HTML content of an element and all of its children.
 
 textContent is a property of the Element interface. It represents the text content of an element and all of its descendants. It is a read-only property.
+
+## Resources
+
+[InnerText vs. InnerHTML vs. TextContent](https://www.freecodecamp.org/news/innerhtml-vs-innerText-vs-textContent-903ebc43a3fc/)
+[InnerText-vs-TextContent](https://kellegous.com/j/2013/02/27/innertext-vs-textcontent/)
