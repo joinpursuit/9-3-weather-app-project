@@ -1,152 +1,157 @@
-const form = document.getElementById("weatherForm");
-const todayArt = document.getElementById("today");
-const tomorrowArt = document.getElementById("tomorrow");
-const dayAfterTomArt =document.getElementById("after-tomorrow");
-const convertForm = document.getElementById("converter");
 
-form.addEventListener("submit", (event)=> {
+const BASE_URL = 'http://wttr.in/';
+const form = document.querySelector('form');
+const currentWeather = document.querySelector('article');
+const weatherIcon = document.createElement('img');
+
+form.addEventListener('submit', (event) => {
     event.preventDefault();
-    const userInput = event.target.location.value;
-    return weatherSearch(userInput);
+    document.querySelector('main p').hidden = true;
 
-});
+    let city = event.target.location.value;
+    event.target.location.value = "";
 
-const weatherSearch = (location) => {
-    if(!location){return};
-    fetch("http://wttr.in/" + location + "?format=1j")
+    fetch(`${BASE_URL}${city}?format=j1`)
     .then((response)=> {
         return response.json();
 
     })
-    .then((data) => {
-        createMainArticle(data, location);
-        fillMiniArticle(data.weather[0],todayArt, "Today");
-        fillMiniArticle(data.weather[1], tomorrowArt, "Tomorrow");
-        fillMiniArticle(data.weather[2], dayAfterTomArt, "Next Day");
-        searchHistoryMaker(data, location);
-        
+    .then((json) => {
+        let feelsLikeTemp = getWeatherReport(currentWeather, json, city);
+        const ul = document.querySelector('ul');
+        const searchHistory = document.createElement('li');
+        let a = document.createElement('a');
+        a.textContent = city;
+        a.href = `${BASE_URL}${city}?format=j1`;
+        searchHistory.textContent = feelsLikeTemp;
+        searchHistory.prepend(a);
+        ul.append(searchHistory);
+        console.log(json)
+        let previous = document.querySelector('section aside.previous p');
+        previous.hidden = true;
 
-       
-       
-        
-            
+
+        a.addEventListener("click", (event) => {
+            event.preventDefault();
+            getWeatherReport(currentWeather, json, city);
+
+        });
     })
     .catch((error) => {
         console.log(error);
-    }); 
-};
-// create a DOM img element with unique img file and description, and append it to the Dom 
+    });
+});
 
-const icon = (url, altString) => {
-    const img = document.createElement("img");
-    img.setAttribute("src", url);
-    img.setAttribute("alt", altString);
-    general.append(img);
-};
- const createMainArticle = (data, location) => {
-    const general = document.getElementById("general");
-    general.innerHTML = "";
+const getWeatherReport = (currentWeather, json, city) => {
+    currentWeather.innerHTML ='';
+    let Location = document.createElement('h2');
+    Location.textContent = city;
+    currentWeather.append(Location);
 
-    const {FeesLikeF} = data.current-condition[0];
+    let area = json.nearest_area[0].areaName[0].value;
+    let areaData = document.createElement('p');
+    currentWeather.append(areaData);
 
-    const {areaName, country, region} = data.nearest-area[0];
-    const {chanceOfRain, chanceOfSunshine, chanceOfSnow} = data.weather[0].hourly[0];
-    if(chanceOfSunshine > 50){
-        icon("./assets/icons8-summer.gif", "sun");
+    if(area.toLowerCase() === city.toLowerCase()) {
+        areaData.textContent = `Area: ${area}`;
 
-    } else if(chanceOfRain> 50){
-        icon("./assets/icons8-torrential-rain.gif", "rain");
-
-    }else if (chanceOfSnow>50){
-        icon("./assets/icons8-light-snow.gif", "snow")
+    }else {
+        areaData.textContent = `Nearest Area: ${area}`;
     }
-    const searchedTown = document.createElement("h2");
-    searchedTown.innerText = location;
-    const searchedArea = document.createElement("p");
-    areaName[0].value.toLowerCase() === location.toLowerCase()
-    ? (searchedArea.innerText= "Area: " + areaName[0].value)
-    : (searchedArea.innerText = "Nearest Area: " + areaName[0].value);
+     let region = json.nearest_area[0].region[0].value;
+     regionData =document.createElement('p');
+     regionData.textContent = `Region: ${region}`;
+     currentWeather.append(regionData);
 
-    const searchedRegion = document.createElement("p");
-    searchedRegion.innerText = "Region: " + region[0].value;
-    const searchedCountry = document.createElement("p");
-    searchedCountry.innerText = "Country: " + country[0].value;
-    const currentTemp = document.createElement("p");
-    currentTemp.innerText = "Currently: Feels like" + feelsLikeF + "fahrenheit";
-    const sunshine = document.createElement("p");
-    sunshine.innerText = "Chance of sunshine: " + chanceOfSunshine;
-    const rain = document.createElement("p");
-    rain.innerText = "Chance of rain: " + chanceOfRain;
-    const snow = document.createElement("p");
-    snow.innerText = "Chance of snow: " + chanceOfSnow;
+     let country = json.nearest_area[0].country[0].value;
+     countryData = document.createElement('p');
+     countryData.textContent =`Country: ${country}`;
+     currentWeather.append(countryData);
 
-    general.append(
-        searchedTown,
-        searchedArea,
-        searchedRegion,
-        searchedCountry,
-        currentTemp,
-        sunshine,
-        rain,
-        snow,
-    );
-    
-
- };
-
- const fillMiniArticle = (data, article, header) => {
-    ({ avgTemF, minTempF, maxTemF} = data);
-    article.innerHTML = "";
-    const heading = document.createElement("h3");
-    heading.innerText = header;
-    const averageP = document.createElement("p");
-    averageP.innerHTML = `<strong>Avg Temp:</strong> ${avgTemF}fahrenheit`;
-    const maxP = document.createElement("p");
-    maxP.innerHTML = `<strong> Min Temp: </strong>${minTempF}fahrenheit`;
-    const minP = Document.createElement("p");
-    minP.innerHTML`<strong>Min Temp:</strong> ${minTempF}fahrenheit`;
-    return article.append(heading, averageP, maxP, minP);
+     let feelsLikeTemp = `Currently feels like: ${json.current_condition[0].FeelsLikeF} F`;
+     tempData = document.createElement('p');
+     tempData.textContent = feelsLikeTemp;
+     currentWeather.append(tempData);
 
 
- };
+     const chanceOfSunshine = json.weather[0].hourly[0].chanceofsunshine;
+     const chanceOfRain =json.weather[0].hourly[0].chanceofrain;
+     const chanceOfSnow = json.weather[0].hourly[0].chanceofsnow;
 
- const searchHistory = (data, location) => {
-    const history = document.getElementById("search-list");
-    const noSearches = document.getElementById("no-searches");
-    const{feelsLikeF} = data.current-condition[0];
-    if(!history.innerText.includes(location)) {
-        noSearches.innerText = "";
-        const newLIne = document.createElement("li");
-        const anchor = document.createElement("a");
-        anchor.setAttribute("href", "#");
-        anchor.textContent = `${location} ${FeesLikeF}fahrenheit`;
-        newLIne.append(anchor);
-        history.append(newLIne);
-        newLIne.addEventListener("click", (event) =>{
-            event.preventDefault();
-            weatherSearch(location);
-        });
+     const sunny = document.createElement('p');
+     sunny.textContent = `Chance of Sunshine: ${chanceOfSunshine}%`;
+     currentWeather.append(sunny);
+
+     const rainy = document.createElement('p');
+     rainy.textContent = `Chance of Rain: ${chanceOfRain}%`;
+     currentWeather.append(rainy);
+
+
+     const snow = document.createElement('p');
+     snow.textContent = `Chance of Snow: ${chanceOfSnow}%`;
+     currentWeather.append(snow);
+
+
+     for (let i=0 ; i< json.weather[0].hourly.length; i++) {
+        if(Number(json.weather[0].hourly[i].chanceofsunshine) > 50) {
+            weatherIcon.src = './assets/icons8-summer.gif';
+            weatherIcon.alt = 'sun';
+        }
+        if(Number(json.weather[0].hourly[i].chanceofrain) > 50 ) {
+            weatherIcon.src = './assets/icons8-torrential-rain.gif';
+           ('https://img.freepik.com/free-photo/rainy-day-icon-3d-render-illustration-style_516190-319.jpg?w=996') 
+            weatherIcon.alt =  'rain';
+
+        }
+        if (Number(json.weather[0].hourly[i].chanceofsnow) > 50) {
+            weatherIcon.src = './assets/icons8-light-snow.gif';
+            weatherIcon.alt = "snow";
+        }
+     }
+     currentWeather.prepend(weatherIcon);
+
+    //  handle the three days forecast to follow the current weather outputted
+
+    const articles =document.querySelectorAll('aside article');
+    const forecastDays = ['Today', 'Tomorrow', ' After Tomorrow'];
+
+    for (let i = 0; i< articles.length; i++) {
+        articles[i].innerHTML = '';
+
+        let days = document.createElement('p');
+        days.textContent = forecastDays[i];
+
+
+        const avgTemp = document.createElement('p');
+        avgTemp.textContent = `Average Temperature: ${json.weather[i].avgtempF} F`;
+
+        const maxTemp = document.createElement('p');
+        maxTemp.textContent = `Max Temperature: ${json.weather[i].maxtempF} F`;
+
+        const minTemp = document.createElement('p');
+        minTemp.textContent = `Min Temperature: ${json.weather[i].mintempF} F;`
+
+        articles[i].append(days, avgTemp, maxTemp, minTemp);
     }
- };
+    return feelsLikeTemp;
 
- const convertHelper = (num, type)=> {
-    const conversionResult = document.getElementById("result");
-    conversionResult.innerText = "";
-    if(type === true) {
-        const farToCel = `${(num-32)*(5/9).toFixed(2)}Celsius`;
-        conversionResult.innerText = farToCel;
 
-    }else if (type === false) {
-        const celToFar = `${(num*1.8+32).toFixed(2)}Fahrenheit`;
-        conversionResult.innerText = celToFar;
-    }
- };
+}
 
- convertForm.addEventListener("submit", (event) => {
+const tempConversion = document.querySelector('aside.conversion-widget form');
+tempConversion.addEventListener('submit', (event) => {
     event.preventDefault();
-    const input = event.target[0].value;
-    const convertToCel = event.target[1].checked;
-    convertToCel === true? convertHelper(input, true) : convertHelper(input, false);
-    event.target.removeEventListener();
+    const temperature = event.target.querySelector('#temp-to-convert').value;
 
- })
+    const types = event.target.querySelectorAll('.temperature');
+    console.log('This is type:', types);
+    if(types[0].checked) {
+        const celsius = (temperature-32)*(5/9);
+        event.target.querySelector('h4').textContent = `${celsius.toFixed(2)} C`;
+
+    }
+    else if (types[1].checked){
+        const fahrenheit = (temperature * 9/5) + 32;
+        event.target.querySelector('h4').textContent = `${fahrenheit.toFixed(2)} F`;
+    }
+});
