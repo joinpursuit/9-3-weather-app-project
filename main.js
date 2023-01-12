@@ -292,5 +292,3 @@ function checkForValidInput(input) {
 function displayError(error) {
   console.log(error);
 }
-// what is javascript hoisting
-java;
