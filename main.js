@@ -292,3 +292,4 @@ function checkForValidInput(input) {
 function displayError(error) {
   console.log(error);
 }
+// testing this comment
