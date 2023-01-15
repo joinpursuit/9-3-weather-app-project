@@ -1,6 +1,6 @@
 # Weather App Project
 
-For this assignment, you will build a weather application that will make use of the [wttr.in API](https://github.com/chubin/wttr.in) to show the weather in different locations. Your application will also store previous searches.
+For this assignment, you will build a weather application that will make use of the [wttr.in API](https://www.corlandowebsites.com) to show the weather in different locations. Your application will also store previous searches.
 
 Please see [the rubric](./rubric.md) for full details on what you will be graded on.
 
