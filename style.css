@@ -1,0 +1,76 @@
+
+body {
+    font-family: 'open Sans' sans-serif;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-row-gap: 10px;
+    grid-template-rows: 3;
+    margin: 0 auto;
+    background-color: rgb(220, 207, 189);
+
+}
+ 
+header {
+    grid-column-start: span 3;
+    text-align: center;
+    border: 3px solid darkslategray;
+    color: whitesmoke;
+    width: 60%;
+    height: 80%;
+    margin:0 auto;
+    background-size: 100% 100%;
+    padding-bottom: 25px;
+    background-color: darkgreen
+
+
+
+}
+
+main {
+    display: grid;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fe, 2fr, 1fr;
+    text-align: center;
+    margin: auto;
+    gap: 5px;
+
+}
+
+.conversion-widget form{
+    padding-top: 10px;
+    border: 30s solid darkslategray;
+    text-align: center;
+
+}
+
+#three-day-forcast {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+}
+.button {
+    border-radius: 4px;
+    color:#2e3f02;
+    display: block;
+    font-weight: 700;
+    width: 200px;
+    padding: 20px;
+    margin: 40px auto;
+    border: 1px solid rgb(8,69,45);
+
+}
+.button:hover{
+    background-color: #0c6c6d;
+    border: 1px solid #05A8AA;
+    color: #fff;
+}
+
+.previous h2 {
+    display: grid;
+    text-align: left;
+    font-family: sans-serif;
+    color: black;
+}
+

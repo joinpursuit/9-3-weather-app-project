@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App project</title>
+
+    <link rel="stylesheet" href="style.css"/>
+    <script defer src="main.js"></script>
+    
+
+</head>
+<body>
+   
+    <header>
+       
+            <h1>Weather App</h1>
+            
+            
+            <form id="weatherform">
+                <label for="userLocation">Pick a location</label>
+                <input type="text" id="userLocation" name="location" /><br>
+                <input type="submit" value="Get Weather" class="button"/>
+            </form>
+        
+    </header>
+
+    <section class="convert">
+        <aside class="conversion-widget">
+            <form>
+                <label for="temp-to-convert">Convert the temperature</label>
+                <input type="number" id="temp-to-convert" name="temp"><br>
+                <input type="radio" name="temp-to-convert" value="c" id="to-c" class="temperature" checked>Convert to celsius<br>
+                <input type="radio" name="temp-to-convert" value="f" id="to-f" class="temperature" checked>Convert to fahrenheit<br>
+                <input type="submit" name="submit" value="submit" class="button">
+                <h4></h4>
+            </form>
+            
+        </aside>
+     </section>
+    
+        <main id="container" class="display">
+            
+            <p class="choose-a-location">Choose a location to view the weather.</p>
+       
+        <article id="current-weather"></article>
+            <aside  id="three-day">
+            <article id="Today"></article>
+            <article id="Tomorrow"></article>
+            <article id="After-tomorrow"></article>
+         </aside>
+
+        
+         </main>
+       <aside>
+        <section class="previous">
+            <h4>Previous Searches
+
+            <p>No previous searches</p>
+            <ul></ul>
+            </h4>
+        </section>
+       </aside>
+    
+    
+
+    
+</body>
+</html>
