@@ -1,29 +1,15 @@
-
-
 const form = document.querySelector("form");
-
 const currentWeather = document.querySelector("#current-weather")
-
 const today = document.querySelector(".today")
-
 const tomorrow = document.querySelector(".tomorrow")
-
 const dayAfter = document.querySelector(".day-after-tomorrow")
-
 const weatherWidget = document.createElement("img")
-
 const main = document.querySelector("main")
-
-const choose =  document.querySelector("#choose")
-
+const choose =  document.querySelector("#choose")  
 const pSearch = document.querySelector("#pSearch")
-
 const previousData = []
-
 const ul = document.querySelector(".ulP")
-
 const h4result = document.querySelector('.h4_result')
-
 const convertForm = document.querySelector('.convertor-form')
 
 
@@ -34,6 +20,7 @@ let location = event.target.location.value
 getWeatherApi(location)
 choose.style.display = "none"
 pSearch.style.display = "none"
+form.reset()
 });
 
 convertForm.addEventListener("submit", (event) => {
@@ -102,13 +89,14 @@ if((promise.current_condition[0].weatherDesc[0].value === "Sunny") || (Number(pr
   iconSunny.setAttribute("alt","sun")
   mainSection.append(iconSunny)
 }
-if((promise.current_condition[0].weatherDesc[0].value === "Torrential-rain") || (Number(promise.weather[0].hourly[0].chanceofrain) > 50)) {
+else if((promise.current_condition[0].weatherDesc[0].value === "Torrential-rain") || (Number(promise.weather[0].hourly[0].chanceofrain) > 50)) {
   const iconTRain = document.createElement("img")
   iconTRain.setAttribute("src","./assets/icons8-torrential-rain.gif")
   iconTRain.setAttribute("alt","rain")
   mainSection.append(iconTRain)
 }
-if((promise.current_condition[0].weatherDesc[0].value === "Light snow") || (Number(promise.weather[0].hourly[0].chanceofsnow) > 50)) {
+else {
+  (promise.current_condition[0].weatherDesc[0].value === "Light snow") || (Number(promise.weather[0].hourly[0].chanceofsnow) > 50) 
   const iconLightSnow = document.createElement("img")
   iconLightSnow.setAttribute("src","./assets/icons8-light-snow.gif")
   iconLightSnow.setAttribute("alt","snow")
@@ -123,7 +111,6 @@ mainSection.append(cityName)
 const region = document.createElement("p")
 region.textContent = `Region: ${promise.nearest_area[0].region[0].value}`
 mainSection.append(region)
-
 
 const country = document.createElement("p")
 country.textContent = `Country: ${promise.nearest_area[0].country[0].value}`
@@ -208,14 +195,10 @@ minTempAfter.textContent = `Min Temperature: ${promise.weather[2].mintempF}°F`
 dayAfter.append(minTempAfter)
 
 
-
-
 mainSection.append(today, tomorrow, dayAfter);
 currentWeather.append(mainSection)
 
 addToPrevious(promise.nearest_area[0].areaName[0].value, promise.current_condition[0].FeelsLikeF)
 previousData.push(promise.nearest_area[0].areaName[0].value)
-
-
 
 }
