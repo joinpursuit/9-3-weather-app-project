@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>my weather app</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="./main.js"></script>
+  </head>
+  <body>
+    
+      <header>
+        <h1>Weather App</h1>
+        <form>
+          <label for="location" >Pick a Location</label>
+          <input type="text" name="location" id="location" placeholder="location here" required/>
+          <input class="buttonHover" type="submit" name="Get Weather" id="get-weather" value="Get Weather" />
+           </label>
+        </form>
+      </header>
+      <!-- <aside id="temperature-convertion-widget"></aside> -->
+    <!-- <div class="locations"> -->
+    <div class="main-container"> 
+      <aside class="convertor">
+        <form class="convertor-form">
+          <label for="temp">Convert the Temperature</label>
+          <input type="number" id ="temp" name="temp" maxlength="5" required/> <br>
+          <label for="temp_c">To Celcius</label>
+          <input type="radio" name="temp_to_convert" id="to-c" value="c" class="c" checked />
+          <label for="temp_f">To Fahrenheit</label>
+          <input type="radio" name="temp_to_convert" id="to-f" value="f" class="f" />
+          <input class="buttonHover"type="submit" value="Submit" />
+          <h4 class="h4_result"></h4>
+        </form>
+        <h4></h4>
+      </aside>
+  <main>
+        <p id="choose">Choose a location to view the weather</p>
+        <div class="weather-grid">
+        <article id="current-weather" class ="main-info"></article>
+        <!-- <aside id="three-days-focus"> -->
+          <article class="today focast"></article>
+          <article class="tomorrow focast"></article>
+          <article class="day-after-tomorrow focast"></article>
+        </div>
+        <!-- </aside> -->
+      <!-- </div> -->
+  </main>
+    <div class="search">
+      <aside>
+        <section class="previous">
+        <h4>Previous Searches</h4>
+          <ul class="ulP">
+          <p id="pSearch"><span>No previous searches</span></p>
+        </ul>
+        </section>
+      <!-- </aside> -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+header{
+  background-color:rgb(142, 20, 136);
+  color:white;
+  text-align: center;
+  border:2px solid black; 
+  margin: 3px auto;
+  font-family: Arial, Helvetica, sans-serif;
+  padding:10px;
+  width:85%;
+}
+.locations{
+  display: inline-block;
+  border:2px solid rgb(20,142,136) ;
+  width:610px;
+  /* height:50px; */
+  padding-top:15px ;
+  padding-bottom:15px ;
+  text-align: center;
+  background-color: rgb(241, 241, 241);
+  margin-top: 10px;
+  margin-left: 170px; 
+  
+}
+.search{
+  padding: 10px;
+  overflow: hidden;
+
+}
+
+.no-previous{
+  /* background-color: aqua; */
+  font-family: Arial, Helvetica, sans-serif;
+  display: inline-block;
+  margin-left: -125px;
+}
+h4{
+margin-bottom: 0px;
+}
+
+.weather-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.main-info{
+  grid-column: span 3;
+}
+.focast{
+  background-color: rgba(200, 116, 219, 0.758);
+  margin:2px;
+}
+.main-container{
+width:85%;
+margin: 5px auto;
+}
+
+.convertor{
+  float: left;
+  width:22%;
+}
+main{
+width:54%;
+float: left;
+overflow: hidden;
+background-color: rgb(239, 125, 243);
+text-align: center;
+}
+.today{
+  float: left;
+  width:32%;
+  
+}
+
+.tomorrow{
+  float: left;
+  width:32%;
+  overflow: hidden;
+
+}
+.day-after-tomorrow{
+  width:32%;
+  overflow: hidden;
+  
+}
+body{
+  background-color: rgb(237, 180, 237);
+}
+.buttonHover:hover{
+  background-color: rgb(194, 204, 50);
+  
+}
