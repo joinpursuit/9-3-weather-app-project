@@ -56,7 +56,9 @@ function createTheWeather(resultObj, url, formattedLocation) {
     getTomorrowsWeather(resultObj);
     getDayAfterWeather(resultObj);
     appendPreviousSearches(resultObj, url, formattedLocation);
-    
+    getChanceOfSunshine(resultObj);
+    getChanceOfRain(resultObj);
+    getChanceOfSnow(resultObj)
     form.reset();
     
 }
@@ -76,22 +78,29 @@ function resetArticles() {
 
 function appendSearchName(formattedLocation) {
   
-    const searchTitle = document.createElement("h3");
+    const searchTitle = document.createElement("h2");
     searchTitle.textContent = formattedLocation;
     articleCurrentWeather.append(searchTitle);
         
 
 }
-function getCurrentWeatherDetails(details) {
-    const allDetails = document.createElement('p');
-    allDetails.innerHTML = `
-    <strong>Area: </strong> ${details.nearest_area[0].areaName[0].value} 
+function getCurrentWeatherDetails(details, formattedLocation) {
+    const areaDetails = details.nearest_area[0].areaName[0].value;
+    const areaTitle = document.createElement('p')
+    const area = formattedLocation;
+    if (areaDetails === area) {
+        areaTitle.innerHTML = "<strong>Area:</strong> ";
+    } else {
+        areaTitle.innerHTML = "<strong>Nearest Area:</strong> ";
+    }
+    const otherDetails = document.createElement('p');
+    otherDetails.innerHTML = `
     <p><strong>Region: </strong> ${details.nearest_area[0].region[0].value}</p>
     <p><strong>Country: </strong> ${details.nearest_area[0].country[0].value}</p>   
     <p><strong>Currently: </strong> Feels like ${details.current_condition[0].FeelsLikeF}°F</p>
     `;
-    
-    articleCurrentWeather.append(allDetails);
+    areaTitle.append(areaDetails);
+    articleCurrentWeather.append(areaTitle, otherDetails);
     main.prepend(articleCurrentWeather)
    
     
@@ -165,7 +174,7 @@ function appendPreviousSearches(previous, url, formattedLocation) {
 
     }
 
-    if (prevSearchArray.length > 3) {
+    if (prevSearchArray.length > 10) {
         searchUlElement.firstChild.remove();
         prevSearchArray.shift();
     }
@@ -179,3 +188,55 @@ function appendPreviousSearches(previous, url, formattedLocation) {
 //     event.target.nextSibling.classList.remove('hidden');
 // }
 
+
+
+function getChanceOfSunshine(details) {
+   const avgChanceOfSun = details.weather[0].hourly[0].chanceofsunshine;
+
+    if (avgChanceOfSun > 50) {
+        const sunnyImg = document.createElement('img');
+        sunnyImg.setAttribute('src', './assets/icons8-summer.gif');
+        sunnyImg.setAttribute('alt', 'sun');
+        articleCurrentWeather.prepend(sunnyImg);
+    }
+
+    const chanceOfSunshine = document.createElement('p');
+    
+    chanceOfSunshine.innerHTML = '<strong>Chance of Sunshine:</strong> ';
+    chanceOfSunshine.append(avgChanceOfSun, '%');
+    articleCurrentWeather.append(chanceOfSunshine);
+}
+
+function getChanceOfRain(details) {
+    const avgChanceOfRain = details.weather[0].hourly[0].chanceofrain;
+
+     if (avgChanceOfRain > 50) {
+         const rainImg = document.createElement('img');
+         rainImg.setAttribute('src', './assets/icons8-rain-cloud.gif');
+         rainImg.setAttribute('alt', 'rain');
+         articleCurrentWeather.prepend(rainImg);
+     }
+ 
+     const chanceOfRain = document.createElement('p');
+     
+     chanceOfRain.innerHTML = '<strong>Chance of Rain:</strong> ';
+     chanceOfRain.append(avgChanceOfRain, '%');
+     articleCurrentWeather.append(chanceOfRain);
+ }
+
+ function getChanceOfSnow(details) {
+    const avgChanceOfSnow = details.weather[0].hourly[0].chanceofsnow;
+ 
+     if (avgChanceOfSnow > 50) {
+         const snowImg = document.createElement('img');
+         snowImg.setAttribute('src', './assets/icons8-storm.gif');
+         snowImg.setAttribute('alt', 'snow');
+         articleCurrentWeather.prepend(snowImg);
+     }
+ 
+     const chanceOfSnow = document.createElement('p');
+     
+     chanceOfSnow.innerHTML = '<strong>Chance of Snow:</strong> ';
+     chanceOfSnow.append(avgChanceOfSnow, '%');
+     articleCurrentWeather.append(chanceOfSnow);
+ }
