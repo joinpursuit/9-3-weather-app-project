@@ -20,6 +20,13 @@ form.addEventListener('submit', (event) => {
         let feelsLikeTemp = getWeatherReport(currentWeather, json, city);
         const ul = document.querySelector('ul');
         const searchHistory = document.createElement('li');
+
+        // const a = document.createElement("a");
+        // a.addEventListener("click", (event) => {
+        //     event.preventDefault();
+        //     a.textContent = city;
+        //     a.href = `${BASE_URL}${city}?format=j1`
+        // })
         let a = document.createElement('a');
         a.textContent = city;
         a.href = `${BASE_URL}${city}?format=j1`;
@@ -27,7 +34,7 @@ form.addEventListener('submit', (event) => {
         searchHistory.prepend(a);
         ul.append(searchHistory);
         console.log(json)
-        let previous = document.querySelector('section aside.previous p');
+        let previous = document.querySelector('section.previous p');
         previous.hidden = true;
 
 
@@ -138,7 +145,7 @@ const getWeatherReport = (currentWeather, json, city) => {
 
 }
 
-const tempConversion = document.querySelector('aside.conversion-widget form');
+const tempConversion = document.querySelector('.conversion-widget form');
 tempConversion.addEventListener('submit', (event) => {
     event.preventDefault();
     const temperature = event.target.querySelector('#temp-to-convert').value;
