@@ -14,6 +14,7 @@ body, main, header {
 main {
     display:grid;
     background-color: grey;
+    border: 1px red;
     text-align: left;
     margin-left:100px;
     margin-right:25%;
@@ -22,4 +23,12 @@ main {
 .history {
     background-color: darkblue;
 
+}
+aside {
+    display:grid;
+    grid-template-columns: 33% 33% 33%;
+    background-color: white;
+}
+.current {
+    display:grid;
 }
