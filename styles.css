@@ -1,3 +1,25 @@
-html {
-    display: grid;
+
+body, main, header {
+    display:grid;
+}
+.searchBox {
+    display:grid;
+    border: 1px outset red;
+    background-color: lightblue;
+    text-align: center;
+    margin-left: 100px;
+    margin-right:100px;
+    padding-bottom:20px;   
+}
+main {
+    display:grid;
+    background-color: grey;
+    text-align: left;
+    margin-left:100px;
+    margin-right:25%;
+    margin-top:10px;
+}
+.history {
+    background-color: darkblue;
+
 }

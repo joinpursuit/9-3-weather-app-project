@@ -11,28 +11,36 @@
 </head>
 
 <body>
+    <div class="searchBox">
     <h1>Weather App</h1>
     <header id="search">
         <form>
             <label>Pick A Location!</label>
-           <input type="text">
+           <input id="input" type="text">
            <input type="submit" value="Get The Weather">           
         </form>
     </header>
+</div>
     <aside class="tempConv"></aside>
+    <div class="mainContent">
     <main>
-        <article class="current">Choose a location to view the weather</article>
+        <article id="current" class="current">Choose a location to view the weather</article>
         <aside class="upcoming">
             <article></article>
             <article></article>
             <article></article>
         </aside>
     </main>
+</div>
+    <div class="history">
     <aside class="history">
         <section>
             <h4>Previous Searches</h4>
+            <uL>
+            </uL>
             <p>No previous searches</p>
         </section>
         
-    </aside>
+    </aside>    
+</div>
 </body>
