@@ -11,36 +11,50 @@
 </head>
 
 <body>
-    <div class="searchBox">
-    <h1>Weather App</h1>
-    <header id="search">
-        <form>
-            <label>Pick A Location!</label>
-           <input id="input" type="text">
-           <input type="submit" value="Get The Weather">           
-        </form>
+    <header class="searchBox">
+        <h1>Weather App</h1>
+        <div id="search">
+            <form>
+                <label>Pick A Location!</label>
+                <input id="input" type="text" placeholder="Pick a location" autofocus>
+                <input type="submit" value="Get The Weather" id="get__weather">           
+            </form>
+        </div>
     </header>
-</div>
-    <aside class="tempConv"></aside>
-    <div class="mainContent">
-    <main>
-        <article id="current" class="current">Choose a location to view the weather</article>
-        <aside class="upcoming">
-            <article id="today"></article>
-            <article id="tomorrow"></article>
-            <article id="dayAfterTomorrow"></article>
+
+    <div id="underHeader">
+        <aside class="tempConv">
+            <form id="tempConvert">
+                <label for="temp">Convert the Temperature</label> <br><br>
+                <input type="number" name="temp" id="temp-to-convert" title="Only numbers are allowed" placeholder="Type a number:"> <br> <br>
+    
+                <label for="temp_c">To Celsius&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
+                <input type="radio" name="convert-temp" id="to-c" value="c"> <br> <br>
+    
+                <label for="temp_f">To Fahrenheit&nbsp;&nbsp;&nbsp;</label>
+                <input type="radio" name="convert-temp" id="to-f" value="f"> <br> <br>
+
+                <input type="submit" value="Submit" id="submitConvert"> 
+
+            </form>
+            <h4 id="displayTempinCorF"></h4>
         </aside>
-    </main>
-</div>
-    <div class="history">
-    <aside class="history">
-        <section>
-            <h4>Previous Searches</h4>
-            <uL>
-            </uL>
-            <p>No previous searches</p>
-        </section>
-        
-    </aside>    
-</div>
+        <main class="mainContent">
+            <article id="current" class="current">Choose a location to view the weather</article>
+            <aside class="upcoming">
+                <article id="today"></article>
+                <article id="tomorrow"></article>
+                <article id="dayAfterTomorrow"></article>
+            </aside>
+        </main>
+        <aside class="history">
+            <section>
+                <h4>Previous Searches</h4>
+                <ul id="historyList">
+                    <p id="noSearch">No previous searches</p>
+                </ul>
+            </section>
+        </aside> 
+    </div>
 </body>
+</html>
