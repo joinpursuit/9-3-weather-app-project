@@ -1,0 +1,122 @@
+
+body, main, header {
+    display:grid;
+}
+a {
+    color:blue;
+}
+a:hover {
+    color:black;
+}
+body{
+    background-image: url(./assets/sunny-background.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.searchBox {
+    display:grid;
+    background-color: lightblue;
+    text-align: center;
+    margin-left: 100px;
+    margin-right:100px;
+    padding-bottom:20px;   
+    width: 80%;
+}
+
+#underHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 30px;
+    padding: 3px;
+    width: 80%;
+    margin-top: 30px;
+    margin-left: 100px;
+}
+
+.mainContent {
+
+    text-align: left;
+    margin-left: -95px;
+    margin-right: -94px;
+    margin-top: 5px;
+    padding-left: 10px;
+    width: 100%;
+    font-size: larger;
+    margin-bottom: 5px;
+}
+
+.current p{
+    text-align: left;
+    margin-left: 30px;
+}
+
+.current img{
+    margin: 10px;
+    padding: 5px;
+    margin-left: 24%;
+}
+
+.history {
+    background-color: lightblue;
+    width: 45%;
+    margin: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    font-size: larger;
+    margin-left: 10%;
+}
+
+.history ul {
+    list-style-position: inside;
+}
+
+.history li{
+    cursor: pointer;
+}
+
+#dayAfterTomorrow, #today, #tomorrow{
+    font-size: 17px;
+}
+
+.upcoming {
+    display:grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.upcoming p{
+    font-size: larger;
+}
+
+.tempConv{
+    background-color: lightblue;
+    width: 45%;
+    margin: 5px;
+    margin-left: 5px;
+    padding: 5px;
+    font-size: larger;
+    margin-right: 10%;
+}
+
+.tempConv input, .tempConv label, header #input, header label{
+    font-size: larger;
+    margin:10px;
+    padding:5px;
+}
+
+#displayTempinCorF, #submitConvert{
+    text-align: center;
+}
+
+#submitConvert{
+    margin-left:33%;
+    padding:10px;
+    letter-spacing: 1px;
+    width:40%;
+}
+
+#get__weather{
+    padding:10px;
+    letter-spacing: 1px;
+    font-size: larger;
+}
