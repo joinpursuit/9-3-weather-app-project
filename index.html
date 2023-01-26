@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <div class="container">
+    <header>
+        <h1>Weather App</h1>
+        <form>
+            <label for="location">Pick a Location</label>
+            <input class="search-bar" type="text" />
+            <input type="submit" name="submit" class="submit" value="Get Weather" />
+        </form>
+    </header>
+
+    <aside class="temp-widget" hidden ></aside>
+    
+    <main>
+        
+        <article class="current-weather">Choose a location to view the weather.</article>
+        <aside class="aside-upcoming">
+            <article class="today-weather"></article>
+            <article class="tomorrow"></article>
+            <article class="day-after"></article>
+        </aside>
+    </main>    
+    
+    <aside class="prev-search">
+        <section>
+        <h4>Previous Searches</h4>
+            <ul class="search">
+              <p class="note">No previous searches</p>
+            </ul>
+        </section>
+    </aside>
+</div>
+</body>
+</html>
