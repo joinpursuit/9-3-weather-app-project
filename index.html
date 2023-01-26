@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Weather App</title>  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./style.css"/>   
+    <script defer src="index.js"></script> 
+</head>
+<body>
+    <header class="searchBox">
+        <h1>Weather App</h1>
+        <div id="search">
+            <form>
+                <label>Pick A Location!</label>
+                <input id="input" type="text" placeholder="Pick a location">
+                <input type="submit" value="Get The Weather" id="getWeather">           
+            </form>
+        </div>
+    </header>
+    <div id="block">
+        <aside class="tempConv">
+            <form id="temperatureConversion">
+                <label for="temp">Convert the Temperature</label>
+                <input type="number" name="temp" id="convertThisTemp" title="Type number" placeholder="Type a temp!"> <br> <br>
+
+                <label for="temp_c">To Celsius</label> 
+                <input type="radio" name="convert-temp" id="cel" value="c"> <hr>
+
+                <label for="temp_f">To Fahrenheit</label>
+                <input type="radio" name="convert-temp" id="fah" value="f"> <hr>
+
+                <input type="submit" value="Submit" id="submitConvert"> 
+
+            </form>
+        <div id="tempResults"></div>
+            <h4 id="convertedTemp"></h4>
+        </aside>
+        <main class="mainContent">
+            <article id="current" class="current">Choose a location to view the weather.</article>
+            <aside class="upcoming">
+                <article id="today"></article>
+                <article id="tomorrow"></article>
+                <article id="dayAfterTomorrow"></article>
+            </aside>
+        </main>
+        <aside class="pastSearch">
+            <section>
+                <h4>Previous Searches</h4>
+                <ul id="pastSearchList">
+                    <p id="noSearch">No previous searches</p>
+                </ul>
+            </section>
+        </aside> 
+    </div>
+</body>
+</html>

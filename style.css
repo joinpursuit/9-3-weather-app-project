@@ -1,0 +1,122 @@
+body, main, header {
+   display:grid;
+}
+#tempResults {
+   display: block;
+}
+#getWeather{
+   padding:10px;
+   font-size: larger;
+}
+a {
+   color:blue;
+}
+a:hover {
+   color:black;
+}
+body{
+   background: linear-gradient(yellow, orange, blue,yellow);
+}
+.searchBox {
+   display:grid;
+   background-color: rgb(3, 79, 104);
+   color:white;
+   text-align: center;
+   margin-left: 100px;
+   margin-right:100px;
+   padding-bottom:20px;   
+   width: 80%;
+}
+#block {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   margin: 30px;
+   padding: 5px;
+   width: 80%;
+   margin-top: 40px;
+   margin-left: 110px;
+}
+
+.mainContent {
+
+   text-align: left;
+   margin-left: -95px;
+   margin-right: -94px;
+   margin-top: 5px;
+   padding-left: 10px;
+   width: 100%;
+   font-size: larger;
+   margin-bottom: 5px;
+}
+
+.current p{
+   text-align: left;
+   margin-left: 30px;
+}
+
+.current img{
+   margin: 10px;
+   padding: 5px;
+   margin-left: 24%;
+}
+
+.pastSearch {
+   background-color:  rgb(3, 79, 104);
+   width: 45%;
+   margin: 5px;
+   margin-right: 5px;
+   padding: 10px;
+   color:white;
+   font-size: larger;
+   margin-left: 10%;
+}
+
+.pastSearch ul {
+   list-style-position: inside;
+}
+
+.pastSearch li{
+   cursor: pointer;
+}
+
+#dayAfterTomorrow, #today, #tomorrow{
+   font-size: 30px;
+}
+
+.upcoming {
+   display:grid;
+   grid-template-columns: 33% 33% 33%;
+}
+.upcoming p{
+   font-size: larger;
+}
+
+.tempConv{
+   width: 45%;
+   margin: 5px;
+   margin-left: 5px;
+   background-color:  rgb(3, 79, 104);
+   padding: 5px;
+   font-size: larger;
+   margin-right: 10%;
+   color: white;
+}
+
+.tempConv input, .tempConv label, header #input, header label{
+   font-size: larger;
+   margin:10px;
+   padding:5px;
+}
+
+#displayTempinCorF, #submitConvert{
+   text-align: center;
+}
+
+#submitConvert{
+   margin-left:33%;
+   padding:10px;
+   letter-spacing: 1px;
+   width:40%;
+}
+
